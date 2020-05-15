@@ -10,6 +10,7 @@ require 'faker'
 
 puts "destroying seed"
 
+MenuOption.destroy_all
 MenuItem.destroy_all
 Restaurant.destroy_all
 
@@ -26,21 +27,23 @@ puts "creating restaurants"
     phone = Faker::PhoneNumber.phone_number_with_country_code
     restaurant = Restaurant.create(name: name, address: address, open_time: open_time, close_time: close_time, about: about, email: "restaurant#{n}@email.com")
 
-    puts "creating menu items"
-
     20.times do |n|
         name = Faker::Food.dish
         price = rand(800..2500).round(-1)
         description = Faker::Food.description
         is_active = true
-        MenuItem.create(name: name, price: price, description: description, is_active: is_active, restaurant_id: restaurant.id)
-    end
+        item = MenuItem.create(name: name, price: price, description: description, is_active: is_active, restaurant_id: restaurant.id)
 
-    puts "finished creating menu items"
+        2.times do |n|
+            name = Faker::Food.vegetables
+            price = rand(300..800).round(-1)
+            description = Faker::Lorem.sentence(word_count: 5)
+            MenuOption.create(name: name, price: price, description: description, menu_item_id: item.id)
+        end
+    end
 end
 
 puts "finished creating restaurants"
 
-
-
+puts "finished seeding"
 
