@@ -18,9 +18,12 @@ puts "finished destroying seed"
 
 puts "creating restaurants"
 
+addresses = ["10-14 Kelvinhaugh Street, Glasgow, G3 8NU, United Kingdom", "142 Renfield Street, Glasgow, G2 3AU, United Kingdom", "50 St Enoch Square, Glasgow, G1 4DH, United Kingdom", "69 Bridge Street, Glasgow, G5 9JB, United Kingdom", "171 Great Western Road, Glasgow, G4 9AW, United Kingdom", "494 Dumbarton Road, Glasgow, G11 6SL, United Kingdom", "380 Great Western Road, Glasgow, G4 9HT, United Kingdom", "65 Cambridge Street, Glasgow, G3 6QX, United Kingdom", "103 Ingram Street, Glasgow, G1 1DX, United Kingdom", "481 Great Western Road, Glasgow, G12 8HL, United Kingdom"]
+
 10.times do |n|
     name = Faker::Restaurant.name 
-    address = Faker::Address.full_address
+    address = addresses.first
+    addresses.shift
     open_time = 36000
     close_time = 54000
     about = Faker::Restaurant.description
