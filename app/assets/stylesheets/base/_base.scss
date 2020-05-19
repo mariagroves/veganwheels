@@ -1,0 +1,18 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+/* 10px is 62.5% of 16px (default browser font size) */
+html {
+    // Defines what 1 rem is. 1 rem is 10px.
+    font-size: 62.5%;
+}
+  
+body {
+   box-sizing: border-box;
+   background-color: #66B38C;
+}

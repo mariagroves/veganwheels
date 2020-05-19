@@ -1,0 +1,20 @@
+body {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 400;
+    font-size: $default-font-size;
+    line-height: 1.7;
+    color: $color-black;
+    padding: 3rem; 
+ }
+
+ .heading-primary {
+    font-size: 3.8rem;
+    font-family: $heading-font;
+ }
+
+ .paragraph {
+    margin-bottom: 3rem;
+    margin-top: 3rem;
+    font-weight: 400;
+    font-size: $default-font-size;
+ }

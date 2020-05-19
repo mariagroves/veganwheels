@@ -1,0 +1,19 @@
+.hero {
+    height: 95vh;
+    position: relative;
+
+    .hero__text-box {
+        position: absolute;
+        top: 15rem;
+        width: 50%;
+    }
+
+    img {
+        position: absolute;
+        left: 525px;
+        top: -45px;
+        width: 60%;
+    }
+}
+
+

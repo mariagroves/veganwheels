@@ -1,2 +1,16 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="hero container">
+    <div class="hero__text-box">
+    <h1 class="heading-primary">Vegan Wheels is a vegan food delivery service in Glasgow</h1> 
+
+    <p class="paragraph">We want to make it as easy as possible to eat delicious vegan food.</p> 
+
+    <p class="paragraph">With Vegan Wheels you can order from the best local restaurants and be confident that none of your money goes to businesses that use animal products.</p>
+
+     <%= simple_form_for :search, url: restaurants_path, method: "GET", html: { class: 'form-inline' } do |f| %>
+    <%= f.input :postcode, input_html: {value: ""}, label: false%>   
+    <%= f.submit "Search", class: "btn btn-warning" %>
+    <% end %>
+    </div>
+    <%= image_tag "Face.svg" %>
+</div>
+   

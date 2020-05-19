@@ -3,6 +3,13 @@ class RestaurantsController < ApplicationController
 
     def index
         @restaurants = Restaurant.all
+        @search = params["search"]
+        if @search.present?
+            @postcode = @search["postcode"] # doesnt work if no space in PC
+            @results = Geocoder.search(@postcode)
+            @coordinates = @results.first.coordinates
+            @restaurants = Restaurant.near(@coordinates, 5, units: :km)
+        end
     end
 
     def show
