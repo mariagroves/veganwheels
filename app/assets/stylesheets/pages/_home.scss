@@ -2,17 +2,17 @@
     height: 95vh;
     position: relative;
 
-    .hero__text-box {
+    &__text-box {
         position: absolute;
-        top: 15rem;
-        width: 50%;
+        top: 12rem;
+        width: 58%;
     }
 
     img {
         position: absolute;
-        left: 525px;
-        top: -45px;
-        width: 60%;
+        right: -8rem;
+        top: 0px;
+        width: 55%;
     }
 }
 
