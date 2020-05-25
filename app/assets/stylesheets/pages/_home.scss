@@ -1,18 +1,8 @@
 .hero {
     height: 95vh;
-    position: relative;
 
     &__text-box {
-        position: absolute;
-        top: 12rem;
-        width: 58%;
-    }
-
-    img {
-        position: absolute;
-        right: -8rem;
-        top: 0px;
-        width: 55%;
+        margin-top: 12rem;
     }
 }
 

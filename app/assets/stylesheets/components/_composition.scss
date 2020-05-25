@@ -1,0 +1,66 @@
+.composition {
+    position: relative;
+
+    &__blob {
+        
+        &--1 {
+            animation: morph1 7s ease-in-out infinite;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            height: 52rem;
+            width: 41rem;
+            transition: all .5s ease-in-out;
+            z-index: 3;
+            position: absolute;
+            top: 5rem;
+            right: -13rem;
+            background-color: $color-yellow-medium;
+        }
+
+        &--2 {
+            animation: morph2 5s ease-out infinite;
+            border-radius: 22% 78% 41% 59% / 64% 76% 24% 36%;
+            height: 39rem;
+            width: 36rem;
+            transition: all .5s ease-out;
+            z-index: 5;
+            position: absolute;
+            top: 30rem;
+            right: -3rem;
+            background-color: $color-red-light;
+        }
+
+        &--3 {
+            animation: morph3 8s ease-in infinite;
+            border-radius: 49% 51% 23% 77% / 54% 57% 43% 46%;
+            height: 44rem;
+            width: 36rem;
+            transition: all .6s ease-in;
+            z-index: 2;
+            position: absolute;
+            top: 20rem;
+            right: 10rem;
+            background-color: $color-primary-light;
+        }
+
+        &--4 {
+            animation: morph4 4s linear infinite;
+            border-radius: 26% 74% 43% 57% / 25% 26% 74% 75%;
+            height: 40rem;
+            width: 33rem;
+            transition: all .5s linear;
+            z-index: 4;
+            position: absolute;
+            top: 2rem;
+            right: 10rem;
+            background-color: $color-blue;
+        }
+        
+    }
+
+    &__image {
+        z-index: 6;
+        position: absolute;
+        top: 5rem;
+        right: -15rem;
+    }
+}

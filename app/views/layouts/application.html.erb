@@ -13,14 +13,25 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-  <div class="container">
-    <div class="site-nav">
+  <div class="nav">
+    <div class="container nav__links">
       <%= link_to "Vegan Wheels", root_path %>
-      <%= link_to "See all restaurants", restaurants_path %>
-      <a href="#">About us</a>
-      <a href="#">Ride with us</a>
-      <a href="#">Sign up / Log in</a>
-    </div>  
+      <div class="nav__links--1">
+        <div class="link-blob"></div>
+        <%= link_to "See all restaurants", restaurants_path %>
+      </div>
+      <div class="nav__links--2">
+        <div class="link-blob"></div>
+        <a href="#">About us</a>
+      </div>
+      <div class="nav__links--3">
+        <div class="link-blob"></div>
+        <a href="#">Ride with us</a>
+      </div>
+      <div class="nav__links--4">
+        <div class="link-blob"></div>
+        <a href="#">Sign up / Log in</a>
+      </div>  
   </div>
     <%= yield %>
   </body>

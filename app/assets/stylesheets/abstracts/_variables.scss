@@ -8,7 +8,10 @@ $color-primary-light: #99CCB3;
 $color-yellow-dark: #FBD359;
 $color-yellow-medium: #FCDE83;
 $color-yellow-light:#FDE9AC;
-
+$color-red-dark: #DE5E35;
+$color-red-medium: #E68668;
+$color-red-light: #EFAF9A;
+$color-blue: #A7D3E0;
 
 // // GRID
 // $grid-width: 114rem;
@@ -16,6 +19,10 @@ $color-yellow-light:#FDE9AC;
 // $gutter-horizontal: 6rem;
 
 //FONT
+@font-face {
+    font-family: 'Leafy';
+    src: font-url('leafy.woff') format('woff');
+ }
 $default-font-size: 1.6rem;
 $landing-page-font-size: 2.1rem;
-$heading-font: "Permanent Marker";
+$heading-font: "Leafy";
