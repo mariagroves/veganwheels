@@ -1,36 +1,97 @@
-<div class="hero container">
-    <div class="row">
-        <div class="col-7">
-            <div class="hero__text-box">
-                <h1 class="heading-primary">Vegan Wheels is a vegan food delivery service in Glasgow</h1> 
+<div class="hero">
+    <div class="container">
+        <div class="row hero__content">
+            <div class="col-7">
+                <div class="hero__text-box">
+                    <h1 class="heading-primary-yellow">Vegan Wheels is a vegan food delivery service in Glasgow</h1> 
 
-                <h3 class="margin-large"> We want to make it as easy as possible to eat delicious vegan food.</h3>  
-            
-                <h3 class="margin-large">With Vegan Wheels you can order from the best local restaurants and be confident that none of your money goes to businesses that use animal products.</h3>
+                    <h3 class="margin-medium"> We want to make it as easy as possible to eat delicious vegan food.</h3>  
+                
+                    <h3 class="margin-medium">With Vegan Wheels you can order from the best local restaurants and be confident that none of your money goes to businesses that use animal products.</h3>
+                </div>
+                <div class="search-form">
+                    <p class="label-yellow uppercase">Enter your postcode to begin</p>
+                    <%= simple_form_for :search, 
+                        url: restaurants_path, 
+                        method: "GET" do |f| %>
+                    <%= f.input :postcode, 
+                        input_html: {value: "", class: "search-form-big"},
+                        label: false%>      
+                    <% end %>
+                    <i class="fas fa-search"></i>
+                </div>
             </div>
-            <div class="search-form">
-                <p class="label uppercase">Enter your postcode to begin</p>
-                <%= simple_form_for :search, 
-                    url: restaurants_path, 
-                    method: "GET" do |f| %>
-                <%= f.input :postcode, 
-                    input_html: {value: "", class: "search-form-big"},
-                    label: false%>      
-                <% end %>
-                <i class="fas fa-search"></i>
+            <div class="col-5">
+                <div class="composition">
+                    <div class="composition__blob composition__blob--1"></div>
+                    <div class="composition__blob composition__blob--2"></div>
+                    <div class="composition__blob composition__blob--3"></div>
+                    <div class="composition__blob composition__blob--4"></div>
+                    <div class="composition__image">
+                        <%= image_tag "Face image.png" %>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-5">
-            <div class="composition">
-                <div class="composition__blob composition__blob--1"></div>
-                <div class="composition__blob composition__blob--2"></div>
-                <div class="composition__blob composition__blob--3"></div>
-                <div class="composition__blob composition__blob--4"></div>
-                <div class="composition__image">
-                    <%= image_tag "Face image.png" %>
-                </div>
+        <div class="row scroll">
+            <div class="col-12 text-center">
+                <i class="fas fa-chevron-down scroll-yellow"></i>
+                <p class="label-yellow uppercase">Find out more</p>
             </div>
         </div>
     </div>
 </div>
-   
+<div class="features">
+    <div class="container">
+        <div class="row">
+            <h1 class="heading-primary-green margin-large text-justify text-center">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus magna adipiscing suspendisse diam. Convallis mi.
+            </h1>
+        </div>
+        <div class="row features__images">
+            <div class="col-4">
+                <div class="features__images--i1">
+                    <%= image_tag "HP Group 1.png" %>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="features__images--i2">
+                   <%= image_tag "HP Group 2.png" %>
+                </div>
+            </div>
+            <div class="col-4">
+            <div class="features__images--i3">
+                   <%= image_tag "HP Group 3.png" %>
+                </div>
+            </div>
+        </div>
+        <div class="row features__text">
+            <div class="col-4">
+                <h3 class="subheading text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3>
+                <p class="paragraph text-justify text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet praesent non auctor.</p>
+            </div>
+            <div class="col-4">
+                <h3 class="subheading text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3>
+                <p class="paragraph text-justify text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet praesent non auctor.</p>
+            </div>
+            <div class="col-4">
+                <h3 class="subheading text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3>
+                <p class="paragraph text-justify text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet praesent non auctor.</p>
+            </div>
+        </div>
+        <div class="row scroll">
+            <div class="col-12 text-center">
+                <i class="fas fa-chevron-down scroll-green"></i>
+                <p class="label-green uppercase">About us</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="about">
+    <div class="container">
+        <div class="about__background">
+            <%= render 'svg/about' %>
+        </div>  
+    </div>
+</div>
+<div class="footer"></div>

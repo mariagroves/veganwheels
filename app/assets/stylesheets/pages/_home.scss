@@ -1,9 +1,71 @@
 .hero {
     height: 95vh;
+    width: 100%;
+    background-color: $color-primary-medium;
+
+    &__content {
+        margin-bottom: 8rem;
+    }
 
     &__text-box {
         margin-top: 12rem;
     }
 }
+.features {
+    height: 100vh;
+    width: 100%;
+    background-color: $color-white;
 
+    &__images {
+        position: relative;
 
+        &--i2 {
+            position: absolute;
+            right: 0.3rem;
+            bottom: 1.5rem;
+        }
+
+        &--i3 {
+            position: absolute;
+            right: 1.5rem;
+            top: 2rem;
+        }
+    }
+
+    &__text {
+        margin-bottom: 2rem;
+    }
+}
+
+.about {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    background-color: $color-primary-medium;
+
+    &::before {
+        content: ' ';
+        background-image: url(asset_path('Lightbulb.png'));
+        background-size: cover;
+        opacity: 0.4;
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    &__background {
+        z-index: 5;
+        position: absolute;
+        bottom: 0;
+        left: 30rem;
+    }
+}
+
+.footer {
+    height: 40vh;
+    width: 100%;
+    background-color: $color-black;
+}
