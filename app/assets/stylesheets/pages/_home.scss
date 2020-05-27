@@ -38,34 +38,114 @@
 }
 
 .about {
-    height: 100vh;
-    width: 100%;
-    position: relative;
-    background-color: $color-primary-medium;
 
-    &::before {
-        content: ' ';
-        background-image: url(asset_path('Lightbulb.png'));
-        background-size: cover;
-        opacity: 0.4;
-        display: block;
-        position: absolute;
-        left: 0;
-        top: 0;
+    &__main {
+        height: 100vh;
         width: 100%;
-        height: 100%;
+        position: relative;
+        background-color: $color-primary-medium;
+        overflow: hidden;
+
+        &::before {
+            content: ' ';
+            background-image: url(asset_path('Lightbulb.png'));
+            background-size: cover;
+            opacity: 0.2;
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
     }
 
-    &__background {
-        z-index: 5;
-        position: absolute;
-        bottom: 0;
-        left: 30rem;
-    }
-}
+    &__cta {
+        height: 10vh;
+        width: 100%;
+        background-color: $color-black;
+        position: relative;
 
-.footer {
-    height: 40vh;
-    width: 100%;
-    background-color: $color-black;
+        &--shape {
+            position: absolute;
+            z-index: 8;
+            top: -11rem;
+            left: 37rem;
+            border-radius: 57% 43% 59% 41% / 63% 50% 50% 37%;
+            background-color: $color-yellow-dark;
+            height: 34vh;
+            width: 45%;
+            display: flex;
+            justify-content: center;
+            align-items:center;
+            flex-direction: column;
+        }
+    }
+
+    &__text-box {
+        width: 72rem;
+        height: 45rem;
+        padding-left: 10rem;
+        padding-right: 10rem;
+        padding-top: 5rem;
+    }
+
+    &__shape {
+        &--photo {
+            z-index: 6;
+            position: absolute;
+            top: 13vh;
+            left: 28rem;
+            height: 20rem;
+            width: 20rem;
+            border-radius: 50%;
+            background-image: url(asset_path('sheep.jpg'));
+            background-size: cover;
+            transform: rotate(355deg);
+        }
+
+        &--yellow {
+            z-index: 4;
+            position: absolute;
+            top: 8vh;
+            left: 25rem;
+            border-radius: 29% 71% 57% 43% / 63% 70% 30% 37%;
+            background-color: $color-yellow-dark;
+            height: 25rem;
+            width: 25rem;
+        }
+
+        &--big {
+            z-index: 5;
+            position: absolute;
+            bottom: -20rem;
+            left: 35rem;
+            border-radius: 81% 19% 81% 19% / 31% 17% 83% 69%;
+            background-color: $color-primary-light;
+            height: 100rem;
+            width: 58%;
+        }
+
+        &--medium {
+            z-index: 5;
+            position: absolute;
+            top: 30vh;
+            right: -15rem;
+            border-radius: 100% 0% 57% 43% / 27% 48% 52% 73%;
+            background-color: $color-primary-light;
+            height: 40vh;
+            width: 20%;
+        }
+
+        &--small {
+            z-index: 5;
+            position: absolute;
+            bottom: -8rem;
+            left: -7rem;
+            border-radius: 48% 52% 16% 84% / 31% 48% 52% 69%;
+            background-color: $color-primary-light;
+            height: 30vh;
+            width: 20%;
+        }
+    }
 }

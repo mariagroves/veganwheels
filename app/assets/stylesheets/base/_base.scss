@@ -10,9 +10,17 @@
 html {
     // Defines what 1 rem is. 1 rem is 10px.
     font-size: 62.5%;
+    height:100%;
 }
   
 body {
    box-sizing: border-box;
    padding: 0 !important;
+   display: flex;
+   flex-direction: column;
+   height: 100%;
+}
+
+.content {
+    flex: 1 0 auto;
 }

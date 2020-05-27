@@ -1,0 +1,43 @@
+.footer {
+    flex-shrink: 0;
+    height: 30rem;
+    width: 100%;
+    background-color: $color-black;
+    padding-top: 12rem;
+    color: $color-yellow-dark;
+
+
+    &__links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    a {
+        &:link,
+        &:visited {
+            color: $color-yellow-dark;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        &:hover {
+            text-decoration: none;
+            color: $color-primary-light;
+        }
+    }
+
+    &__contact {
+        color: $color-yellow-dark;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .title {
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+
+    }
+}

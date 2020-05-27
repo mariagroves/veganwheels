@@ -12,28 +12,53 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-  <div class="navigation">
-    <div class="container navigation__links">
-      <%= link_to "Vegan Wheels", root_path %>
-      <div class="navigation__links--1">
-        <div class="link-blob"></div>
-        <%= link_to "See all restaurants", restaurants_path %>
+    <div class="navigation">
+      <div class="container navigation__links">
+        <%= link_to "Vegan Wheels", root_path %>
+        <div class="navigation__links--1">
+          <div class="link-blob"></div>
+          <%= link_to "See all restaurants", restaurants_path %>
+        </div>
+        <div class="navigation__links--2">
+          <div class="link-blob"></div>
+          <a href="#">About us</a>
+        </div>
+        <div class="navigation__links--3">
+          <div class="link-blob"></div>
+          <a href="#">Ride with us</a>
+        </div>
+        <div class="navigation__links--4">
+          <div class="link-blob"></div>
+          <a href="#">Sign up / Log in</a>
+        </div>  
       </div>
-      <div class="navigation__links--2">
-        <div class="link-blob"></div>
-        <a href="#">About us</a>
-      </div>
-      <div class="navigation__links--3">
-        <div class="link-blob"></div>
-        <a href="#">Ride with us</a>
-      </div>
-      <div class="navigation__links--4">
-        <div class="link-blob"></div>
-        <a href="#">Sign up / Log in</a>
-      </div>  
     </div>
-  </div>
-  <%= yield %>
+    <div class="content">
+      <%= yield %>
+    </div>
+    <div class="footer">
+          <div class="container">
+              <div class="row">
+                  <div class="col-4">test
+                  </div>
+                  <div class="col-4 vr-line">
+                    <div class="footer__links">
+                        <a href="#">FAQs</a>
+                        <a href="#">Terms and Conditions</a>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Illustrations</a>  
+                    </div>
+                  </div>
+                  <div class="col-4 vr-line">
+                    <div class="footer__contact">
+                      <p class="title">Contact us</p>
+                      <p>name@name.com</p>
+                      <p>0123456789</p>
+                    </div>
+                  </div>
+              </div>
+          </div>
+    </div>
   </body>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'%>
 </html>

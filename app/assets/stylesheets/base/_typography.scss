@@ -20,7 +20,8 @@ body {
 }
 
  .paragraph {
-    font-weight: 400;
+    margin-bottom: 3rem;
+    text-align: justify;
  }
 
  h3 {
@@ -44,4 +45,9 @@ body {
 .label-green {
    font-weight: 600;
    color: $color-primary-dark;
+}
+
+.vr-line {
+   border-left: 1px solid $color-yellow-dark;
+   height: 12rem;
 }
