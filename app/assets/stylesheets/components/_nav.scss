@@ -1,7 +1,10 @@
 .navigation {
-    padding: 2rem 0;
-    height: 7rem;
+    height: 9rem;
+    width: 100%;
     background-color: $color-primary-medium;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
 
     &__links {
         background-color: transparent;

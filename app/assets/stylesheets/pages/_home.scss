@@ -1,5 +1,5 @@
 .hero {
-    height: 95vh;
+    height: calc(100vh-9rem);
     width: 100%;
     background-color: $color-primary-medium;
 
@@ -33,7 +33,7 @@
     }
 
     &__text {
-        margin-bottom: 2rem;
+        margin-bottom: 4rem;
     }
 }
 
