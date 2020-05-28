@@ -1,0 +1,9 @@
+.background {
+    width: 100%;
+    min-height: calc(100vh - 39rem);
+    background-color: $color-primary-medium;
+    background-image: url(asset_path('border.svg')), url(asset_path('border2.svg'));
+    background-position: -10% 0%, 110% 0;
+    background-repeat: repeat-y;
+    background-size: 50%, 50%;
+}

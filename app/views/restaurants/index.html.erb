@@ -1,11 +1,12 @@
-<h1>Index of Restaurants</h1>
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-8 offset-sm-2">
-      <h1>Restaurants</h1>
-      <% @restaurants.each do |restaurant| %>
-        <h3><%= restaurant.name %></h3>
-      <% end %>
+<div class="background">
+  <div class="container white-content-box">
+    <div class="row">
+      <div class="col-xs-12 col-sm-8 offset-sm-2">
+        <h1>Restaurants</h1>
+        <% @restaurants.each do |restaurant| %>
+          <h3><%= restaurant.name %></h3>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
