@@ -9,7 +9,7 @@
     <%= csp_meta_tag %>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Permanent+Marker&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/fa4042b875.js" crossorigin="anonymous"></script>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
   </head>
   <body>
     <%= render 'partials/nav'%>
@@ -17,6 +17,6 @@
       <%= yield %>
     </div>
     <%= render 'partials/footer'%>
+    <%= javascript_pack_tag 'application'%>
   </body>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'%>
 </html>

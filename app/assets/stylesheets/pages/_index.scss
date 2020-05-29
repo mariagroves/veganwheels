@@ -1,1 +1,74 @@
-@import "home";
+.results-bar {
+    width: 100%;
+    height: 5.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    &:first-child {
+        margin-left: 2rem;
+    }
+
+    &:last-child {
+        margin-right: 2rem;
+    }
+
+    &__text {
+        text-transform: uppercase;
+        font-weight: 600;
+        color: $color-primary-dark;
+    }
+}
+
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(35rem, 1fr));
+    gap: 1rem;
+
+    .card {
+
+        height: 35rem;
+        width: 35rem;
+        border: none;
+        background-repeat: no-repeat;
+        background-color: $color-light-grey;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-position: center;
+
+        &--1 {
+            background-image: url(asset_path('blueblob.svg'));
+            background-size: contain;
+            
+        }
+
+        &--2 {
+            background-image: url(asset_path('greenblob.svg'));
+            background-size: 125%;      
+        }
+
+        &--3 {
+            padding-top: 5rem;
+            background-image: url(asset_path('pinkblob.svg'));
+            background-size: 160%;
+        }
+
+        &--4 {
+            background-image: url(asset_path('yellowblob.svg'));  
+            background-size: 120%; 
+        }
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+$imgKey: random(4);
+$list: blueblob, greenblob, yellowblob, pinkblob;
+$nth: nth($list, $imgKey);

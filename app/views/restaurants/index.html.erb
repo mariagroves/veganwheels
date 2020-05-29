@@ -1,12 +1,21 @@
-<div class="background">
-  <div class="container white-content-box">
+<div class="container white-content-box">
+  <% if @search.present? %>
     <div class="row">
-      <div class="col-xs-12 col-sm-8 offset-sm-2">
-        <h1>Restaurants</h1>
-        <% @restaurants.each do |restaurant| %>
-          <h3><%= restaurant.name %></h3>
-        <% end %>
+      <div class="results-bar">
+        <h3 class="results-bar__text">Restaurants near you</h3>
+        <h3 class="results-bar__text"><%= @postcode%></h3>
       </div>
     </div>
+  <%end%>
+  <div class="cards">
+    <% @restaurants.each do |restaurant| %>
+      <%= link_to restaurant_path(restaurant) do %>
+          <div class="card card--<%= restaurant.imagekey %>">
+            <% restaurant.name.split.each do |word| %>
+              <h1><%=word%></h1>
+            <%end%>
+          </div>
+      <%end%>
+    <%end%>
   </div>
 </div>
