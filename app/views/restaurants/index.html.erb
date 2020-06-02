@@ -11,9 +11,14 @@
     <% @restaurants.each do |restaurant| %>
       <%= link_to restaurant_path(restaurant) do %>
           <div class="card card--<%= restaurant.imagekey %>">
-            <% restaurant.name.split.each do |word| %>
-              <h1><%=word%></h1>
-            <%end%>
+            <div class="card__title">
+              <% restaurant.name.split.each do |word| %>
+                <h1><%=word%></h1>
+              <%end%>
+            </div>
+            <div class="card__mask card__mask--<%= restaurant.imagekey %>">
+              <%=image_tag('restaurant.jpg')%>
+            </div>
           </div>
       <%end%>
     <%end%>
