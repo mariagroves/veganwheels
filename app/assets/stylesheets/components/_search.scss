@@ -12,8 +12,12 @@
     i {
         position: absolute;
         left: 37rem;
-        bottom: 2rem;
+        bottom: 5.5rem;
         color: $color-grey;
         font-size: 2.5rem;
+        &:hover,
+        &:active {
+            color: $color-primary-dark;
+        }
     }
 }

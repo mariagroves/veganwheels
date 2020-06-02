@@ -16,9 +16,11 @@
                         method: "GET" do |f| %>
                     <%= f.input :postcode, 
                         input_html: {value: "", class: "search-form-big"},
-                        label: false%>      
-                    <% end %>
-                    <i class="fas fa-search"></i>
+                        label: false%>  
+                    <%= f.button :button do %>
+                        <i class="fas fa-search"></i>
+                        <% end %>    
+                    <% end %> 
                 </div>
             </div>
             <div class="col-5">
@@ -111,7 +113,10 @@
         </div>
         <div class="about__cta">
             <div class="about__cta--shape">
-                    <h1 class="padding-medium">Get started with Vegan Wheels</h1>
+                    <h1>Get started with Vegan Wheels</h1>
+                    <div class="button-big uppercase">
+                        <a href="#">Sign up</a>
+                    </div>
             </div>
         </div>
     </div>
