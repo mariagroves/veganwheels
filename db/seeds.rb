@@ -19,7 +19,7 @@ puts "finished destroying seed"
 puts "creating restaurants"
 
 
-Restaurant.create(
+restaurant1 = Restaurant.create(
     name: "Mono",
     address: "12 Kings Court, Glasgow, G1 5RB, United Kingdom",
     open_time: 36000,
@@ -30,7 +30,7 @@ Restaurant.create(
     imagekey: 1
 )
 
-Restaurant.create(
+restaurant2 = Restaurant.create(
     name: "13th Note",
     address: "50-60 King Street, Glasgow, G1 5QT, United Kingdom",
     open_time: 36000,
@@ -41,7 +41,7 @@ Restaurant.create(
     imagekey: 2
 )
 
-Restaurant.create(
+restaurant3 = Restaurant.create(
     name: "The V&V Cafe",
     address: "481 Great Western Road, Glasgow, G12 8HL, United Kingdom",
     open_time: 36000,
@@ -52,7 +52,7 @@ Restaurant.create(
     imagekey: 3
 )
 
-Restaurant.create(
+restaurant4 = Restaurant.create(
     name: "The Flying Duck",
     address: "142 Renfield Street, Glasgow, G2 3AU, United Kingdom",
     open_time: 36000,
@@ -63,7 +63,7 @@ Restaurant.create(
     imagekey: 4
 )
 
-Restaurant.create(
+restaurant5 = Restaurant.create(
     name: "Glasvegan",
     address: "50 St Enoch Square, Glasgow, G1 4DH, United Kingdom",
     open_time: 36000,
@@ -74,7 +74,7 @@ Restaurant.create(
     imagekey: 1
 )
 
-Restaurant.create(
+restaurant6 = Restaurant.create(
     name: "Stereo",
     address: "22 Renfield Lane, Glasgow, G2 5AR, United Kingdom",
     open_time: 36000,
@@ -85,7 +85,7 @@ Restaurant.create(
     imagekey: 2
 )
 
-Restaurant.create(
+restaurant7 = Restaurant.create(
     name: "The 78",
     address: "10-14 Kelvinhaugh Street, Glasgow, G3 8NU, United Kingdom",
     open_time: 36000,
@@ -96,7 +96,7 @@ Restaurant.create(
     imagekey: 3
 )
 
-Restaurant.create(
+restaurant8 = Restaurant.create(
     name: "Serenity Now",
     address: "380 Great Western Road, Glasgow, G4 9HT, United Kingdom",
     open_time: 36000,
@@ -107,7 +107,7 @@ Restaurant.create(
     imagekey: 4
 )
 
-Restaurant.create(
+restaurant9 = Restaurant.create(
     name: "Picnic",
     address: "103 Ingram Street, Glasgow, G1 1DX, United Kingdom",
     open_time: 36000,
@@ -118,7 +118,7 @@ Restaurant.create(
     imagekey: 1
 )
 
-Restaurant.create(
+restaurant10 = Restaurant.create(
     name: "Soul Kitchen",
     address: "973 Sauchiehall Street, Glasgow, G3 7TQ, United Kingdom",
     open_time: 36000,
@@ -128,6 +128,28 @@ Restaurant.create(
     email: "soulkitchen@email.com",
     imagekey: 2
 )
+
+photo1 = URI.open('https://bigseventravel.com/wp-content/uploads/2019/12/oh.jpg')
+photo2 = URI.open('https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/satay-sweet-potato-curry_1.jpg')
+photo3 = URI.open('https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/vegetarian-recipe-tomato-cucumber-farro-salad-1567097097.jpg')
+photo4 = URI.open('https://www.feastingathome.com/wp-content/uploads/2019/01/collard-greens-wraps-100.jpg')
+photo5 = URI.open('https://thebusybaker.ca/wp-content/uploads/2017/11/vegan-chocolate-mousse-cheesecake-fbig4-500x500.jpg')
+photo6 = URI.open('https://media-cdn.tripadvisor.com/media/photo-s/11/9c/2b/f3/raw-vegan-spring-rolls.jpg')
+photo7 = URI.open('https://www.delishknowledge.com/wp-content/uploads/greengoddessveggiesandwich.jpg')
+photo8 = URI.open('https://simple-veganista.com/wp-content/uploads/2012/07/raw-vegan-sushi-rolls-5.jpg')
+photo9 = URI.open('https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2020/01/noodles.jpg')
+photo10 = URI.open('https://i.pinimg.com/originals/4f/88/96/4f8896abe38f2f9d14c724f88023fa7d.jpg')
+
+restaurant1.photo.attach(io: photo1, filename: 'vegan1.jpg', content_type: 'image/jpg')
+restaurant2.photo.attach(io: photo2, filename: 'vegan2.jpg', content_type: 'image/jpg')
+restaurant3.photo.attach(io: photo3, filename: 'vegan3.jpg', content_type: 'image/jpg')
+restaurant4.photo.attach(io: photo4, filename: 'vegan4.jpg', content_type: 'image/jpg')
+restaurant5.photo.attach(io: photo5, filename: 'vegan5.jpg', content_type: 'image/jpg')
+restaurant6.photo.attach(io: photo6, filename: 'vegan6.jpg', content_type: 'image/jpg')
+restaurant7.photo.attach(io: photo7, filename: 'vegan7.jpg', content_type: 'image/jpg')
+restaurant8.photo.attach(io: photo8, filename: 'vegan8.jpg', content_type: 'image/jpg')
+restaurant9.photo.attach(io: photo9, filename: 'vegan9.jpg', content_type: 'image/jpg')
+restaurant10.photo.attach(io: photo10, filename: 'vegan10.jpg', content_type: 'image/jpg')
 
 puts "finished creating restaurants"
 
