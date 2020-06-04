@@ -8,7 +8,7 @@ require("@rails/activestorage").start()
 require("channels")
 require("components/scroll")
 require("components/background")
-
+require("components/nav")
 
 
 // if (window.location.pathname !== null) {

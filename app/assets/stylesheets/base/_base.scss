@@ -8,14 +8,21 @@
 
 /* 10px is 62.5% of 16px (default browser font size) */
 html {
-    // Defines what 1 rem is. 1 rem is 10px.
+    // Defines what 1rem is. 1rem = 10px [10px/16px = 62.5]
     font-size: 62.5%;
     height:100%;
+
+    @include respond(tab-land) {
+        font-size: 56.25%; //1rem = 9px
+    }
+    @include respond(tab-port) {
+        font-size: 50%; //1rem = 8px
+    }
 }
   
 body {
    box-sizing: border-box;
-   padding: 0 !important;
+   padding: 0;
    display: flex;
    flex-direction: column;
    height: 100%;
