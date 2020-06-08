@@ -1,10 +1,20 @@
 .hero {
-    height: calc(100vh-9rem);
+    height: 100vh;
+    padding-top: 9vh;
+    margin-top: -9vh;
     width: 100%;
     background-color: $color-primary-medium;
 
+    @include respond(tab-land){
+        height: auto;
+    }
+
     &__content {
-        margin-bottom: 8rem;
+        margin-bottom: 4rem;
+
+        @include respond(tab-land) {
+            margin-bottom: 1rem;
+        }
     }
 
     &__text-box {
@@ -20,28 +30,37 @@
     width: 100%;
     background-color: $color-white;
 
+    @include respond(tab-land) {
+        height: auto;
+    }
+
     h1 {
         color: $color-primary-dark;
     }
 
     &__images {
-        position: relative;
 
-        &--i2 {
-            position: absolute;
-            right: 0.3rem;
-            bottom: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        img {
+            max-width: 100%;
+            height: auto;
         }
 
-        &--i3 {
-            position: absolute;
-            right: 1.5rem;
-            top: 2rem;
+        &--box {
+            width: 35rem;
         }
     }
 
     &__text {
         margin-bottom: 4rem;
+        width: 35rem;
+
+        &:last-child {
+            margin-top: -2rem;
+        }
     }
 }
 

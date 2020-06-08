@@ -1,6 +1,20 @@
 .composition {
     position: relative;
 
+    @include respond(tab-land) {
+        float: left;
+        position: relative;
+        left: 67%;
+        height: 47rem;
+    }
+    @include respond(phone) {
+        float: left;
+        position: relative;
+        left: 89%;
+        height: 45rem;
+    }
+
+
     &__blob {
         
         &--1 {
@@ -14,6 +28,19 @@
             top: 5rem;
             right: -13rem;
             background-color: $color-yellow-medium;
+
+            @include respond(phone) {
+                height: 26rem;
+                width: 20rem;
+                right: -4rem;
+                top: 6rem;
+            }
+            @include respond(small-lap) {
+                height: 42rem;
+                width: 31rem;
+                top: 5rem;
+                right: -4rem;
+            }
         }
 
         &--2 {
@@ -27,6 +54,19 @@
             top: 30rem;
             right: -3rem;
             background-color: $color-red-light;
+            @include respond(phone) {
+                height: 19rem;
+                width: 18rem;
+                top: 21rem;
+                right: -2rem;
+            }
+            @include respond(small-lap) {
+                height: 29rem;
+                width: 26rem;
+                top: 25rem;
+                right: 4rem;
+                
+            }
         }
 
         &--3 {
@@ -40,6 +80,19 @@
             top: 20rem;
             right: 10rem;
             background-color: $color-primary-light;
+
+            @include respond(phone) {
+                height: 22rem;
+                width: 18rem;
+                top: 16rem;
+                right: 6rem;
+            }
+            @include respond(small-lap) {
+                height: 34rem;
+                width: 26rem;
+                top: 15rem;
+                right: 13rem;
+            }
         }
 
         &--4 {
@@ -53,6 +106,20 @@
             top: 2rem;
             right: 10rem;
             background-color: $color-blue;
+
+            @include respond(phone) {
+                height: 20rem;
+                width: 16rem;
+                top: 8rem;
+                right: 8rem;
+            }
+
+            @include respond(small-lap) {
+                height: 30rem;
+                width: 23rem;
+                right: 12rem;
+                top: 5rem;
+            }
         }
         
     }
@@ -62,5 +129,22 @@
         position: absolute;
         top: 5rem;
         right: -15rem;
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        @include respond(small-lap){
+            top: 7rem;
+            right: -5rem;
+            width: 45.1rem;
+        }
+
+        @include respond(tab-land) {
+            top: 7rem;
+            right: -5rem;
+            width: 40.8rem;
+        }
     }
 }
