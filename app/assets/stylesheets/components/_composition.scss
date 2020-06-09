@@ -29,12 +29,6 @@
             right: -13rem;
             background-color: $color-yellow-medium;
 
-            @include respond(phone) {
-                height: 26rem;
-                width: 20rem;
-                right: -4rem;
-                top: 6rem;
-            }
             @include respond(small-lap) {
                 height: 42rem;
                 width: 31rem;
@@ -54,12 +48,7 @@
             top: 30rem;
             right: -3rem;
             background-color: $color-red-light;
-            @include respond(phone) {
-                height: 19rem;
-                width: 18rem;
-                top: 21rem;
-                right: -2rem;
-            }
+
             @include respond(small-lap) {
                 height: 29rem;
                 width: 26rem;
@@ -81,17 +70,11 @@
             right: 10rem;
             background-color: $color-primary-light;
 
-            @include respond(phone) {
-                height: 22rem;
-                width: 18rem;
-                top: 16rem;
-                right: 6rem;
-            }
             @include respond(small-lap) {
                 height: 34rem;
                 width: 26rem;
                 top: 15rem;
-                right: 13rem;
+                right: 11rem;
             }
         }
 
@@ -106,13 +89,6 @@
             top: 2rem;
             right: 10rem;
             background-color: $color-blue;
-
-            @include respond(phone) {
-                height: 20rem;
-                width: 16rem;
-                top: 8rem;
-                right: 8rem;
-            }
 
             @include respond(small-lap) {
                 height: 30rem;

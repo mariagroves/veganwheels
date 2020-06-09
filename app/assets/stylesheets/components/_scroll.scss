@@ -17,6 +17,9 @@
         &:hover + p {
             opacity: 1;
         }
+        @include respond(phone) {
+            margin-top: 2rem;
+        }
     }
 
     p {

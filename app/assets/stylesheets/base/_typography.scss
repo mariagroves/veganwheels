@@ -9,15 +9,45 @@ body {
  h1 {
     font-size: 5rem;
     font-family: $heading-font;
+                    
+    @include respond(small-lap) {
+      font-size: 4.5rem;
+   }
+   @include respond(large-phone) {
+      font-size: 4rem;
+   }
+   @include respond(phone) {
+      font-size: 3.5rem;
+   }
  }
+
+ h2 {
+   font-size: 2rem;
+   @include respond(tab-land) {
+      font-size: 2.4rem;
+   }
+   @include respond(phone) {
+      font-size: 2rem;
+   }
+}
+
+h3 {
+   font-size: 1.8rem;
+   @include respond(tab-land) {
+      font-size: 2rem;
+   }
+   @include respond(phone) {
+      font-size: 1.8rem;
+   }
+}
+
+p {
+   font-size: 1.6rem;
+}
 
  .paragraph {
     margin-bottom: 3rem;
     text-align: justify;
- }
-
- h3 {
-    font-size: 2rem;
  }
 
  .uppercase {
@@ -37,9 +67,4 @@ body {
 .label-green {
    font-weight: 600;
    color: $color-primary-dark;
-}
-
-.vr-line {
-   border-left: 1px solid $color-yellow-dark;
-   height: 11rem;
 }

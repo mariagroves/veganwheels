@@ -5,5 +5,5 @@ const navLinks = document.querySelector('.navigation__links')
 navToggle.addEventListener('click',  () => {
     mainNav.classList.toggle('nav-mobile');
     navLinks.classList.toggle('active');
-
+    navToggle.classList.toggle('twist');
 });

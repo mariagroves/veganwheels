@@ -14,14 +14,24 @@
         color: $color-black;
         font-size: 2.4rem;
         display: none;
+        transition: all .3s ease-in;
 
         @include respond(tab-land) {
             display: block;
-            right: 14rem;
+            right: 10rem;
+        }
+
+        @include respond(tab-port) {
+            display: block;
+            right: 9rem;
         }
 
         @include respond(large-phone) {
-            right: 3rem;
+            right: 8rem;
+        }
+
+        @include respond(phone) {
+            right: 4rem;
         }
     }
 
@@ -150,11 +160,14 @@
 }
 
 .active {
-    // display: block;
     visibility: visible;
     opacity: 1;
 }
 
 .nav-mobile {
     height: 100vh;
+}
+
+.twist {
+    transform: rotate(90deg);
 }
