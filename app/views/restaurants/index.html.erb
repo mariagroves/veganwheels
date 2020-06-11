@@ -18,9 +18,7 @@
                 <%end%>
               </div>
               <div class="card__mask card__mask--<%= restaurant.imagekey %>">
-                <%#=image_tag('restaurant.jpg')%>
                 <%= cl_image_tag restaurant.photo.key, crop: :fill %>
-
               </div>
             </div>
         <%end%>

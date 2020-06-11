@@ -6,4 +6,9 @@
     min-height: 40vh;
     padding-bottom: 2rem;
     padding-top: 2rem;
+
+    @include respond(large-phone) {
+        width: 87%;
+        margin-bottom: 3rem;
+    }
 }
