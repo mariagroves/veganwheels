@@ -94,6 +94,15 @@
 
         &:hover .link-blob {
             opacity: 1;
+            @include respond(tab-land) {
+                opacity: 0;
+            }
+        }
+
+        &:active {
+            @include respond(tab-land) {
+                background-color: $color-yellow-medium; 
+            }
         }
         
     }
@@ -112,10 +121,20 @@
             bottom: 0;
             z-index: 1;
             opacity: 0;
+
         }
 
         &:hover .link-blob {
             opacity: 1;
+            @include respond(tab-land) {
+                opacity: 0;
+            }
+        }
+
+        &:active {
+            @include respond(tab-land) {
+                background-color: $color-red-light; 
+            }
         }
         
     }
@@ -138,8 +157,24 @@
 
         &:hover .link-blob {
             opacity: 1;
+            @include respond(tab-land) {
+                opacity: 0;
+            }
+        }
+
+        &:active {
+            @include respond(tab-land) {
+                background-color: $color-blue; 
+            }
         }
         
+    }
+
+    &--4 {
+        border: 1px solid transparent;
+        &:hover {
+            border: 1px solid $color-black;
+        }
     }
 
     &--4 a {

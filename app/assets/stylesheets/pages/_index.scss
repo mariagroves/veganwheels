@@ -24,14 +24,14 @@
 
 .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(35rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
     gap: 1rem;
     justify-items: center;
 
     .card {
 
-        height: 35rem;
-        width: 35rem;
+        height: 30rem;
+        width: 30rem;
         border: none;
         background-repeat: no-repeat;
         background-color: $color-light-grey;
