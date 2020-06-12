@@ -2,7 +2,7 @@ body {
     font-family: "Open Sans", sans-serif;
     font-weight: 400;
     font-size: $default-font-size;
-    line-height: 1.7;
+    line-height: 1.5;
     color: $color-black; 
  }
 
@@ -43,10 +43,12 @@ h3 {
 
 p {
    font-size: 1.6rem;
+   margin-bottom: 0;
+   text-align: justify;
 }
 
  .paragraph {
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
     text-align: justify;
  }
 
@@ -57,6 +59,10 @@ p {
  .subheading {
    margin-top: -5rem;
    margin-bottom: 2.5rem;
+ }
+
+ .subtitle {
+    margin-bottom: 1rem;
  }
 
  .label-yellow {

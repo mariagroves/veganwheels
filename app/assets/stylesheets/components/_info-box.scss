@@ -1,0 +1,41 @@
+.info-box {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 2rem 0 2rem;
+    height: auto;
+    border: 1px solid $color-primary-dark;
+    border-radius: 3px;
+
+    @include respond(phone) {
+        margin-top: 2rem;
+    }
+
+    [class^="col-"] {
+        margin-bottom: 2rem;
+    }
+    
+    .subtitle {
+        font-weight: bold;
+    }
+
+    &__section {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        @include respond(phone) {
+            flex-direction: column;
+            margin-top: 1rem;
+        }
+
+        &--box {
+            margin-bottom: 1rem;
+
+            a {
+                text-decoration: underline;
+                color: $color-primary-dark;
+                margin-top: 1rem;
+            }
+        }
+    }
+}

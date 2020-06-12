@@ -4,8 +4,7 @@
     border-radius: 3px;
     margin-bottom: 9rem;
     min-height: 40vh;
-    padding-bottom: 2rem;
-    padding-top: 2rem;
+    padding: 3rem;
 
     @include respond(large-phone) {
         width: 87%;

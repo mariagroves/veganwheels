@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_02_162118) do
+ActiveRecord::Schema.define(version: 2020_06_12_161703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,7 +44,9 @@ ActiveRecord::Schema.define(version: 2020_06_02_162118) do
     t.bigint "restaurant_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "section_id"
     t.index ["restaurant_id"], name: "index_menu_items_on_restaurant_id"
+    t.index ["section_id"], name: "index_menu_items_on_section_id"
   end
 
   create_table "menu_options", force: :cascade do |t|
@@ -70,6 +72,13 @@ ActiveRecord::Schema.define(version: 2020_06_02_162118) do
     t.float "latitude"
     t.float "longitude"
     t.integer "imagekey"
+    t.string "website"
+  end
+
+  create_table "sections", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
