@@ -1,13 +1,13 @@
 <div class="container white-content-box">
     <div class="row">
-        <div class="col-12 col-lg-5 d-flex justify-content-center">
-            <div class="card card--<%= @restaurant.imagekey %>">
-                <div class="card__title">
+        <div class="col-12 col-lg-5">
+            <div class="show-card">
+                <div class="show-card__title">
                     <% @restaurant.name.split.each do |word| %>
                         <h1><%=word%></h1>
                     <%end%>
                 </div>
-                <div class="card__mask card__mask--<%= @restaurant.imagekey %>">
+                <div class="show-card__image">
                 <%= cl_image_tag @restaurant.photo.key, crop: :fill %>
               </div>
             </div>
@@ -47,17 +47,19 @@
                         <div class="info-box__section">
                             <div class="info-box__section--box">
                                 <h3 class="subtitle">Website</h3>
-                                <%= link_to nil, @restaurant.website, target: "_blank" %>
+                                <%= link_to "Visit our website", @restaurant.website, target: "_blank" %>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-lg-6">
-                        <div class="info-box__section--box">
-                            <h3 class="subtitle">Available on Vegan Wheels</h3>
-                            <%open_time = Time.at(@restaurant.open_time)%>
-                            <%close_time = Time.at(@restaurant.close_time)%>
-                            <%=open_time.strftime("%I:%M %p")%> - 
-                            <%=close_time.strftime("%I:%M %p")%>     
+                        <div class="info-box__section">
+                            <div class="info-box__section--box">
+                                <h3 class="subtitle">Available</h3>
+                                <%open_time = Time.at(@restaurant.open_time)%>
+                                <%close_time = Time.at(@restaurant.close_time)%>
+                                <%=open_time.strftime("%I:%M %p")%> - 
+                                <%=close_time.strftime("%I:%M %p")%>     
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -9,6 +9,7 @@ require("channels")
 require("components/scroll")
 require("components/background")
 require("components/nav")
+require("components/show-hero")
 
 
 // if (window.location.pathname !== null) {
