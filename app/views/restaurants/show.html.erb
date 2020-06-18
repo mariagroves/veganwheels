@@ -66,5 +66,37 @@
                 </div>
             </div>
         </div>
-    </div>
+    <%sections = @restaurant.sections.uniq.sort_by { |section| section.order }%>
+    <%sections.each do |section|%>
+        <div class="row">
+            <div class="col-12">
+                <div class="section">
+                    <h2><%=section.name%></h2>
+                </div>
+            </div>
+        </div>
+        <div class="row menu">
+            <%@restaurant.menu_items.each do |item|%>
+                <%if item.section == section%>
+                <div class="col-12 col-lg-6">
+                    <div class="menu__item menu__item--js <%=item.id%>">
+                        <div class="menu__item--text">
+                            <div class="top">
+                                <h3><%=item.name%></h3>
+                                <h3 class="price">£
+                                <%price = item.price.to_f/100%>
+                                <%='%.2f' % price%>
+                                </h3>
+                            </div>
+                            <div class="middle">
+                                <p><%=item.description%></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%end%>
+                <%= render 'partials/modal', item: item%>
+            <%end%>
+        </div>
+    <%end%>  
 </div>

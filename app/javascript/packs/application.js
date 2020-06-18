@@ -10,6 +10,7 @@ require("components/scroll")
 require("components/background")
 require("components/nav")
 require("components/show-hero")
+require("components/modal")
 
 
 // if (window.location.pathname !== null) {

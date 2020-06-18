@@ -12,6 +12,7 @@ puts "destroying seed"
 
 MenuOption.destroy_all
 MenuItem.destroy_all
+Section.destroy_all
 Restaurant.destroy_all
 
 puts "finished destroying seed"
@@ -165,9 +166,9 @@ puts "finished creating restaurants"
 
 puts "creating sections"
 
-Section.create(name: "Starters")
-Section.create(name: "Mains")
-Section.create(name: "Desserts")
+Section.create(name: "Starters", order: 1)
+Section.create(name: "Mains", order: 2)
+Section.create(name: "Desserts", order: 3)
 
 puts "finished creating sections"
 

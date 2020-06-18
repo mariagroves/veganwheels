@@ -13,6 +13,10 @@
     &__title {
         position: absolute;
         z-index: 1; 
+
+        h1 {
+            font-size: 10rem;
+        }
     }
 
     &__image {
@@ -24,6 +28,54 @@
             height: 100%;
             object-fit: cover;
             filter: brightness(70%);
+        }
+    }
+}
+
+.section {
+    border: 1px solid $color-primary-dark;
+    border-radius: 3px;
+    padding: 1rem;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+
+    h2 {
+        font-weight: bold;
+    }
+}
+
+.menu {
+
+    &__item {
+        border: 1px solid $color-primary-dark;
+        border-radius: 3px;
+        padding: 1.5rem;
+        margin-top: 2rem;
+        height: 13rem;
+        cursor: pointer;
+
+        &--text {
+            display: flex;
+            flex-direction: column;
+
+            h3 {
+                font-weight: bold;
+            }
+
+            .price {
+                font-weight: bold;
+            }
+
+            .top {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .bottom {
+                display: flex;
+                justify-content: flex-end;
+            }
         }
     }
 }

@@ -1,0 +1,23 @@
+<div class="modal-bckg modal-bckg-<%=item.id%>">
+    <div class="modal__item">        
+        <div class="modal__item--text">
+            <div class="modal__item--top">
+                <h3><%=item.name%></h3>
+                <h3 class="price">£
+                <%price = item.price.to_f/100%>
+                <%='%.2f' % price%>
+                </h3>
+                <h3><i class="fas fa-times modal-close"></i></h3>
+            </div>
+            <div class="modal__item--description">
+                <p><%=item.description%></p>
+            </div>
+            <%if item.menu_options.present?%>
+                <h2>Options</h2>
+                <%item.menu_options.each do |option|%>
+                    <li><%=option.name%></li>
+                <%end%>
+            <%end%>
+        </div>                      
+    </div>
+</div> 
