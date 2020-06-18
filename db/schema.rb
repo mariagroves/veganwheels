@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_16_112756) do
+ActiveRecord::Schema.define(version: 2020_06_18_135019) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,11 @@ ActiveRecord::Schema.define(version: 2020_06_16_112756) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "menu_items", force: :cascade do |t|
     t.string "name"
     t.integer "price"
@@ -57,6 +62,31 @@ ActiveRecord::Schema.define(version: 2020_06_16_112756) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["menu_item_id"], name: "index_menu_options_on_menu_item_id"
+  end
+
+  create_table "order_item_options", force: :cascade do |t|
+    t.bigint "menu_option_id", null: false
+    t.bigint "order_item_id", null: false
+    t.integer "quantity"
+    t.integer "unit_price_cents"
+    t.integer "total_price_cents"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["menu_option_id"], name: "index_order_item_options_on_menu_option_id"
+    t.index ["order_item_id"], name: "index_order_item_options_on_order_item_id"
+  end
+
+  create_table "order_items", force: :cascade do |t|
+    t.bigint "menu_item_id", null: false
+    t.integer "quantity"
+    t.text "note"
+    t.integer "unit_price_cents"
+    t.integer "total_price_cents"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "cart_id"
+    t.index ["cart_id"], name: "index_order_items_on_cart_id"
+    t.index ["menu_item_id"], name: "index_order_items_on_menu_item_id"
   end
 
   create_table "restaurants", force: :cascade do |t|
@@ -85,4 +115,7 @@ ActiveRecord::Schema.define(version: 2020_06_16_112756) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "menu_items", "restaurants"
   add_foreign_key "menu_options", "menu_items"
+  add_foreign_key "order_item_options", "menu_options"
+  add_foreign_key "order_item_options", "order_items"
+  add_foreign_key "order_items", "menu_items"
 end

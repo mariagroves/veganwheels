@@ -28,8 +28,8 @@ modals.forEach((modal) => {
     })
 })
 
-modalBgs.forEach((background) => {
-    background.addEventListener('click', () => {
-        background.classList.remove('bckg-active');
-    })
-})
+// modalBgs.forEach((background) => {
+//     background.addEventListener('click', () => {
+//         background.classList.remove('bckg-active');
+//     })
+// })

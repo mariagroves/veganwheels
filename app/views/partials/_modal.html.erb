@@ -18,6 +18,11 @@
                     <li><%=option.name%></li>
                 <%end%>
             <%end%>
+            <%= simple_form_for([item, order_item], remote: true) do |f| %>
+            <%= f.input :note %>
+            <%= f.input :quantity %>
+            <%= f.submit "Submit", style: "border:none; margin-left:5px;" %>
+            <% end %>
         </div>                      
     </div>
 </div> 
