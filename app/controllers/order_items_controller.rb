@@ -15,7 +15,6 @@ class OrderItemsController < ApplicationController
         @order_item.total_price = @menu_item.price * @order_item.quantity
         @order_item.save
         @options = @order_item.order_item_options
-        # redirect_to?
     end
 
     private

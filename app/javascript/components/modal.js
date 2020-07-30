@@ -2,6 +2,7 @@ const modalItems = document.querySelectorAll('.menu__item--js');
 const modalCrosses = document.querySelectorAll('.modal-close');
 const modalBgs = document.querySelectorAll('.modal-bckg');
 const modals = document.querySelectorAll('.modal-vw');
+const orderForms = document.querySelectorAll('.order-form');
 
 modalItems.forEach((item) => {
     item.addEventListener('click', (event) => {
@@ -21,17 +22,24 @@ modalCrosses.forEach((cross) => {
     })
 })
 
-modals.forEach((modal) => {
-    modal.addEventListener('click', (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        event.stopImmediatePropagation();
-        return false;
+orderForms.forEach((form) => {
+    form.addEventListener("ajax:success", (event) => {
+        form.reset();
+        modalBgs.forEach((background) => {
+            background.classList.remove('bckg-active');
+        })
     })
 })
 
-// modalBgs.forEach((background) => {
-//     background.addEventListener('click', () => {
-//         background.classList.remove('bckg-active');
+//   item.addEventListener("ajax:error", (event) => {
+    
+//   });
+
+// modals.forEach((modal) => {
+//     modal.addEventListener('click', (event) => {
+//         event.preventDefault();
+//         event.stopPropagation();
+//         event.stopImmediatePropagation();
+//         return false;
 //     })
 // })
