@@ -12,17 +12,43 @@
             <div class="modal__item--description">
                 <p><%=item.description%></p>
             </div>
-            <%if item.menu_options.present?%>
-                <h2>Options</h2>
-                <%item.menu_options.each do |option|%>
-                    <li><%=option.name%></li>
-                <%end%>
-            <%end%>
-            <%= simple_form_for([item, order_item], remote: true) do |f| %>
-            <%= f.input :note %>
-            <%= f.input :quantity %>
-            <%= f.submit "Submit", style: "border:none; margin-left:5px;" %>
-            <% end %>
+            <form class="order-form" accept-charset="UTF-8" data-remote="true" method="post">
+            
+            <%=hidden_field_tag :authenticity_token, form_authenticity_token %>
+                <div>
+                    <label for="order_item_quantity">Quantity</label>
+                    <select name="order_item[quantity]" id="order_item_quantity">
+                    <option value=""></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="order_item_options">Options <abbr title="required">*</abbr></label>
+                    
+                    <% item.menu_options.each_with_index do |option, index| %>
+                        <input type="checkbox" name="order_item[order_item_options_attributes][<%=index%>][menu_option_id]" id="order_item_options" value="<%=option.id%>"> <%=option.name%>
+                        
+                    <%end%>
+                    <%# <input type="checkbox" name="order_item[order_item_options_attributes][1][menu_option_id]" id="order_item_options" value="26"> Green Peppers %>
+                </div>
+
+                <div>
+                    <label for="order_item_note">Note</label>
+                    <textarea name="order_item[note]" id="order_item_note"></textarea>
+                </div>
+                            
+                <input type="submit" name="commit" value="Add to order">
+            </form>
         </div>                      
     </div>
 </div> 

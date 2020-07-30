@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_18_135019) do
+ActiveRecord::Schema.define(version: 2020_07_30_124219) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,9 +67,7 @@ ActiveRecord::Schema.define(version: 2020_06_18_135019) do
   create_table "order_item_options", force: :cascade do |t|
     t.bigint "menu_option_id", null: false
     t.bigint "order_item_id", null: false
-    t.integer "quantity"
-    t.integer "unit_price_cents"
-    t.integer "total_price_cents"
+    t.integer "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["menu_option_id"], name: "index_order_item_options_on_menu_option_id"
@@ -80,8 +78,8 @@ ActiveRecord::Schema.define(version: 2020_06_18_135019) do
     t.bigint "menu_item_id", null: false
     t.integer "quantity"
     t.text "note"
-    t.integer "unit_price_cents"
-    t.integer "total_price_cents"
+    t.integer "unit_price"
+    t.integer "total_price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "cart_id"

@@ -7,7 +7,9 @@ modalItems.forEach((item) => {
     item.addEventListener('click', (event) => {
         const itemId = event.currentTarget.classList[2];
         const modalBg = document.querySelector(`.modal-bckg-${itemId}`);
+        const form = modalBg.getElementsByClassName("order-form")[0];
         modalBg.classList.add('bckg-active');
+        form.action = `/menu_items/${itemId}/order_items`;
       });
 })
 
