@@ -28,6 +28,13 @@ orderForms.forEach((form) => {
         modalBgs.forEach((background) => {
             background.classList.remove('bckg-active');
         })
+        swal({
+            title: "Thanks!",
+            text: "Your selection has been added to the basket.",
+            icon: "success",
+            buttons: false,
+            timer: 1500
+          });
     })
 })
 
