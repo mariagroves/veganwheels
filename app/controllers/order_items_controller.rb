@@ -1,7 +1,5 @@
 class OrderItemsController < ApplicationController
     before_action :set_menu_item, only: [ :new, :create ]
-    after_action :record_price, only: [:create]
-    # before_action :set_cart, only: [ :new, :create ]
 
     def new
         @order_item = OrderItem.new
@@ -9,12 +7,11 @@ class OrderItemsController < ApplicationController
 
     def create
         @order_item = OrderItem.new(order_item_params)
-        # @order_item.cart = @cart
+        @cart = current_cart
+        @order_item.cart = @cart
         @order_item.menu_item = @menu_item
-        @order_item.unit_price = @menu_item.price
-        @order_item.total_price = @menu_item.price * @order_item.quantity
         @order_item.save
-        @options = @order_item.order_item_options
+        session[:cart_id] = @cart.id
     end
 
     private
@@ -28,13 +25,4 @@ class OrderItemsController < ApplicationController
         @menu_item = MenuItem.find(params[:menu_item_id])
     end
 
-    def record_price
-        @options.each do |option|
-            option.update(price: option.menu_option.price)
-        end
-    end
-
-    # def set_cart
-    #     @cart = Cart.find(params[:cart_id])
-    # end
 end

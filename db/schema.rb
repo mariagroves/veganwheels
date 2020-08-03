@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_30_124219) do
+ActiveRecord::Schema.define(version: 2020_07_31_151123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,9 +67,11 @@ ActiveRecord::Schema.define(version: 2020_07_30_124219) do
   create_table "order_item_options", force: :cascade do |t|
     t.bigint "menu_option_id", null: false
     t.bigint "order_item_id", null: false
-    t.integer "price"
+    t.integer "unit_price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "quantity"
+    t.integer "total_price"
     t.index ["menu_option_id"], name: "index_order_item_options_on_menu_option_id"
     t.index ["order_item_id"], name: "index_order_item_options_on_order_item_id"
   end
