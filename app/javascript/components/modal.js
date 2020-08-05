@@ -4,6 +4,25 @@ const modalBgs = document.querySelectorAll('.modal-bckg');
 const modals = document.querySelectorAll('.modal-vw');
 const orderForms = document.querySelectorAll('.order-form');
 
+function successMessage() {
+    swal({
+    title: "Thanks!",
+    text: "Your selection has been added to the basket.",
+    icon: "success",
+    buttons: false,
+    timer: 1500
+    });
+}
+function errorMessage() {
+    swal({
+    title: "Oops!",
+    text: "Please select the quantity.",
+    icon: "error",
+    buttons: false,
+    timer: 1500
+    });
+}
+
 modalItems.forEach((item) => {
     item.addEventListener('click', (event) => {
         const itemId = event.currentTarget.classList[2];
@@ -28,25 +47,9 @@ orderForms.forEach((form) => {
         modalBgs.forEach((background) => {
             background.classList.remove('bckg-active');
         })
-        swal({
-            title: "Thanks!",
-            text: "Your selection has been added to the basket.",
-            icon: "success",
-            buttons: false,
-            timer: 1500
-          });
+        successMessage();
+    })
+    form.addEventListener("ajax:error", (event) => {
+        errorMessage();
     })
 })
-
-//   item.addEventListener("ajax:error", (event) => {
-    
-//   });
-
-// modals.forEach((modal) => {
-//     modal.addEventListener('click', (event) => {
-//         event.preventDefault();
-//         event.stopPropagation();
-//         event.stopImmediatePropagation();
-//         return false;
-//     })
-// })

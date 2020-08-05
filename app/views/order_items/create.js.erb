@@ -1,0 +1,11 @@
+function createCart(innerHTML) {
+    const signUpButton = document.getElementById('sign_up');
+    const navSection = document.getElementById('nav_section');
+    if (document.body.contains(signUpButton)) {
+        signUpButton.remove();
+        navSection.innerHTML = innerHTML;
+    } else {
+        navSection.innerHTML = innerHTML;
+    }
+}
+    createCart('<%= j render "order_items/cart", order_item: @order_item%>');

@@ -19,9 +19,18 @@
                 <div class="link-blob"></div>
                 <a href="#">Ride with us</a>
             </div>
-            <div class="navigation__links--4 padding-small">
-                <div class="link-blob"></div>
-                <a href="#">Sign up / Log in</a>
+            <div class="navigation__links--4 padding-small" id="nav_section">
+            <%if !session[:cart_id].nil?%>
+            <%@cart = Cart.find(session[:cart_id])%>
+                <div class="nav_cart">
+                    <i class="fas fa-shopping-basket"></i>
+                    <div>|</div>
+                    <%price = @cart.get_total.to_f/100%>
+                    <p>£<%='%.2f' % price%></p>
+                </div>
+            <%else%>
+                <a id="sign_up" href="#">Sign up / Log in</a>
+            <%end%> 
             </div> 
         </div>
     </div>

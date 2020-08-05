@@ -10,7 +10,7 @@ class OrderItemsController < ApplicationController
         @cart = current_cart
         @order_item.cart = @cart
         @order_item.menu_item = @menu_item
-        @order_item.save
+        render 'order_items/create' if @order_item.save
         session[:cart_id] = @cart.id
     end
 
