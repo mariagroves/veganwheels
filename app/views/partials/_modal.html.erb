@@ -4,8 +4,7 @@
             <div class="modal__item--top">
                 <h3><%=item.name%></h3>
                 <h3 class="price">£
-                <%price = item.price.to_f/100%>
-                <%='%.2f' % price%>
+                <%=to_pounds(item.price)%>
                 </h3>
                 <h3><i class="fas fa-times modal-close"></i></h3>
             </div>
@@ -39,15 +38,14 @@
                         <input type="checkbox" name="order_item[order_item_options_attributes][<%=index%>][menu_option_id]" id="order_item_options" value="<%=option.id%>"> <%=option.name%>
                         
                     <%end%>
-                    <%# <input type="checkbox" name="order_item[order_item_options_attributes][1][menu_option_id]" id="order_item_options" value="26"> Green Peppers %>
                 </div>
 
                 <div>
                     <label for="order_item_note">Note</label>
                     <textarea name="order_item[note]" id="order_item_note"></textarea>
                 </div>
-                            
-                <input type="submit" name="commit" value="Add to order">
+                
+                <input type="submit" name="commit" value="Add to order">  
             </form>
         </div>                      
     </div>

@@ -11,6 +11,7 @@ require("components/background")
 require("components/nav")
 require("components/show-hero")
 require("components/modal")
+require("components/nav-cart")
 
 
 

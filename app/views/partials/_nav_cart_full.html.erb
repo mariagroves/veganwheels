@@ -1,0 +1,42 @@
+<div id="nav_cart--full" style="display:none;">
+<div class="nav_cart--arrow"></div>
+    <div class="nav_cart--items">
+        <%unique_cart = get_unique(@cart)%>
+        <%unique_cart.each do |order_item|%>
+            <div class="nav_cart--item">
+                <%duplicates = get_duplicates(order_item, @cart)%>
+                <%if duplicates.empty?%>
+                    <div class="item">   
+                        <p><%=order_item.quantity%> <%=order_item.menu_item.name%></p>
+                    </div>
+                    <p>£<%=to_pounds(order_item.total_price)%></p>
+                <%else%>
+                    <div class="item">
+                    <%quantity_sum = order_item.quantity + duplicates.each_with_object([]) {|oi,array| array<<oi.quantity }.sum%>
+                    <%price_sum = order_item.total_price + duplicates.each_with_object([]) {|oi,array| array<<oi.total_price }.sum%>
+                        <p><%=quantity_sum%> <%=order_item.menu_item.name%></p>
+                    </div>
+                    <p>£<%=to_pounds(price_sum)%></p>
+                <%end%>
+            </div>
+            <%if order_item.order_item_options.present?%>
+                <%order_item.order_item_options.each do |option|%>
+                    <p><%=option.menu_option.name%></p>
+                <%end%>
+            <%end%>
+        <%end%>
+        <div class="nav_cart--item">
+            <p class="font-weight-bold">Subtotal</p>
+            <p>£<%=to_pounds(@cart.get_subtotal)%></p>
+        </div>
+        <div class="nav_cart--item">
+            <p>Delivery charge</p>
+            <p>£3.50</p>
+        </div>
+        <div class="nav_cart--line"></div>
+        <div class="nav_cart--item">
+            <p class="font-weight-bold uppercase">Total</p>
+            <p>£<%= to_pounds(@cart.get_total)%></p>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,11 @@
 <div class="nav_cart">
-    <i class="fas fa-shopping-basket"></i>
+    <div class="nav_cart--price">
+        <i class="fas fa-shopping-basket"></i>
+        <%price = @cart.get_total.to_f/100%>
+        <p>£<%='%.2f' % price%></p>
+    </div>
     <div>|</div>
-    <%price = @order_item.cart.get_total.to_f/100%>
-    <p>£<%='%.2f' % price%></p>
+    <p class="uppercase"><%=pluralize(@cart.get_quantity, 'item')%></p>
+    </div>
 </div>
+<%= render 'partials/nav_cart_full', cart: @cart%>

@@ -4,8 +4,10 @@ function createCart(innerHTML) {
     if (document.body.contains(signUpButton)) {
         signUpButton.remove();
         navSection.innerHTML = innerHTML;
+        navSection.classList.remove("navigation__links--4","padding-small");
     } else {
         navSection.innerHTML = innerHTML;
+        navSection.classList.remove("navigation__links--4","padding-small");
     }
 }
     createCart('<%= j render "order_items/cart", order_item: @order_item%>');
