@@ -14,6 +14,14 @@ class OrderItemsController < ApplicationController
         session[:cart_id] = @cart.id
     end
 
+    def destroy
+        ids = params[:id].split('/').map(&:to_i)
+        @order_items = OrderItem.find(ids)
+        @order_item = @order_items.first
+        @cart = @order_item.cart
+        @order_items.each(&:destroy)
+    end
+
     private
 
     def order_item_params

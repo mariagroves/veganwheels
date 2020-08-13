@@ -30,7 +30,7 @@ module OrderItemsHelper
         end
 
         order_items_array.each do |id|
-             duplicates = get_duplicates(OrderItem.find(id), cart)
+            duplicates = get_duplicates(OrderItem.find(id), cart)
             if duplicates.present?
                 duplicates.each do |duplicate|
                     order_items_array.delete(duplicate.id)

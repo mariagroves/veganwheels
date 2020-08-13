@@ -1,8 +1,7 @@
 <div class="nav_cart">
     <div class="nav_cart--price">
         <i class="fas fa-shopping-basket"></i>
-        <%price = @cart.get_total.to_f/100%>
-        <p>£<%='%.2f' % price%></p>
+        <p>£<%=to_pounds(@cart.get_total)%></p>
     </div>
     <div>|</div>
     <p class="uppercase"><%=pluralize(@cart.get_quantity, 'item')%></p>

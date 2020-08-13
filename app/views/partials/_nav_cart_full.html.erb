@@ -3,18 +3,34 @@
     <div class="nav_cart--items">
         <%unique_cart = get_unique(@cart)%>
         <%unique_cart.each do |order_item|%>
-            <div class="nav_cart--item">
+            <div class="nav_cart--item item-js" id="item-<%= order_item.id %>">
                 <%duplicates = get_duplicates(order_item, @cart)%>
                 <%if duplicates.empty?%>
-                    <div class="item">   
-                        <p><%=order_item.quantity%> <%=order_item.menu_item.name%></p>
+                    <div class="nav_cart--itemwrapper">
+                        <%= link_to order_item_path(order_item),
+                            method: :delete,
+                            remote: true do %>
+                            <i class="far fa-trash-alt"></i>
+                        <%end%>
+                        <div class="item">   
+                            <p><%=order_item.quantity%> <%=order_item.menu_item.name%></p>
+                        </div>
                     </div>
                     <p>£<%=to_pounds(order_item.total_price)%></p>
                 <%else%>
-                    <div class="item">
-                    <%quantity_sum = order_item.quantity + duplicates.each_with_object([]) {|oi,array| array<<oi.quantity }.sum%>
-                    <%price_sum = order_item.total_price + duplicates.each_with_object([]) {|oi,array| array<<oi.total_price }.sum%>
-                        <p><%=quantity_sum%> <%=order_item.menu_item.name%></p>
+                    <div class="nav_cart--itemwrapper">
+                        <%all_items = duplicates.clone%>
+                        <%all_items << order_item%>
+                        <%= link_to order_item_path(all_items),
+                            method: :delete,
+                            remote: true do %>
+                            <i class="far fa-trash-alt"></i>
+                        <%end%>
+                        <div class="item">
+                            <%quantity_sum = order_item.quantity + duplicates.each_with_object([]) {|oi,array| array<<oi.quantity }.sum%>
+                            <%price_sum = order_item.total_price + duplicates.each_with_object([]) {|oi,array| array<<oi.total_price }.sum%>
+                            <p><%=quantity_sum%> <%=order_item.menu_item.name%></p>
+                        </div>
                     </div>
                     <p>£<%=to_pounds(price_sum)%></p>
                 <%end%>

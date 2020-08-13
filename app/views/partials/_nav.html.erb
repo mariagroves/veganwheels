@@ -19,7 +19,7 @@
                 <div class="link-blob"></div>
                 <a href="#">Ride with us</a>
             </div>
-            <%if !session[:cart_id].nil?%>
+            <%if !session[:cart_id].nil? && Cart.find(session[:cart_id]).order_items.present?%>
             <%@cart = Cart.find(session[:cart_id])%>
                 <div id="nav_section">
                     <div class="nav_cart">

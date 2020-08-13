@@ -8,4 +8,5 @@ Rails.application.routes.draw do
     resources :order_items, only: [ :new, :create ]
   end
   resources :menu_options, only: [ :edit, :update, :destroy ]
+  resources :order_items, only: [ :destroy]
 end
