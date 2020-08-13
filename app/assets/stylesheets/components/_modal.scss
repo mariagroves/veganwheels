@@ -22,11 +22,11 @@
 
 .modal__item {
     background-color: $color-light-grey;
-    width: 30%;
+    width: 50rem;
     height: auto;
     border: 3px solid $color-primary-dark;
-    border-radius: 3px;
-    padding: 1.5rem;
+    border-radius: .5rem;
+    padding: 3rem;
     position: relative;
 
     &--text {
@@ -50,9 +50,74 @@
         border-bottom: 1px solid $color-primary-dark;
         margin-bottom: 1rem;
     }
+
+    .bottom {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    textarea {
+        width: 43.5rem;
+        border: 1px solid $color-primary-dark;
+        border-radius: .3rem;
+        background-color: $color-light-grey;
+    }
+
+    textarea:focus, input:focus {
+        outline: none !important;
+        border: 2px solid $color-red-dark;
+    }
+
+    label {
+        margin-top: 1rem;
+    }
+
+    input {
+        -webkit-appearance: none; 
+        appearance: none;
+    }
+
+    input[type=text] {
+        width: 4rem;
+        // border: 1px solid $color-primary-dark;
+        text-align: center;
+        border-radius: .3rem;
+        background-color: $color-light-grey;
+        border: none;
+        font-size: 2rem;
+    }
+
+    input[type=checkbox] {
+        position: relative;
+        border: 1px solid $color-primary-dark;
+        background-color: $color-light-grey;
+        padding: .6rem;
+        border-radius: .3rem;
+        margin-right: 1rem;
+    }
+
+    input[type=checkbox]::before {
+        content: "✔";
+        color:white;
+        position: absolute;
+        font-size: 1.4rem;
+        left: 1px;
+        top: -0.6rem;
+        visibility: hidden;
+      }
+
+      input[type=checkbox]:checked::before {
+        /* Use `visibility` instead of `display` to avoid recalculating layout */
+        visibility: visible;
+      }
+
+    input[type=checkbox]:checked {
+        background-color: $color-primary-dark;
+    }
+
+    .quantity-select {
+        display: flex;
+    }
 }
 
-.modal-close {
-    cursor: pointer;
-}
 

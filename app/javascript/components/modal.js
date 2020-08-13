@@ -1,5 +1,5 @@
 const modalItems = document.querySelectorAll('.menu__item--js');
-const modalCrosses = document.querySelectorAll('.modal-close');
+const modalCancelButtons = document.querySelectorAll('.modal-close');
 const modalBgs = document.querySelectorAll('.modal-bckg');
 const modals = document.querySelectorAll('.modal-vw');
 const orderForms = document.querySelectorAll('.order-form');
@@ -16,7 +16,7 @@ function successMessage() {
 function errorMessage() {
     swal({
     title: "Oops!",
-    text: "Please select the quantity.",
+    text: "Please try again.",
     icon: "error",
     buttons: false,
     timer: 1500
@@ -33,8 +33,8 @@ modalItems.forEach((item) => {
       });
 })
 
-modalCrosses.forEach((cross) => {
-    cross.addEventListener('click', () => {
+modalCancelButtons.forEach((button) => {
+    button.addEventListener('click', () => {
         modalBgs.forEach((background) => {
             background.classList.remove('bckg-active');
         })

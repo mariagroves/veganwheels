@@ -1,18 +1,60 @@
-.button-big {
-    margin-top: 2rem;
-    height: 5rem;
-    width: 21rem;
-    background-color: $color-primary-dark;
+.button {
     border-radius: 3px;
-    color: $color-white;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 600;
     transition: all .2s ease;
+    text-transform: uppercase;
+    box-sizing: border-box;
 
-    &:hover {
-        background-color: $color-black;
+    &--big {
+        margin-top: 2rem;
+        width: 21rem;
+        padding: 1.5rem;
+        background-color: $color-primary-dark;
+        border: none;
+        color: $color-white;
+        &:hover {
+            background-color: $color-black;
+        }
+    }
+
+    &--small {
+        margin-top: 1rem;
+        width: 15rem;
+        padding: 1rem;
+        background-color: $color-primary-dark;
+        border: 1px solid transparent;
+        color: $color-white;
+        &:hover {
+            background-color: $color-white;
+            color: $color-primary-dark;
+            border: 1px solid $color-primary-dark;
+        }
+    }
+
+    &--grey {
+        margin-top: 1rem;
+        width: 15rem;
+        padding: 1rem;
+        background-color: $color-light-grey;
+        border: 1px solid $color-primary-dark;
+        color: $color-primary-dark;
+        &:hover {
+            background-color: $color-primary-dark;
+            color: $color-white;
+        }
+
+    }
+
+    &--quantity {
+        color: $color-primary-dark;
+        font-size: 2rem;
+        font-weight: bold;
+        margin: 0 1rem 0 1rem;
+        display: flex;
+        align-items: center;
     }
 
     a {

@@ -1,12 +1,11 @@
 <div class="modal-bckg modal-bckg-<%=item.id%>">
-    <div class="modal__item">        
+    <div class="modal__item">   
         <div class="modal__item--text">
             <div class="modal__item--top">
                 <h3><%=item.name%></h3>
                 <h3 class="price">£
                 <%=to_pounds(item.price)%>
                 </h3>
-                <h3><i class="fas fa-times modal-close"></i></h3>
             </div>
             <div class="modal__item--description">
                 <p><%=item.description%></p>
@@ -15,38 +14,34 @@
             
             <%=hidden_field_tag :authenticity_token, form_authenticity_token %>
                 <div>
-                    <label for="order_item_quantity">Quantity</label>
-                    <select name="order_item[quantity]" id="order_item_quantity">
-                    <option value=""></option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label for="order_item_options">Options <abbr title="required">*</abbr></label>
+                    <label class="font-weight-bold" for="order_item_options">Options</label>
                     
                     <% item.menu_options.each_with_index do |option, index| %>
-                        <input type="checkbox" name="order_item[order_item_options_attributes][<%=index%>][menu_option_id]" id="order_item_options" value="<%=option.id%>"> <%=option.name%>
-                        
+                        <div>
+                            <input type="checkbox" name="order_item[order_item_options_attributes][<%=index%>][menu_option_id]" id="order_item_options" value="<%=option.id%>"> <%=option.name%>
+                        </div>
                     <%end%>
                 </div>
 
                 <div>
-                    <label for="order_item_note">Note</label>
-                    <textarea name="order_item[note]" id="order_item_note"></textarea>
+                    <label class="font-weight-bold" for="order_item_note">Special requests</label>
+                    <div>
+                        <textarea name="order_item[note]" id="order_item_note"></textarea>
+                    </div>
                 </div>
-                
-                <input type="submit" name="commit" value="Add to order">  
+                <div>
+                    <label class="font-weight-bold" for="order_item_quantity">Quantity</label>
+                </div>
+                <div class="bottom">
+                    <div class="quantity-select">
+                        <div class="button--quantity add"><i class="fas fa-plus"></i></div>
+                        <input type="text" name="order_item[quantity]" id="order_item_quantity" value="1">
+                        <div class="button--quantity subtract"><i class="fas fa-minus"></i></div>
+                    </div>
+                    <button type="submit" class="button button--small">Add to order</button>
+                    <div class="button button--grey modal-close">Cancel</div>
+                </div>
             </form>
-        </div>                      
+        </div>                       
     </div>
 </div> 
