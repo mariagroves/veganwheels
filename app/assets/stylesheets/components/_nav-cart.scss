@@ -1,10 +1,10 @@
 #nav_cart--full {
 
     position: absolute;
-    top: 6.6rem;
+    top: 6.3rem;
     right: -5rem;
     background-color: white;
-    border-radius: 5px;
+    border-radius: 3px;
     border: 1px solid $color-red-dark;
     z-index: 20;
     min-width: 28rem;
@@ -13,7 +13,7 @@
 .nav_cart {
     display: flex;
     background-color: $color-white;
-    border-radius: 7px;
+    border-radius: 3px;
     border: 1px solid $color-red-dark;
     cursor: pointer;
     padding: .6rem;
@@ -25,21 +25,21 @@
         position: absolute;
     
         &::before {
-            border: 2.2rem solid transparent;
+            border: 1.7rem solid transparent;
             border-bottom-color: $color-red-dark;
             border-top: 0;
-            margin-left: -2.2rem;
-            margin-top: -2.2rem;
+            margin-left: -1.7rem;
+            margin-top: -1.7rem;
             content: "";
             position: absolute;
         }
 
         &::after {
-            border: 2.1rem solid transparent;
+            border: 1.6rem solid transparent;
             border-bottom-color: white;
             border-top: 0;
-            margin-left: -2.1rem;
-            margin-top: -2.1rem;
+            margin-left: -1.6rem;
+            margin-top: -1.6rem;
             content: "";
             position: absolute;
         }
@@ -56,7 +56,7 @@
     }
 
     &--items {
-        padding: 1rem;
+        padding: 1.5rem;
         display: flex;
         flex-direction: column;
     }
