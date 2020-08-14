@@ -2,8 +2,7 @@
   <% if @search.present? %>
     <div class="row">
       <div class="results-bar">
-        <h3 class="results-bar__text">Restaurants near you</h3>
-        <h3 class="results-bar__text"><%= @postcode%></h3>
+        <h3 class="results-bar__text">Restaurants near <%= @postcode%></h3>
       </div>
     </div>
   <%end%>
