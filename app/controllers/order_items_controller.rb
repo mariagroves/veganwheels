@@ -1,5 +1,6 @@
 class OrderItemsController < ApplicationController
     before_action :set_menu_item, only: [ :new, :create ]
+    skip_before_action :authenticate_user!, only: [:new, :create, :destroy]
 
     def new
         @order_item = OrderItem.new
