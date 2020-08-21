@@ -76,110 +76,110 @@
             transition: visibility 0s, opacity 0.5s linear 0.2s;
         }
 
-    &--1 {
+        &--1 {
 
-        .link-blob {
-            position: absolute;
-            height: 6.5rem;
-            width: 17.5rem;
-            animation: morph1 4s linear infinite;
-            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-            transition: all .2s linear;
-            background-color: $color-yellow-medium;
-            top: -6px;
-            bottom: 0;
-            z-index: 1;
-            opacity: 0;
-        }
-
-        &:hover .link-blob {
-            opacity: 1;
-            @include respond(tab-land) {
+            .link-blob {
+                position: absolute;
+                height: 6.5rem;
+                width: 17.5rem;
+                animation: morph1 4s linear infinite;
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+                transition: all .2s linear;
+                background-color: $color-yellow-medium;
+                top: -6px;
+                bottom: 0;
+                z-index: 1;
                 opacity: 0;
             }
-        }
 
-        &:active {
-            @include respond(tab-land) {
-                background-color: $color-yellow-medium; 
+            &:hover .link-blob {
+                opacity: 1;
+                @include respond(tab-land) {
+                    opacity: 0;
+                }
             }
-        }
-        
-    }
 
-    &--2 {
-
-        .link-blob {
-            position: absolute;
-            height: 6.5rem;
-            width: 8rem;
-            animation: morph2 4s linear infinite;
-            border-radius: 22% 78% 41% 59% / 64% 76% 24% 36%;
-            transition: all .2s linear;
-            background-color: $color-red-light;
-            top: -4px;
-            bottom: 0;
-            z-index: 1;
-            opacity: 0;
-
+            &:active {
+                @include respond(tab-land) {
+                    background-color: $color-yellow-medium; 
+                }
+            }
+            
         }
 
-        &:hover .link-blob {
-            opacity: 1;
-            @include respond(tab-land) {
+        &--2 {
+
+            .link-blob {
+                position: absolute;
+                height: 6.5rem;
+                width: 8rem;
+                animation: morph2 4s linear infinite;
+                border-radius: 22% 78% 41% 59% / 64% 76% 24% 36%;
+                transition: all .2s linear;
+                background-color: $color-red-light;
+                top: -4px;
+                bottom: 0;
+                z-index: 1;
+                opacity: 0;
+
+            }
+
+            &:hover .link-blob {
+                opacity: 1;
+                @include respond(tab-land) {
+                    opacity: 0;
+                }
+            }
+
+            &:active {
+                @include respond(tab-land) {
+                    background-color: $color-red-light; 
+                }
+            }
+            
+        }
+
+        &--3 {
+
+            .link-blob {
+                position: absolute;
+                height: 6.5rem;
+                width: 10.5rem;
+                animation: morph3 4s linear infinite;
+                border-radius: 49% 51% 23% 77% / 54% 57% 43% 46%;
+                transition: all .2s linear;
+                background-color: $color-blue;
+                top: -5px;
+                bottom: 0;
+                z-index: 1;
                 opacity: 0;
             }
-        }
 
-        &:active {
-            @include respond(tab-land) {
-                background-color: $color-red-light; 
+            &:hover .link-blob {
+                opacity: 1;
+                @include respond(tab-land) {
+                    opacity: 0;
+                }
             }
-        }
-        
-    }
 
-    &--3 {
-
-        .link-blob {
-            position: absolute;
-            height: 6.5rem;
-            width: 10.5rem;
-            animation: morph3 4s linear infinite;
-            border-radius: 49% 51% 23% 77% / 54% 57% 43% 46%;
-            transition: all .2s linear;
-            background-color: $color-blue;
-            top: -5px;
-            bottom: 0;
-            z-index: 1;
-            opacity: 0;
+            &:active {
+                @include respond(tab-land) {
+                    background-color: $color-blue; 
+                }
+            }
+            
         }
 
-        &:hover .link-blob {
-            opacity: 1;
-            @include respond(tab-land) {
-                opacity: 0;
+        &--4 {
+            border: 1px solid transparent;
+            &:hover {
+                border: 1px solid $color-black;
             }
         }
 
-        &:active {
-            @include respond(tab-land) {
-                background-color: $color-blue; 
-            }
+        &--4 a {
+                color: $color-yellow-dark !important;     
         }
-        
-    }
-
-    &--4 {
-        border: 1px solid transparent;
-        &:hover {
-            border: 1px solid $color-black;
-        }
-    }
-
-    &--4 a {
-            color: $color-yellow-dark !important;     
-    }
 
         a {
             &:link,
@@ -191,7 +191,16 @@
                 z-index: 4;
             }
         }
-    }  
+
+        &--wrap {
+            width: 17rem;
+            height: 5rem;
+
+            @include respond(tab-land) {
+                width: 24rem; 
+            }
+        }
+    }   
 }
 
 .active {

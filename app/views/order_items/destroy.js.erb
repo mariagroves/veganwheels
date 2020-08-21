@@ -5,7 +5,7 @@ function deleteCart() {
 
     if (navItems == 1) {
         navCart.remove();
-        navSection.innerHTML = '<a id="sign_up" href="#">Sign up / Log in</a>';
+        navSection.innerHTML = '<%= link_to "Sign up / Log in", new_user_session_path, id: "sign_up"%>'; 
         navSection.classList.add("navigation__links--4","padding-small");
     } else {
         document.getElementById("item-<%= @order_item.id %>").remove();
