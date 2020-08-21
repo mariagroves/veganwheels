@@ -34,7 +34,7 @@
                 </div>
             <%else%>
                 <div class="navigation__links--4 padding-small" id="nav_section">
-                    <a id="sign_up" href="#">Sign up / Log in</a>
+                    <%= link_to "Sign up / Log in", new_user_session_path, id: "sign_up"%>
                 </div>
             <%end%> 
         </div>

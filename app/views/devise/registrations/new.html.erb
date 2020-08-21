@@ -1,0 +1,49 @@
+<div class="container white-content-box">
+  <div class="row">
+    <div class="col-12">
+      <div class="vwform mx-auto">
+        <h1 class="vwform__heading">Create an account</h1>
+
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= f.error_notification %>
+
+          <div class="form-inputs">
+            <%= f.input :first_name,
+                        required: true,
+                        autofocus: true,
+                        label_html: { class: "vwform__field" }%>
+            <%= f.input :last_name,
+                        required: true,
+                        autofocus: true,
+                        label_html: { class: "vwform__field" }%>
+            <%= f.input :phone,
+                        # as: :integer,
+                        required: true,
+                        autofocus: true,
+                        error: "Please enter a valid UK phone number.",
+                        label: "Mobile phone",
+                        label_html: { class: "vwform__field" }%>
+            <%= f.input :email,
+                        required: true,
+                        autofocus: true,
+                        input_html: { autocomplete: "email" },
+                        label_html: { class: "vwform__field" }%>
+            <%= f.input :password,
+                        # required: true,
+                        hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                        input_html: { autocomplete: "new-password"},
+                        label_html: { class: "vwform__field" }%>
+            <%= f.input :password_confirmation,
+                        # required: true,
+                        input_html: { autocomplete: "new-password"},
+                        label_html: { class: "vwform__field" }%>
+          </div>
+
+          <div class="form-actions">
+            <%= f.button :submit, "Sign up", class: "button__fill button__fill--green" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

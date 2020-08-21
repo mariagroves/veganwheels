@@ -1,0 +1,23 @@
+.vwform {
+    width: 20rem;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    &__heading {
+        font-size: 3.5rem !important;
+    }
+
+    &__field {
+        text-transform: uppercase;
+        font-size: 1.3rem;
+
+        &--check {
+            padding-left: .3rem;
+            position: absolute;
+        }
+
+        &--link {
+            color: $color-primary-dark;
+            margin-bottom: 1rem;
+        }
+    }
+}

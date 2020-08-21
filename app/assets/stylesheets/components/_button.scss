@@ -57,6 +57,39 @@
         align-items: center;
     }
 
+    &__fill {
+        width: 20rem;
+        padding: .5rem;
+        border: 1px solid transparent;
+        text-transform: uppercase;
+        margin-top: 1rem;
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        transition: all .2s linear;
+
+        &--green {
+            background-color: $color-primary-dark;
+            color: $color-white;
+
+            &:hover {
+                background-color: $color-white;
+                color: $color-primary-dark;
+                border: 1px solid $color-primary-dark;
+            }
+        }
+
+        &--grey {
+            background-color: $color-light-grey;
+            border: 1px solid $color-primary-dark;
+            color: $color-primary-dark;
+
+            &:hover {
+                background-color: $color-primary-dark;
+                color: $color-white;
+            }
+        }
+    }
+
     a {
         text-decoration: none;
     }
