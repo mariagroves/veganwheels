@@ -195,6 +195,9 @@
         &--wrap {
             width: 17rem;
             height: 5rem;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
 
             @include respond(tab-land) {
                 width: 24rem; 
@@ -214,4 +217,12 @@
 
 .twist {
     transform: rotate(90deg);
+}
+
+#user_icon {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 100rem;
+    background-color: red;
+    position: relative;
 }

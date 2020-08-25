@@ -20,6 +20,50 @@
     opacity: 1;
 }
 
+.modal__cart {
+    background-color: $color-light-grey;
+    width: 50rem;
+    height: auto;
+    border: 3px solid $color-red-dark;
+    border-radius: .5rem;
+    padding: 3rem;
+    position: relative;
+
+    &--items {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &--item {
+        margin-bottom: .5rem;
+        display: flex;
+        justify-content: space-between;        
+
+        .item {
+            margin-right: 3rem;
+        }
+    }
+
+    &--itemwrapper {
+        display: flex;
+
+        i {
+            margin-right: .8rem;
+        }
+    }
+
+    &--line {
+        width: inherit;
+        border-bottom: 1px solid $color-red-dark;
+    }
+
+    &--side {
+        font-size: 1.4rem;
+        margin-left: 2.4rem;
+    }
+}
+
 .modal__item {
     background-color: $color-light-grey;
     width: 50rem;

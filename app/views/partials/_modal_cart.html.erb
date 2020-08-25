@@ -1,12 +1,11 @@
-<div id="nav_cart--full" style="display:none;">
-<div class="nav_cart--arrow"></div>
-    <div class="nav_cart--items">
+<div class = "modal__cart">
+    <div class="modal__cart--items">
         <%unique_cart = get_unique(@cart)%>
         <%unique_cart.each do |order_item|%>
-            <div class="nav_cart--item item-js" id="item-<%= order_item.id %>">
+            <div class="modal__cart--item item-js" id="item-<%= order_item.id %>">
                 <%duplicates = get_duplicates(order_item, @cart)%>
                 <%if duplicates.empty?%>
-                    <div class="nav_cart--itemwrapper">
+                    <div class="modal__cart--itemwrapper">
                         <%= link_to order_item_path(order_item),
                             method: :delete,
                             remote: true do %>
@@ -18,7 +17,7 @@
                     </div>
                     <p>£<%=to_pounds(order_item.total_price)%></p>
                 <%else%>
-                    <div class="nav_cart--itemwrapper">
+                    <div class="modal__cart--itemwrapper">
                         <%all_items = duplicates.clone%>
                         <%all_items << order_item%>
                         <%= link_to order_item_path(all_items),
@@ -37,22 +36,23 @@
             </div>
             <%if order_item.order_item_options.present?%>
                 <%order_item.order_item_options.each do |option|%>
-                    <p class="nav_cart--side"><%=option.menu_option.name%></p>
+                    <p class="modal__cart--side"><%=option.menu_option.name%></p>
                 <%end%>
             <%end%>
         <%end%>
-        <div class="nav_cart--item">
+        <div class="modal__cart--item">
             <p class="font-weight-bold">Subtotal</p>
             <p>£<%=to_pounds(@cart.get_subtotal)%></p>
         </div>
-        <div class="nav_cart--item">
+        <div class="modal__cart--item">
             <p>Delivery charge</p>
             <p>£3.50</p>
         </div>
-        <div class="nav_cart--line"></div>
-        <div class="nav_cart--item">
+        <div class="modal__cart--line"></div>
+        <div class="modal__cart--item">
             <p class="font-weight-bold uppercase">Total</p>
             <p>£<%= to_pounds(@cart.get_total)%></p>
         </div>
     </div>
+    <div class="button button--grey" id="cart-modal-close">Cancel</div>
 </div>

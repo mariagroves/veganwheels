@@ -10,10 +10,10 @@ require("components/scroll")
 require("components/background")
 require("components/nav")
 require("components/show-hero")
-require("components/modal")
-require("components/nav-cart")
+require("components/modal-item")
+require("components/modal-cart")
 require("components/quantity")
-
+require("components/user-menu")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference

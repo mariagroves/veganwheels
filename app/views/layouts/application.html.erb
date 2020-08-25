@@ -12,6 +12,7 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
   </head>
   <body>
+    <%= link_to "Logout", destroy_user_session_path, method: :delete%>
     <%= render 'partials/nav'%>
     <div class="content">
       <%= yield %>

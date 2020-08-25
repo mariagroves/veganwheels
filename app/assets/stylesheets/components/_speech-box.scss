@@ -1,0 +1,36 @@
+.speech__box {
+    position: absolute;
+    top: 6.3rem;
+    right: -5rem;
+    background-color: white;
+    border-radius: 3px;
+    border: 1px solid $color-red-dark;
+    z-index: 20;
+    min-width: 28rem;
+
+    &--arrow {
+        top: 0;
+        left: 76%;
+        position: absolute;
+    
+        &::before {
+            border: 1.7rem solid transparent;
+            border-bottom-color: $color-red-dark;
+            border-top: 0;
+            margin-left: -1.7rem;
+            margin-top: -1.7rem;
+            content: "";
+            position: absolute;
+        }
+
+        &::after {
+            border: 1.6rem solid transparent;
+            border-bottom-color: white;
+            border-top: 0;
+            margin-left: -1.6rem;
+            margin-top: -1.6rem;
+            content: "";
+            position: absolute;
+        }
+    }
+}

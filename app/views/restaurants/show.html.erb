@@ -79,6 +79,7 @@
             <%@restaurant.menu_items.each do |item|%>
                 <%if item.section == section%>
                 <div class="col-12 col-lg-6">
+                <%= link_to menu_item_path(item), remote: true do%>
                     <div class="menu__item menu__item--js <%=item.id%>">
                         <div class="menu__item--text">
                             <div class="top">
@@ -92,10 +93,20 @@
                             </div>
                         </div>
                     </div>
+                <%end%>
                 </div>
                 <%end%>
-                <%= render 'partials/modal', item: item, order_item: OrderItem.new%>
+                
             <%end%>
         </div>
-    <%end%>  
+    <%end%> 
+    <div class="modal-item modal-bckg">
+    </div>
+    <div class="modal-cart modal-bckg">
+            <%if !session[:cart_id].nil? && Cart.find(session[:cart_id]).order_items.present?%>
+            <%@cart = Cart.find(session[:cart_id])%>
+                <%= render 'partials/modal_cart', cart: @cart%>
+            <%end%>
+    </div>  
 </div>
+

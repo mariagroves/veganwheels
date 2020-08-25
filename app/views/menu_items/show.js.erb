@@ -1,0 +1,17 @@
+function itemModal(innerHTML){
+    const modalBg = document.getElementsByClassName('modal-item')[0];
+    modalBg.innerHTML = innerHTML;
+    modalBg.classList.add('bckg-active');
+
+    const orderForm = document.getElementById('order-form');
+    const itemId = modalBg.firstElementChild.classList[1];
+    orderForm.action = `/menu_items/${itemId}/order_items`;
+
+    const modalCancelButton = document.getElementById('modal-close');
+    modalCancelButton.addEventListener('click', () => {
+        modalBg.classList.remove('bckg-active');
+        modalBg.innerHTML = "";
+    })
+}
+
+itemModal('<%= j render 'partials/modal_item', item: @menu_item, order_item: OrderItem.new%>');

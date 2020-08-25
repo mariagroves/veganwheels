@@ -1,6 +1,7 @@
 class MenuItemsController < ApplicationController
-    before_action :set_menu_item, only: [ :edit, :update, :destroy]
+    before_action :set_menu_item, only: [ :edit, :update, :destroy, :show]
     before_action :set_restaurant, only: [ :new, :create ]
+    skip_before_action :authenticate_user!, only: [:show]
 
     # dont need new if new menu item is not having its own page, see eg comments in pickeled
     # sort out the redirects
@@ -27,6 +28,10 @@ class MenuItemsController < ApplicationController
     def destroy
         @menu_item.destroy
         redirect_to menu_items_path
+    end
+
+    def show 
+        render 'menu_items/show'
     end
 
       private

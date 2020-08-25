@@ -2,11 +2,18 @@ function deleteCart() {
     const navSection = document.getElementById('nav_section');
     const navItems = document.querySelectorAll('.item-js').length
     const navCart = document.getElementsByClassName('nav_cart')[0];
+    const modalBg = document.getElementsByClassName('modal-cart')[0];
 
     if (navItems == 1) {
         navCart.remove();
-        navSection.innerHTML = '<%= link_to "Sign up / Log in", new_user_session_path, id: "sign_up"%>'; 
-        navSection.classList.add("navigation__links--4","padding-small");
+        modalBg.innerHTML = "";
+        modalBg.classList.remove('bckg-active');
+        <%if user_signed_in?%>
+            navSection.innerHTML = '<div id="user_icon">';
+        <%else%>
+            navSection.innerHTML = '<%= link_to "Sign up / Log in", new_user_session_path, id: "sign_up"%>';
+            navSection.classList.add("navigation__links--4","padding-small");
+        <%end%> 
     } else {
         document.getElementById("item-<%= @order_item.id %>").remove();
         navSection.innerHTML = '<%= j render "order_items/cart", order_item: @order_item, cart: @cart%>'
