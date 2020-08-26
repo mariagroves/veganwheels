@@ -12,7 +12,6 @@ require("components/nav")
 require("components/show-hero")
 require("components/modal-item")
 require("components/modal-cart")
-require("components/quantity")
 require("components/user-menu")
 
 

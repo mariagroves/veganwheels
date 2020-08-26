@@ -1,4 +1,4 @@
-<div class="modal__item <%=item.id%>"> 
+<div class="modal__box modal__item <%=item.id%>"> 
     <div class="modal__item--text">
         <div class="modal__item--top">
             <h3><%=item.name%></h3>
@@ -28,18 +28,17 @@
                     <textarea name="order_item[note]" id="order_item_note"></textarea>
                 </div>
             </div>
-            <div>
-                <label class="font-weight-bold" for="order_item_quantity">Quantity</label>
-            </div>
-            <div class="bottom">
+
+            <div class="modal__item--bottom">
                 <div class="quantity-select">
-                    <div class="button--quantity add"><i class="fas fa-plus"></i></div>
+                    <div class="button--quantity" id="subtract"><i class="fas fa-minus"></i></div>
                     <input type="text" name="order_item[quantity]" id="order_item_quantity" value="1">
-                    <div class="button--quantity subtract"><i class="fas fa-minus"></i></div>
+                    <div class="button--quantity" id="add"><i class="fas fa-plus"></i></div>
                 </div>
-                <button type="submit" class="button button--small">Add to order</button>
-                <div class="button button--grey" id="modal-close">Cancel</div>
             </div>
+
+            <button type="submit" class="button__fill button__fill--bgreen">Add to order</button>
+            <div class="button__fill button__fill--bgreenl" id="modal-close">Cancel</div>
         </form>
     </div>
 </div>                       

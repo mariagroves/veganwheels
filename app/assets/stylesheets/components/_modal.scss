@@ -1,5 +1,4 @@
-
-.modal-bckg {
+.modal__bckg {
     position: fixed;
     width: 100%;
     height: 100vh;
@@ -20,28 +19,36 @@
     opacity: 1;
 }
 
-.modal__cart {
+.modal__box {
     background-color: $color-light-grey;
     width: 50rem;
     height: auto;
-    border: 3px solid $color-red-dark;
-    border-radius: .5rem;
+    border-radius: .25rem;
     padding: 3rem;
     position: relative;
+}
+
+.modal__cart {
+
+    &--top {
+        padding-bottom: 1rem;
+        border-bottom: 1px solid $color-red-dark;
+        margin-bottom: 1rem;
+    }
 
     &--items {
-        padding: 1.5rem;
         display: flex;
         flex-direction: column;
     }
 
     &--item {
-        margin-bottom: .5rem;
+        margin-top: .7rem;
         display: flex;
         justify-content: space-between;        
 
         .item {
             margin-right: 3rem;
+            margin-left: 1rem;
         }
     }
 
@@ -55,23 +62,21 @@
 
     &--line {
         width: inherit;
-        border-bottom: 1px solid $color-red-dark;
+        border-bottom: 1px solid $color-red-light;
+        margin-top: 1rem;
     }
 
     &--side {
-        font-size: 1.4rem;
-        margin-left: 2.4rem;
+        font-size: 1.5rem;
+        margin-left: 3rem;
+    }
+
+    &--buttons {
+        margin-top: .5rem;
     }
 }
 
 .modal__item {
-    background-color: $color-light-grey;
-    width: 50rem;
-    height: auto;
-    border: 3px solid $color-primary-dark;
-    border-radius: .5rem;
-    padding: 3rem;
-    position: relative;
 
     &--text {
         display: flex;
@@ -95,15 +100,17 @@
         margin-bottom: 1rem;
     }
 
-    .bottom {
+    &--bottom {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
     }
 
     textarea {
         width: 43.5rem;
         border: 1px solid $color-primary-dark;
-        border-radius: .3rem;
+        border-radius: .25rem;
         background-color: $color-light-grey;
     }
 
@@ -125,7 +132,7 @@
         width: 4rem;
         // border: 1px solid $color-primary-dark;
         text-align: center;
-        border-radius: .3rem;
+        border-radius: .25rem;
         background-color: $color-light-grey;
         border: none;
         font-size: 2rem;
@@ -136,7 +143,7 @@
         border: 1px solid $color-primary-dark;
         background-color: $color-light-grey;
         padding: .6rem;
-        border-radius: .3rem;
+        border-radius: .25rem;
         margin-right: 1rem;
     }
 

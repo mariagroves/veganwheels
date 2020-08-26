@@ -1,5 +1,8 @@
-<div class = "modal__cart">
+<div class = "modal__box modal__cart">
     <div class="modal__cart--items">
+        <div class="modal__cart--top">
+            <h3 class="font-weight-bold">Your order</h3>
+        </div>
         <%unique_cart = get_unique(@cart)%>
         <%unique_cart.each do |order_item|%>
             <div class="modal__cart--item item-js" id="item-<%= order_item.id %>">
@@ -9,7 +12,7 @@
                         <%= link_to order_item_path(order_item),
                             method: :delete,
                             remote: true do %>
-                            <i class="far fa-trash-alt"></i>
+                            <i class="fas fa-times"></i>
                         <%end%>
                         <div class="item">   
                             <p><%=order_item.quantity%> <%=order_item.menu_item.name%></p>
@@ -42,7 +45,7 @@
         <%end%>
         <div class="modal__cart--item">
             <p class="font-weight-bold">Subtotal</p>
-            <p>£<%=to_pounds(@cart.get_subtotal)%></p>
+            <p id="subtotal">£<%=to_pounds(@cart.get_subtotal)%></p>
         </div>
         <div class="modal__cart--item">
             <p>Delivery charge</p>
@@ -51,8 +54,11 @@
         <div class="modal__cart--line"></div>
         <div class="modal__cart--item">
             <p class="font-weight-bold uppercase">Total</p>
-            <p>£<%= to_pounds(@cart.get_total)%></p>
+            <p id="total">£<%= to_pounds(@cart.get_total)%></p>
+        </div>
+        <div class="modal__cart--buttons">
+            <div class="button__fill button__fill--red">Check out</div>
+            <div class="button__fill button__fill--redl" id="cart-modal-close">Continue browsing</div>
         </div>
     </div>
-    <div class="button button--grey" id="cart-modal-close">Cancel</div>
 </div>

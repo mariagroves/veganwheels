@@ -20,8 +20,10 @@
                 <a href="#">Ride with us</a>
             </div>
             <div class="navigation__links--wrap">
-                <%if !session[:cart_id].nil? && Cart.find(session[:cart_id]).order_items.present?%>
-                <%@cart = Cart.find(session[:cart_id])%>
+
+                <%if controller_name == "restaurants" && action_name == "show" && !session[:cart_id].nil? && Cart.find(session[:cart_id]).order_items.present?%>
+
+                    <%@cart = Cart.find(session[:cart_id])%>
                     <div id="nav_section">
                         <div class="nav_cart">
                             <div class="nav_cart--price">
@@ -36,7 +38,8 @@
                     <%if user_signed_in?%>
                         <div id="nav_section">
                             <div id="user_icon">
-                            <%#= render 'partials/user_menu'%>
+                                <i class="fas fa-user"></i>
+                                <%= render 'partials/user_menu'%>
                             </div>
                         </div>
                     <%else %>

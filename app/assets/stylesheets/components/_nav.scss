@@ -223,6 +223,16 @@
     width: 4rem;
     height: 4rem;
     border-radius: 100rem;
-    background-color: red;
+    background-color: $color-white;
+    border: 3px solid $color-primary-dark;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    i {
+        color: $color-primary-dark;
+        font-size: 2.3rem;
+    }
 }

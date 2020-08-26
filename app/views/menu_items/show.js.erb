@@ -1,17 +1,42 @@
-function itemModal(innerHTML){
+function createItemModal(innerHTML){
     const modalBg = document.getElementsByClassName('modal-item')[0];
     modalBg.innerHTML = innerHTML;
     modalBg.classList.add('bckg-active');
 
     const orderForm = document.getElementById('order-form');
-    const itemId = modalBg.firstElementChild.classList[1];
+    const itemId = modalBg.firstElementChild.classList[2];
     orderForm.action = `/menu_items/${itemId}/order_items`;
+}
 
+function setCancelButton() {
     const modalCancelButton = document.getElementById('modal-close');
+    const modalBg = document.getElementsByClassName('modal-item')[0];
     modalCancelButton.addEventListener('click', () => {
         modalBg.classList.remove('bckg-active');
         modalBg.innerHTML = "";
     })
 }
 
-itemModal('<%= j render 'partials/modal_item', item: @menu_item, order_item: OrderItem.new%>');
+function setQuantityButtons() {
+    const addButton = document.getElementById('add');
+    const subtractButton = document.getElementById('subtract');
+
+    addButton.addEventListener('click', ()=>{
+        const amount = addButton.parentElement.childNodes[3].value
+        const currentQuantity = parseInt(amount, 10)
+        const newQuantity = currentQuantity + 1
+        addButton.parentElement.childNodes[3].value = newQuantity;
+    })
+
+    subtractButton.addEventListener('click', ()=>{
+        const amount = subtractButton.parentElement.childNodes[3].value
+        const currentQuantity = parseInt(amount, 10)
+        if (currentQuantity == 1) return
+        const newQuantity = currentQuantity - 1
+        subtractButton.parentElement.childNodes[3].value = newQuantity;
+    })
+}
+
+createItemModal('<%= j render 'partials/modal_item', item: @menu_item, order_item: OrderItem.new%>');
+setCancelButton();
+setQuantityButtons();

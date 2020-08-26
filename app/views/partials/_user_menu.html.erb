@@ -1,4 +1,12 @@
 <div id="user_menu" class="speech__box" style="display:none;">
-<div class="speech__box--arrow"></div>
-
+    <div class="speech__box--arrow"></div>
+    <div class="speech__box--items">
+        <div class="speech__box--item font-weight-bold">
+            <%=current_user.first_name%> <%=current_user.last_name%>
+            <%=puts current_user%>
+        </div>
+        <div class="speech__box--item speech__box--link">
+            <%= link_to "Log out", destroy_user_session_path, method: :delete%>
+        </div>
+    </div>
 </div>
