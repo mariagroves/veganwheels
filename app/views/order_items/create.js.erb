@@ -28,6 +28,16 @@ function setCancelButton() {
     })
 }
 
-createCart('<%= j render 'order_items/cart', order_item: @order_item%>');
+function successMessage() {
+    swal({
+    title: "Thanks!",
+    text: "Your selection has been added to the basket.",
+    icon: "success",
+    buttons: false,
+    timer: 1500
+    });
+}
+createCart('<%= j render 'order_items/cart', cart: @cart%>');
 createCartModal('<%= j render 'partials/modal_cart', cart: @cart%>');
+successMessage();
 setCancelButton();

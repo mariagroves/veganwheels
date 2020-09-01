@@ -1,7 +1,7 @@
 <div class = "modal__box modal__cart">
     <div class="modal__cart--items">
         <div class="modal__cart--top">
-            <h3 class="font-weight-bold">Your order</h3>
+            <h3 class="font-weight-bold">Your order from <%=@cart.order_items.first.menu_item.restaurant.name%></h3>
         </div>
         <%unique_cart = get_unique(@cart)%>
         <%unique_cart.each do |order_item|%>

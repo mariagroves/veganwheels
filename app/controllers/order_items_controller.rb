@@ -11,6 +11,12 @@ class OrderItemsController < ApplicationController
         @cart = current_cart
         @order_item.cart = @cart
         @order_item.menu_item = @menu_item
+
+        if !@cart.order_items.empty? && @order_item.menu_item.restaurant != @cart.order_items.first.menu_item.restaurant
+            render 'order_items/error'
+            return
+        end
+        
         render 'order_items/create' if @order_item.save
         session[:cart_id] = @cart.id
     end
