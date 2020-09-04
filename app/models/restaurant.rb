@@ -3,7 +3,8 @@ class Restaurant < ApplicationRecord
     # https://guides.rubyonrails.org/active_record_validations.html
     has_one_attached :photo
     has_many :menu_items, dependent: :destroy
-    has_many :sections, through: :menu_items
+    has_many :sections
+    belongs_to :admin_user
     validates :name, presence: true, uniqueness: true
     validates :address, presence: true
     validates :about, presence: true

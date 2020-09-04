@@ -1,0 +1,8 @@
+<%= semantic_form_for [:admin, @section], builder: ActiveAdmin::FormBuilder do |f|%>
+    <%= f.semantic_errors %>
+    <%= f.inputs "Section" do %>
+        <%= f.input :name %>
+        <%= f.input :order %>
+    <% end %>
+    <%= f.actions %>
+<% end %>

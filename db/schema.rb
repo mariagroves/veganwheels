@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_26_143439) do
+ActiveRecord::Schema.define(version: 2020_09_04_114515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_admin_comments", force: :cascade do |t|
+    t.string "namespace"
+    t.text "body"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.string "author_type"
+    t.bigint "author_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
+    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
+    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -34,6 +48,19 @@ ActiveRecord::Schema.define(version: 2020_08_26_143439) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "admin_users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "role", default: "restaurant", null: false
+    t.index ["email"], name: "index_admin_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
   create_table "carts", force: :cascade do |t|
@@ -103,6 +130,8 @@ ActiveRecord::Schema.define(version: 2020_08_26_143439) do
     t.float "longitude"
     t.integer "imagekey"
     t.string "website"
+    t.bigint "admin_user_id"
+    t.index ["admin_user_id"], name: "index_restaurants_on_admin_user_id"
   end
 
   create_table "sections", force: :cascade do |t|
@@ -110,6 +139,8 @@ ActiveRecord::Schema.define(version: 2020_08_26_143439) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "order"
+    t.bigint "restaurant_id"
+    t.index ["restaurant_id"], name: "index_sections_on_restaurant_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -133,4 +164,6 @@ ActiveRecord::Schema.define(version: 2020_08_26_143439) do
   add_foreign_key "order_item_options", "menu_options"
   add_foreign_key "order_item_options", "order_items"
   add_foreign_key "order_items", "menu_items"
+  add_foreign_key "restaurants", "admin_users"
+  add_foreign_key "sections", "restaurants"
 end

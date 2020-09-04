@@ -1,0 +1,10 @@
+<%= semantic_form_for [:admin, @section], builder: ActiveAdmin::FormBuilder do |f|%>
+    <%= f.semantic_errors %>
+    <%= f.inputs "Section" do %>
+        <%= f.label :restaurant, class: "label"%>
+        <%= f.collection_select :restaurant_id, Restaurant.where(admin_user_id: current_admin_user.id), :id, :name %>
+        <%= f.input :name %>
+        <%= f.input :order %>
+    <% end %>
+    <%= f.actions %>
+<% end %>

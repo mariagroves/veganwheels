@@ -9,13 +9,39 @@
 require 'faker'
 
 puts "destroying seed"
-
+OrderItemOption.destroy_all
+OrderItem.destroy_all
+Cart.destroy_all
 MenuOption.destroy_all
 MenuItem.destroy_all
 Section.destroy_all
 Restaurant.destroy_all
+AdminUser.destroy_all
+User.destroy_all
 
 puts "finished destroying seed"
+
+puts "creating admins"
+
+admin1 = AdminUser.create(email: "mono@email.com", password: 123456)
+admin2 = AdminUser.create(email: "13thnote@email.com", password: 123456)
+admin3 = AdminUser.create(email: "vandv@email.com", password: 123456)
+admin4 = AdminUser.create(email: "flyingduck@email.com", password: 123456)
+admin5 = AdminUser.create(email: "glasvegan@email.com", password: 123456)
+admin6 = AdminUser.create(email: "stereo@email.com", password: 123456)
+admin7 = AdminUser.create(email: "78@email.com", password: 123456)
+admin8 = AdminUser.create(email: "serenitynow@email.com", password: 123456)
+admin9 = AdminUser.create(email: "picnic@email.com", password: 123456)
+admin10 = AdminUser.create(email: "soulkitchen@email.com", password: 123456)
+AdminUser.create(email: "admin@email.com", password: 123456, role: "admin")
+
+puts "finished creating admins"
+
+puts "creating user"
+
+User.create(email: "maria@email.com", password: 123456, phone: 17595910089, first_name: "Maria", last_name: "Groves")
+
+puts "finished creating user"
 
 puts "creating restaurants"
 
@@ -29,7 +55,8 @@ restaurant1 = Restaurant.create(
     phone: '01415532400'.to_i,
     email: "mono@email.com",
     imagekey: 1,
-    website: "http://www.monocafebar.com/"
+    website: "http://www.monocafebar.com/",
+    admin_user: admin1
 )
 
 restaurant2 = Restaurant.create(
@@ -41,7 +68,8 @@ restaurant2 = Restaurant.create(
     phone: '01415531638'.to_i,
     email: "13thnote@email.com",
     imagekey: 2,
-    website: "http://13thnote.co.uk/"
+    website: "http://13thnote.co.uk/",
+    admin_user: admin2
 )
 
 restaurant3 = Restaurant.create(
@@ -53,7 +81,8 @@ restaurant3 = Restaurant.create(
     phone: '01412377902'.to_i,
     email: "vandv@email.com",
     imagekey: 3,
-    website: "https://www.facebook.com/thevandvcafe/"
+    website: "https://www.facebook.com/thevandvcafe/",
+    admin_user: admin3
 )
 
 restaurant4 = Restaurant.create(
@@ -65,7 +94,8 @@ restaurant4 = Restaurant.create(
     phone: '01415641450'.to_i,
     email: "flyingduck@email.com",
     imagekey: 4,
-    website: "https://www.theflyingduck.org/"
+    website: "https://www.theflyingduck.org/",
+    admin_user: admin4
 )
 
 restaurant5 = Restaurant.create(
@@ -77,7 +107,8 @@ restaurant5 = Restaurant.create(
     phone: '01412263075'.to_i,
     email: "glasvegan@email.com",
     imagekey: 1,
-    website: "https://www.facebook.com/theglasvegan/"
+    website: "https://www.facebook.com/theglasvegan/",
+    admin_user: admin5
 )
 
 restaurant6 = Restaurant.create(
@@ -89,7 +120,8 @@ restaurant6 = Restaurant.create(
     phone: '01412222254'.to_i,
     email: "stereo@email.com",
     imagekey: 2,
-    website: "https://www.stereocafebar.com/"
+    website: "https://www.stereocafebar.com/",
+    admin_user: admin6
 )
 
 restaurant7 = Restaurant.create(
@@ -101,7 +133,8 @@ restaurant7 = Restaurant.create(
     phone: '01415765018'.to_i,
     email: "78@email.com",
     imagekey: 3,
-    website: "https://www.the78barandkitchen.com/"
+    website: "https://www.the78barandkitchen.com/",
+    admin_user: admin7
 )
 
 restaurant8 = Restaurant.create(
@@ -113,7 +146,8 @@ restaurant8 = Restaurant.create(
     phone: '01412618065'.to_i,
     email: "serenitynow@email.com",
     imagekey: 4,
-    website: "https://www.serenitynowcafe.com/"
+    website: "https://www.serenitynowcafe.com/",
+    admin_user: admin8
 )
 
 restaurant9 = Restaurant.create(
@@ -125,7 +159,8 @@ restaurant9 = Restaurant.create(
     phone: '01415528788'.to_i,
     email: "picnic@email.com",
     imagekey: 1,
-    website: "http://picnic-cafe.co.uk/"
+    website: "http://picnic-cafe.co.uk/",
+    admin_user: admin9
 )
 
 restaurant10 = Restaurant.create(
@@ -137,18 +172,19 @@ restaurant10 = Restaurant.create(
     phone: '01414065292'.to_i,
     email: "soulkitchen@email.com",
     imagekey: 2,
-    website: "https://www.soulfoodkitchen.co.uk/"
+    website: "https://www.soulfoodkitchen.co.uk/",
+    admin_user: admin10
 )
 
 photo1 = URI.open('https://bigseventravel.com/wp-content/uploads/2019/12/oh.jpg')
-photo2 = URI.open('https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/satay-sweet-potato-curry_1.jpg')
+photo2 = URI.open('https://images.happycow.net/venues/1024/97/42/hcmp97421_380105.jpeg')
 photo3 = URI.open('https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/vegetarian-recipe-tomato-cucumber-farro-salad-1567097097.jpg')
 photo4 = URI.open('https://www.feastingathome.com/wp-content/uploads/2019/01/collard-greens-wraps-100.jpg')
 photo5 = URI.open('https://thebusybaker.ca/wp-content/uploads/2017/11/vegan-chocolate-mousse-cheesecake-fbig4-500x500.jpg')
 photo6 = URI.open('https://media-cdn.tripadvisor.com/media/photo-s/11/9c/2b/f3/raw-vegan-spring-rolls.jpg')
 photo7 = URI.open('https://www.delishknowledge.com/wp-content/uploads/greengoddessveggiesandwich.jpg')
 photo8 = URI.open('https://simple-veganista.com/wp-content/uploads/2012/07/raw-vegan-sushi-rolls-5.jpg')
-photo9 = URI.open('https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2020/01/noodles.jpg')
+photo9 = URI.open('https://media-cdn.tripadvisor.com/media/photo-s/11/9c/2b/f3/raw-vegan-spring-rolls.jpg')
 photo10 = URI.open('https://i.pinimg.com/originals/4f/88/96/4f8896abe38f2f9d14c724f88023fa7d.jpg')
 
 restaurant1.photo.attach(io: photo1, filename: 'vegan1.jpg', content_type: 'image/jpg')
@@ -164,17 +200,12 @@ restaurant10.photo.attach(io: photo10, filename: 'vegan10.jpg', content_type: 'i
 
 puts "finished creating restaurants"
 
-puts "creating sections"
-
-Section.create(name: "Starters", order: 1)
-Section.create(name: "Mains", order: 2)
-Section.create(name: "Desserts", order: 3)
-
-puts "finished creating sections"
-
-puts "creating menus"
+puts "creating sections and menus"
 
 Restaurant.all.each do |restaurant|
+    Section.create(name: "Starters", order: 1, restaurant_id: restaurant.id)
+    Section.create(name: "Mains", order: 2, restaurant_id: restaurant.id)
+    Section.create(name: "Desserts", order: 3, restaurant_id: restaurant.id)
     20.times do |n|
         name = Faker::Food.dish
         price = rand(800..2500).round(-1)
@@ -192,6 +223,7 @@ Restaurant.all.each do |restaurant|
     end
 end
 
-puts "finished creating menus"
+puts "finished creating sections and menus"
 
 puts "finished seeding"
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
