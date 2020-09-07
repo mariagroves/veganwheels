@@ -1,0 +1,12 @@
+<%= semantic_form_for [:admin, @menu_item], builder: ActiveAdmin::FormBuilder do |f|%>
+    <%= f.semantic_errors %>
+    <%= f.inputs "Menu" do %>
+        <%= f.input :restaurant, :as => :select, :collection => Restaurant.where(admin_user_id: current_admin_user.id)%>
+        <%= f.input :section, :as => :select, :collection => Section.where(restaurant_id: current_admin_user.restaurants.each {|r| r.id})%>
+        <%= f.input :name %>
+        <%= f.input :price, :label => "Prince in pence" %>
+        <%= f.input :description %>
+        <%= f.input :is_active %>
+    <% end %>
+    <%= f.actions %>
+<% end %>

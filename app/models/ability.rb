@@ -15,9 +15,13 @@ class Ability
       user.restaurants.each do |restaurant|
         can :manage, Section, restaurant_id: restaurant.id
         can :manage, MenuItem, restaurant_id: restaurant.id
+        restaurant.menu_items.each do |menu_item|
+          can :manage, MenuOption, menu_item_id: menu_item.id
+        end
       end
       can :create, Section
       can :create, MenuItem
+      can :create, MenuOption
     end
     # Define abilities for the passed in user here. For example:
     #

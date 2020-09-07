@@ -2,7 +2,7 @@
     <%= f.semantic_errors %>
     <%= f.inputs "Section" do %>
         <%= f.input :name %>
-        <%= f.input :order %>
+        <%= f.input :order, :label => "Order in the menu", :as => :select, :collection => 1..10%>
     <% end %>
     <%= f.actions %>
 <% end %>
