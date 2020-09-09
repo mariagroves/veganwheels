@@ -211,9 +211,9 @@ Restaurant.all.each do |restaurant|
         price = rand(800..2500).round(-1)
         description = Faker::Lorem.sentence(word_count: 10)
         is_active = true
-        section = Section.where(restaurant_id: restaurant.id).sample
+        section = restaurant.sections.sample
         item = MenuItem.create(name: name, price: price, description: description, is_active: is_active, restaurant_id: restaurant.id, section_id: section.id)
-    
+
         2.times do |n|
             name = Faker::Food.vegetables
             price = rand(300..800).round(-1)
