@@ -23,16 +23,16 @@ puts "finished destroying seed"
 
 puts "creating admins"
 
-admin1 = AdminUser.create(email: "mono@email.com", password: 123456)
-admin2 = AdminUser.create(email: "13thnote@email.com", password: 123456)
-admin3 = AdminUser.create(email: "vandv@email.com", password: 123456)
-admin4 = AdminUser.create(email: "flyingduck@email.com", password: 123456)
-admin5 = AdminUser.create(email: "glasvegan@email.com", password: 123456)
-admin6 = AdminUser.create(email: "stereo@email.com", password: 123456)
-admin7 = AdminUser.create(email: "78@email.com", password: 123456)
-admin8 = AdminUser.create(email: "serenitynow@email.com", password: 123456)
-admin9 = AdminUser.create(email: "picnic@email.com", password: 123456)
-admin10 = AdminUser.create(email: "soulkitchen@email.com", password: 123456)
+admin1 = AdminUser.create(email: "mono@email.com", password: 123456, role: "restaurant")
+admin2 = AdminUser.create(email: "13thnote@email.com", password: 123456, role: "restaurant")
+admin3 = AdminUser.create(email: "vandv@email.com", password: 123456, role: "restaurant")
+admin4 = AdminUser.create(email: "flyingduck@email.com", password: 123456, role: "restaurant")
+admin5 = AdminUser.create(email: "glasvegan@email.com", password: 123456, role: "restaurant")
+admin6 = AdminUser.create(email: "stereo@email.com", password: 123456, role: "restaurant")
+admin7 = AdminUser.create(email: "78@email.com", password: 123456, role: "restaurant")
+admin8 = AdminUser.create(email: "serenitynow@email.com", password: 123456, role: "restaurant")
+admin9 = AdminUser.create(email: "picnic@email.com", password: 123456, role: "restaurant")
+admin10 = AdminUser.create(email: "soulkitchen@email.com", password: 123456, role: "restaurant")
 AdminUser.create(email: "admin@email.com", password: 123456, role: "admin")
 
 puts "finished creating admins"
@@ -211,7 +211,7 @@ Restaurant.all.each do |restaurant|
         price = rand(800..2500).round(-1)
         description = Faker::Lorem.sentence(word_count: 10)
         is_active = true
-        section = Section.find(Section.pluck(:id).sample)
+        section = Section.where(restaurant_id: restaurant.id).sample
         item = MenuItem.create(name: name, price: price, description: description, is_active: is_active, restaurant_id: restaurant.id, section_id: section.id)
     
         2.times do |n|
@@ -226,4 +226,3 @@ end
 puts "finished creating sections and menus"
 
 puts "finished seeding"
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

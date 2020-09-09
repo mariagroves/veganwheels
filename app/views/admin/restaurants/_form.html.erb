@@ -1,0 +1,5 @@
+<% if current_admin_user.role == "admin" %>
+  <%= render partial: "form_admin", resource: @restaurant %>
+<% else %>
+  <%= render partial: "form_restaurant", resource: @restaurant %>
+<% end %>

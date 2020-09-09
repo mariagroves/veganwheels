@@ -1,5 +1,5 @@
-<% if @section.new_record? %>
-  <%= render partial: "form_new", resource: @section %>
+<% if current_admin_user.role == "admin" %>
+  <%= render partial: "form_admin", resource: @section %>
 <% else %>
-  <%= render partial: "form_edit", resource: @section %>
+  <%= render partial: "form_restaurant", resource: @section %>
 <% end %>

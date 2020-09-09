@@ -1,0 +1,16 @@
+<%= semantic_form_for [:admin, @restaurant], builder: ActiveAdmin::FormBuilder do |f|%>
+    <%= f.semantic_errors %>
+    <%= f.inputs "Restaurant" do %>
+        <%= f.input :admin_user %>
+        <%= f.input :name %>
+        <%= f.input :address%>
+        <%= f.input :about%>
+        <%= f.input :open_time%>
+        <%= f.input :close_time%>
+        <%= f.input :phone%>
+        <%= f.input :email%>
+        <%= f.input :website%>
+        <%= f.input :photo, as: :file%>
+    <% end %>
+    <%= f.actions %>
+<% end %>

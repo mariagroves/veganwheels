@@ -12,13 +12,11 @@ class Ability
       can :read, ActiveAdmin::Page, name: "Dashboard"
       can :read, Restaurant, admin_user_id: user.id
       can :update, Restaurant, admin_user_id: user.id
-      user.restaurants.each do |restaurant|
-        can :manage, Section, restaurant_id: restaurant.id
-        can :manage, MenuItem, restaurant_id: restaurant.id
-        restaurant.menu_items.each do |menu_item|
+      can :manage, Section, restaurant_id: user.restaurant.id
+      can :manage, MenuItem, restaurant_id: user.restaurant.id
+        user.restaurant.menu_items.each do |menu_item|
           can :manage, MenuOption, menu_item_id: menu_item.id
         end
-      end
       can :create, Section
       can :create, MenuItem
       can :create, MenuOption

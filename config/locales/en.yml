@@ -31,3 +31,21 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    models:
+      menu_option: 
+        one: "Side"
+        other: "Sides"
+      menu_item:
+        one: "Item"
+        other: "Items"
+      section:
+        one: "Menu Section"
+        other: "Menu Sections"
+  formtastic:
+    actions:
+      create: "Create %{model}"
+      update: "Save changes"
+      destroy: "Delete"
+      reset: "Reset form"
+      cancel: "Cancel"

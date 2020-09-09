@@ -1,7 +1,7 @@
 <%= semantic_form_for [:admin, @section], builder: ActiveAdmin::FormBuilder do |f|%>
     <%= f.semantic_errors %>
     <%= f.inputs "Section" do %>
-        <%= f.input :restaurant, :as => :select, :collection => Restaurant.where(admin_user_id: current_admin_user.id)%>
+        <%= f.input :restaurant, :as => :select, :collection => Restaurant.where(id: current_admin_user.restaurant)%>
         <%= f.input :name %>
         <%= f.input :order, :label => "Order in the menu", :as => :select, :collection => 1..10%>
     <% end %>

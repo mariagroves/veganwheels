@@ -8,8 +8,8 @@ class MenuItem < ApplicationRecord
   validate :section_for_restaurant
 
   def section_for_restaurant
-    if !section.nil? && section.restaurant != restaurant
-        errors.add(:section, "You have selected a section linked to another restaurant. Please try again.")
+    if Section.where(id: section, restaurant: restaurant).empty?
+      errors.add(:restaurant, "You cannot add a new item for a section from a different restaurant. Please try again.")
     end
-  end 
+  end
 end

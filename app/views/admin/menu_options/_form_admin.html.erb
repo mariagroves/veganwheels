@@ -1,0 +1,10 @@
+<%= semantic_form_for [:admin, @menu_option], builder: ActiveAdmin::FormBuilder do |f|%>
+    <%= f.semantic_errors %>
+    <%= f.inputs "Side" do %>
+        <%= f.input :menu_item%>
+        <%= f.input :name %>
+        <%= f.input :price, :label => "Prince in pence" %>
+        <%= f.input :description, :label => "Description (max 50 characters)" %>
+    <% end %>
+    <%= f.actions %>
+<% end %>
