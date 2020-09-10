@@ -19,11 +19,11 @@ gem 'sass-rails', '~> 5'
 gem 'webpacker', '~> 4.0'
 
 gem 'dotenv-rails', groups: [:development, :test]
-
 gem 'cloudinary'
-
 gem 'activeadmin'
 gem 'cancancan'
+gem 'stripe'
+gem 'stripe_event'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'

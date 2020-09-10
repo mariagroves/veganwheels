@@ -14,7 +14,7 @@ class Cart < ApplicationRecord
 
     def get_total
         subtotal = get_subtotal
-        subtotal + 350
+        subtotal + Business.first.delivery_price
     end
 
     def get_quantity

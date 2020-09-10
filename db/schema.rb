@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_09_114910) do
+ActiveRecord::Schema.define(version: 2020_09_10_095456) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,12 @@ ActiveRecord::Schema.define(version: 2020_09_09_114910) do
     t.string "role", default: "restaurant", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "businesses", force: :cascade do |t|
+    t.integer "delivery_price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "carts", force: :cascade do |t|
@@ -116,6 +122,22 @@ ActiveRecord::Schema.define(version: 2020_09_09_114910) do
     t.index ["menu_item_id"], name: "index_order_items_on_menu_item_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.string "checkout_session_id"
+    t.bigint "user_id", null: false
+    t.bigint "cart_id", null: false
+    t.integer "order_price"
+    t.integer "total_price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_assigned", default: false
+    t.string "state", default: "pending"
+    t.integer "delivery_price"
+    t.index ["cart_id", "user_id"], name: "index_orders_on_cart_id_and_user_id", unique: true
+    t.index ["cart_id"], name: "index_orders_on_cart_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "restaurants", force: :cascade do |t|
     t.string "name"
     t.text "address"
@@ -165,6 +187,8 @@ ActiveRecord::Schema.define(version: 2020_09_09_114910) do
   add_foreign_key "order_item_options", "menu_options"
   add_foreign_key "order_item_options", "order_items"
   add_foreign_key "order_items", "menu_items"
+  add_foreign_key "orders", "carts"
+  add_foreign_key "orders", "users"
   add_foreign_key "restaurants", "admin_users"
   add_foreign_key "sections", "restaurants"
 end

@@ -10,7 +10,11 @@ class OrderItemOption < ApplicationRecord
   end
 
   def unit_price
-    self.menu_option.price
+    if self.menu_option.price.nil?
+      return 0
+    else
+      self.menu_option.price
+    end
   end
 
   def total_price

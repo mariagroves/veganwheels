@@ -7,6 +7,10 @@ class OrderItemsController < ApplicationController
     end
 
     def create
+        if current_user.orders.where(state: 'pending').present?
+            render 'order_items/checkout_error'
+            return
+        end
         @order_item = OrderItem.new(order_item_params)
         @cart = current_cart
         @order_item.cart = @cart
@@ -24,7 +28,7 @@ class OrderItemsController < ApplicationController
     def destroy
         ids = params[:id].split('/').map(&:to_i)
         @order_items = OrderItem.find(ids)
-        @order_item = @order_items.first
+        @order_item = @order_items.last
         @cart = @order_item.cart
         @order_items.each(&:destroy)
     end

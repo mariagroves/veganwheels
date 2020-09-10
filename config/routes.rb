@@ -12,4 +12,8 @@ Rails.application.routes.draw do
   end
   resources :menu_options, only: [ :edit, :update, :destroy ]
   resources :order_items, only: [ :destroy]
+  resources :orders, only: [:show, :create, :destroy] do
+    resources :payments, only: :new
+  end
+  mount StripeEvent::Engine, at: '/stripe-webhooks'
 end

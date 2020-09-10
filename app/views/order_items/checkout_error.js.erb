@@ -1,0 +1,11 @@
+function errorMessage() {
+    swal({
+    title: "Oops!",
+    text: "You currently have a checkout in progress. Finalise or cancel it to proceed!",
+    icon: "error",
+    buttons: false,
+    timer: 3000
+    });
+}
+
+errorMessage();

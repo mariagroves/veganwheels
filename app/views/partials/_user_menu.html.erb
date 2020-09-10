@@ -5,6 +5,11 @@
             <%=current_user.first_name%> <%=current_user.last_name%>
             <%=puts current_user%>
         </div>
+        <%if current_user.orders.where(state: 'pending').present?%>
+            <div class="speech__box--item speech__box--link">
+                <%= link_to "Your order", new_order_payment_path(current_user.orders.where(state: 'pending').last)%>
+            </div>
+        <%end%>
         <div class="speech__box--item speech__box--link">
             <%= link_to "Log out", destroy_user_session_path, method: :delete%>
         </div>

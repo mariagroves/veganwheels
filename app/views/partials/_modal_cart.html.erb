@@ -5,7 +5,8 @@
         </div>
         <%unique_cart = get_unique(@cart)%>
         <%unique_cart.each do |order_item|%>
-            <div class="modal__cart--item item-js" id="item-<%= order_item.id %>">
+        <div id="item-<%= order_item.id %>">
+            <div class="modal__cart--item item-js" >
                 <%duplicates = get_duplicates(order_item, @cart)%>
                 <%if duplicates.empty?%>
                     <div class="modal__cart--itemwrapper">
@@ -26,7 +27,7 @@
                         <%= link_to order_item_path(all_items),
                             method: :delete,
                             remote: true do %>
-                            <i class="far fa-trash-alt"></i>
+                            <i class="fas fa-times"></i>
                         <%end%>
                         <div class="item">
                             <%quantity_sum = order_item.quantity + duplicates.each_with_object([]) {|oi,array| array<<oi.quantity }.sum%>
@@ -39,9 +40,24 @@
             </div>
             <%if order_item.order_item_options.present?%>
                 <%order_item.order_item_options.each do |option|%>
+                <div class="modal__cart--item">
                     <p class="modal__cart--side"><%=option.menu_option.name%></p>
+                    <%if duplicates.empty?%>
+                        <%if option.unit_price != 0%>
+                            <p>£<%=to_pounds(option.total_price)%></p>
+                        <%end%>
+                    <%else%>
+                        <%if option.unit_price != 0%>
+                            <%count = duplicates.count + 1%>
+                            <%total = count*option.unit_price%>
+                            <p>£<%=to_pounds(total)%></p>
+                        <%end%>
+                    <%end%>
+
+                </div>
                 <%end%>
             <%end%>
+            </div>
         <%end%>
         <div class="modal__cart--item">
             <p class="font-weight-bold">Subtotal</p>
@@ -49,7 +65,7 @@
         </div>
         <div class="modal__cart--item">
             <p>Delivery charge</p>
-            <p>£3.50</p>
+            <p>£<%=to_pounds(Business.first.delivery_price)%></p>
         </div>
         <div class="modal__cart--line"></div>
         <div class="modal__cart--item">
@@ -57,7 +73,11 @@
             <p id="total">£<%= to_pounds(@cart.get_total)%></p>
         </div>
         <div class="modal__cart--buttons">
-            <div class="button__fill button__fill--red">Check out</div>
+            <%# <div class="button__fill button__fill--red">Check out</div> %>
+            <%= form_tag orders_path do %>
+                <%= hidden_field_tag 'cart_id', @cart.id %>
+                <%= submit_tag 'Check out', class: 'button__fill button__fill--red' %>
+            <% end %>
             <div class="button__fill button__fill--redl" id="cart-modal-close">Continue browsing</div>
         </div>
     </div>

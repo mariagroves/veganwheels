@@ -1,0 +1,29 @@
+<div class="container white-content-box">
+    <div class="row">
+        <div class="col-12">
+            <div class="payment-form mx-auto">
+            <h1>Checkout summary</h1>
+            <%@order.cart.order_items.each do |item|%>
+                <li><%=item.menu_item.name%></li>
+            <%end%>
+            <p><strong><%= to_pounds(@order.total_price) %></strong></p>
+            <button id="pay" class="btn btn-primary">Pay</button>
+
+            <div class="btn btn-parimary">
+                <%= link_to "Cancel order", order_path(@order), method: :delete%>
+            </div>
+
+            <script src="https://js.stripe.com/v3/"></script>
+            <script>
+                const paymentButton = document.getElementById('pay');
+                paymentButton.addEventListener('click', () => {
+                const stripe = Stripe('<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>');
+                stripe.redirectToCheckout({
+                    sessionId: '<%= @order.checkout_session_id %>'
+                });
+                });
+            </script>
+            </div>
+        </div>
+    </div>
+</div>
