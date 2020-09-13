@@ -1,5 +1,6 @@
 class Cart < ApplicationRecord
     has_many :order_items
+    has_one :order
 
     def get_subtotal
         total = 0

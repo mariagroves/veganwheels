@@ -7,10 +7,6 @@ class OrderItemsController < ApplicationController
     end
 
     def create
-        if current_user.orders.where(state: 'pending').present?
-            render 'order_items/checkout_error'
-            return
-        end
         @order_item = OrderItem.new(order_item_params)
         @cart = current_cart
         @order_item.cart = @cart

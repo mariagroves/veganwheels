@@ -73,11 +73,15 @@
             <p id="total">£<%= to_pounds(@cart.get_total)%></p>
         </div>
         <div class="modal__cart--buttons">
-            <%# <div class="button__fill button__fill--red">Check out</div> %>
-            <%= form_tag orders_path do %>
-                <%= hidden_field_tag 'cart_id', @cart.id %>
-                <%= submit_tag 'Check out', class: 'button__fill button__fill--red' %>
-            <% end %>
+
+            <%if current_user.orders.where(state: 'pending').present?%>
+                <%= link_to 'Check out', new_order_payment_path(current_user.orders.where(state: 'pending').first),class: 'button__fill button__fill--red'%>
+            <%else%>
+                <%= form_tag orders_path do %>
+                    <%= hidden_field_tag 'cart_id', @cart.id %>
+                    <%= submit_tag 'Check out', class: 'button__fill button__fill--red' %>
+                <% end %>
+            <%end%>
             <div class="button__fill button__fill--redl" id="cart-modal-close">Continue browsing</div>
         </div>
     </div>
