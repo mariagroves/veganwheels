@@ -1,18 +1,6 @@
 function createCart(innerHTML) {
-    const signUpButton = document.getElementById('sign_up');
-    const userIcon = document.getElementById('user_icon');
     const navSection = document.getElementById('nav_section');
-    if (document.body.contains(signUpButton)) {
-        signUpButton.remove();
-        navSection.innerHTML = innerHTML;
-        navSection.classList.remove("navigation__links--4","padding-small");
-    } else if (document.body.contains(userIcon)){
-        userIcon.remove();
-        navSection.innerHTML = innerHTML;
-    } else {
-        navSection.innerHTML = innerHTML;
-        navSection.classList.remove("navigation__links--4","padding-small");
-    }
+    navSection.innerHTML = innerHTML;
 }
     
 function createCartModal(innerHTML) {

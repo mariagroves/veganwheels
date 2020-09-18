@@ -19,12 +19,22 @@
                 <div class="link-blob"></div>
                 <a href="#">Ride with us</a>
             </div>
-            <div class="navigation__links--wrap">
+       
+            <div id="nav_section">
+                <%if !session[:cart_id].nil? && Cart.find(session[:cart_id]).order_items.present?%>
+                <%@cart = Cart.find(session[:cart_id])%>
+                    <div class="nav_cart">
+                        <div class="nav_cart--price">
+                            <i class="fas fa-shopping-basket"></i>
+                            <p>£<%=to_pounds(@cart.get_total)%></p>
+                        </div>
+                        <div>|</div>
+                        <p class="uppercase"><%=pluralize(@cart.get_quantity, 'item')%></p>
+                    </div>
+                <%elsif user_signed_in? && current_user.orders.where(state: "pending").present?%>
+                    <%@cart = current_user.orders.where(state: "pending").first.cart%>
 
-                <%if controller_name == "restaurants" && action_name == "show" && !session[:cart_id].nil? && Cart.find(session[:cart_id]).order_items.present?%>
-
-                    <%@cart = Cart.find(session[:cart_id])%>
-                    <div id="nav_section">
+                    <%=link_to new_order_payment_path(current_user.orders.where(state: 'pending').first) do%>
                         <div class="nav_cart">
                             <div class="nav_cart--price">
                                 <i class="fas fa-shopping-basket"></i>
@@ -33,22 +43,20 @@
                             <div>|</div>
                             <p class="uppercase"><%=pluralize(@cart.get_quantity, 'item')%></p>
                         </div>
-                    </div>
-                <%else%>
-                    <%if user_signed_in?%>
-                        <div id="nav_section">
-                            <div id="user_icon">
-                                <i class="fas fa-user"></i>
-                                <%= render 'partials/user_menu'%>
-                            </div>
-                        </div>
-                    <%else %>
-                            <div class="navigation__links--4 padding-small" id="nav_section">
-                                <%= link_to "Sign up / Log in", new_user_session_path, id: "sign_up"%>
-                            </div>
                     <%end%>
-                <%end%>
-            </div> 
+                <%end%>      
+            </div>
+        
+            <%if user_signed_in?%>           
+                <div id="user_icon">
+                    <i class="fas fa-user"></i>
+                    <%= render 'partials/user_menu'%>
+                </div>  
+            <%else %>
+                <div class="navigation__links--4 padding-small" id="">
+                    <%= link_to "Log in", new_user_session_path, id: "sign_up"%>
+                </div>
+            <%end%>
         </div>
     </div>
 </div>

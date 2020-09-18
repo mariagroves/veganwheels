@@ -1,9 +1,9 @@
-const navSection = document.getElementById('nav_section');
+const navSection = document.getElementById('user_icon');
 
 navSection.addEventListener("click", () => {
-    let userMenu = document.querySelector('#nav_section #user_menu');
+    let userMenu = document.querySelector('#user_icon #user_menu');
     
-    if (document.querySelectorAll('#nav_section #user_menu').length != 0) {
+    if (document.querySelectorAll('#user_icon #user_menu').length != 0) {
         if (userMenu.style.display === "none") {
             userMenu.style.display = "block";
         } else {

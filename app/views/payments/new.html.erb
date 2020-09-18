@@ -2,107 +2,93 @@
     <div class="row">
         <div class="col-12">
             <div class="checkout mx-auto">
-                <h1>Checkout summary</h1>                  
-                    <h3>Your delivery details:</h3>
-                    <div class="checkout__box">
-                        <%= link_to "EDIT", edit_user_registration_path(current_user), class: "checkout__box--link" %>
-                        <p><%=current_user.first_name%> <%=current_user.last_name%></p>
-                        <p><%=current_user.street_address%></p>
-                        <p><%=current_user.city%></p>
-                        <p><%=current_user.county%></p>
-                        <p><%=current_user.postcode%></p>
+                <h2 class="uppercase font-weight-bold">Checkout summary</h1>
 
-                    </div>
-                    <h3>Your order:</h3>
-                    <div class="checkout__box">
-        <%unique_cart = get_unique(@order.cart)%>
-        <%unique_cart.each do |order_item|%>
-        <div id="item-<%= order_item.id %>">
-            <div class="modal__cart--item item-js" >
-                <%duplicates = get_duplicates(order_item, @order.cart)%>
-                <%if duplicates.empty?%>
-                    <div class="modal__cart--itemwrapper">
-                        <%= link_to order_item_path(order_item),
-                            method: :delete,
-                            remote: true do %>
-                            <i class="fas fa-times"></i>
-                        <%end%>
-                        <div class="item">   
-                            <p><%=order_item.quantity%> <%=order_item.menu_item.name%></p>
-                        </div>
-                    </div>
-                    <p>£<%=to_pounds(order_item.total_price)%></p>
-                <%else%>
-                    <div class="modal__cart--itemwrapper">
-                        <%all_items = duplicates.clone%>
-                        <%all_items << order_item%>
-                        <%= link_to order_item_path(all_items),
-                            method: :delete,
-                            remote: true do %>
-                            <i class="fas fa-times"></i>
-                        <%end%>
-                        <div class="item">
-                            <%quantity_sum = order_item.quantity + duplicates.each_with_object([]) {|oi,array| array<<oi.quantity }.sum%>
-                            <%price_sum = order_item.total_price + duplicates.each_with_object([]) {|oi,array| array<<oi.total_price }.sum%>
-                            <p><%=quantity_sum%> <%=order_item.menu_item.name%></p>
-                        </div>
-                    </div>
-                    <p>£<%=to_pounds(price_sum)%></p>
-                <%end%>
-            </div>
-            <%if order_item.order_item_options.present?%>
-                <%order_item.order_item_options.each do |option|%>
-                <div class="modal__cart--item">
-                    <p class="modal__cart--side"><%=option.menu_option.name%></p>
-                    <%if duplicates.empty?%>
-                        <%if option.unit_price != 0%>
-                            <p>£<%=to_pounds(option.total_price)%></p>
-                        <%end%>
-                    <%else%>
-                        <%if option.unit_price != 0%>
-                            <%count = duplicates.count + 1%>
-                            <%total = count*option.unit_price%>
-                            <p>£<%=to_pounds(total)%></p>
-                        <%end%>
-                    <%end%>
+                <h3>Your delivery details:</h3>
 
+                <div class="checkout__box">
+                    <%= link_to "EDIT", edit_user_registration_path(current_user), class: "checkout__box--link" %>
+                    <p><%=current_user.first_name%> <%=current_user.last_name%></p>
+                    <p><%=current_user.street_address%></p>
+                    <p><%=current_user.city%></p>
+                    <p><%=current_user.county%></p>
+                    <p><%=current_user.postcode%></p>
                 </div>
-                <%end%>
-            <%end%>
-            </div>
-        <%end%>
-        <%if @order.cart.order_items.empty?%>
-            <p>The order is empty!</p>
-        <%end%>
-                    </div>  
 
-                    <p><strong><%= to_pounds(@order.total_price) %></strong></p>
-                    <button id="pay" class="btn btn-primary">Pay</button>
+                <h3>Your order from <%=@order.order_items.first.menu_item.restaurant.name%>:</h3>
 
-                    <div class="btn btn-parimary">
-                        <%= link_to "Cancel order", order_path(@order), method: :delete%>
+                <div class="checkout__box">
+                    <%get_unique(@order.cart).each do |order_item|%>
+                    <div class="modal__cart--item" >
+                        <%duplicates = get_duplicates(order_item, @order.cart)%>
+                        <%if duplicates.empty?%>
+                            <div class="modal__cart--itemwrapper">
+                                <div>   
+                                    <p><%=order_item.quantity%> <%=order_item.menu_item.name%></p>
+                                </div>
+                            </div>
+                            <p>£<%=to_pounds(order_item.total_price)%></p>
+                        <%else%>
+                            <div class="modal__cart--itemwrapper">
+                                <div>
+                                    <%quantity_sum = order_item.quantity + duplicates.each_with_object([]) {|oi,array| array<<oi.quantity }.sum%>
+                                    <%price_sum = order_item.total_price + duplicates.each_with_object([]) {|oi,array| array<<oi.total_price }.sum%>
+                                    <p><%=quantity_sum%> <%=order_item.menu_item.name%></p>
+                                </div>
+                            </div>
+                            <p>£<%=to_pounds(price_sum)%></p>
+                        <%end%>
                     </div>
-                    <%if @order.cart.order_items.present?%>
-                    <div class="btn btn-parimary">
-                        <%= link_to "Add more items", restaurant_path(@order.cart.order_items.first.menu_item.restaurant)%>
-                    </div>
+                    <%if order_item.order_item_options.present?%>
+                        <%order_item.order_item_options.each do |option|%>
+                        <div class="modal__cart--item">
+                            <p class="modal__cart--side"><%=option.menu_option.name%></p>
+                            <%if duplicates.empty?%>
+                                <%if option.unit_price != 0%>
+                                    <p>£<%=to_pounds(option.total_price)%></p>
+                                <%end%>
+                            <%else%>
+                                <%if option.unit_price != 0%>
+                                    <%count = duplicates.count + 1%>
+                                    <%total = count*option.unit_price%>
+                                    <p>£<%=to_pounds(total)%></p>
+                                <%end%>
+                            <%end%>
+                        </div>
+                        <%end%>
                     <%end%>
+                    <%end%>
+                    <div class="modal__cart--item">
+                        <p class="font-weight-bold">Subtotal</p>
+                        <p id="subtotal">£<%=to_pounds(@order.order_price)%></p>
                     </div>
 
+                    <div class="modal__cart--item">
+                        <p>Delivery charge</p>
+                        <p>£<%=to_pounds(@order.delivery_price)%></p>
+                    </div>
 
-                    
-
-                    <script src="https://js.stripe.com/v3/"></script>
-                    <script>
-                        const paymentButton = document.getElementById('pay');
-                        paymentButton.addEventListener('click', () => {
-                        const stripe = Stripe('<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>');
-                        stripe.redirectToCheckout({
-                            sessionId: '<%= @order.checkout_session_id %>'
-                        });
-                        });
-                    </script>
+                    <div class="modal__cart--line"></div>
+                    <div class="modal__cart--item">
+                        <p class="font-weight-bold uppercase">Total</p>
+                        <p id="total">£<%= to_pounds(@order.total_price)%></p>
+                    </div>
+                </div>
+            
+                <div id="pay" class="button__fill button__fill--red">Pay</div>
+             
+                <%= link_to "Cancel order", order_path(@order), method: :delete, class: 'button__fill button__fill--redl'%>  
             </div>
         </div>
-    </div>
+    </div>  
 </div>
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    const paymentButton = document.getElementById('pay');
+    paymentButton.addEventListener('click', () => {
+    const stripe = Stripe('<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>');
+    stripe.redirectToCheckout({
+        sessionId: '<%= @order.checkout_session_id %>'
+    });
+    });
+</script>

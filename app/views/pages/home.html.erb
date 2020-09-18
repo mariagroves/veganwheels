@@ -124,4 +124,12 @@
             </div>
         </div>
     </div>
+    <div class="modal-item modal__bckg">
+    </div>
+    <div class="modal-cart modal__bckg">
+            <%if !session[:cart_id].nil? && Cart.find(session[:cart_id]).order_items.present?%>
+            <%@cart = Cart.find(session[:cart_id])%>
+                <%= render 'partials/modal_cart', cart: @cart%>
+            <%end%>
+    </div> 
 </div>

@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
         
         order.update(checkout_session_id: stripe_session.id)
         redirect_to new_order_payment_path(order)
-
+        session[:cart_id] = nil
     end
 
     def show

@@ -10,12 +10,7 @@ function deleteCart() {
         navCart.remove();
         modalBg.innerHTML = "";
         modalBg.classList.remove('bckg-active');
-        <%if user_signed_in?%>
-            navSection.innerHTML = '<div id="user_icon"><i class="fas fa-user"></i><%= j render 'partials/user_menu'%></div>';
-        <%else%>
-            navSection.innerHTML = '<%= link_to "Sign up / Log in", new_user_session_path, id: "sign_up"%>';
-            navSection.classList.add("navigation__links--4","padding-small");
-        <%end%> 
+        navSection.innerHTML = '';
     } else {
         document.getElementById("item-<%= @order_item.id %>").remove();
         subtotal.innerHTML = '£<%=to_pounds(@cart.get_subtotal)%>';

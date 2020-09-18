@@ -1,6 +1,7 @@
 class Order < ApplicationRecord
   belongs_to :user
   belongs_to :cart
+  has_many :order_items, through: :cart
   before_save :set_order_price
   before_save :set_delivery_price
   before_save :set_total_price
