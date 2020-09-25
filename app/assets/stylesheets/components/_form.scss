@@ -1,5 +1,5 @@
 .vwform {
-    width: 20rem;
+    width: 30rem;
     margin-top: 10vh;
     margin-bottom: 10vh;
     &__heading {
@@ -20,9 +20,19 @@
             margin-bottom: 1rem;
         }
     }
+
+    &__area {
+        margin-top: 5rem;
+    }
 }
 
 .form-actions {
     margin-top: 3rem;
     font-size: 1.3rem;
+}
+
+.link-back {
+    display: flex;
+    width: 10rem;
+    justify-content: space-between;
 }

@@ -12,8 +12,8 @@ class OrdersController < ApplicationController
             currency: 'gbp',
             quantity: 1
           }],
-          success_url: order_url(order),
-          cancel_url: order_url(order)
+          success_url: dashboard_index_url,
+          cancel_url: new_order_payment_url(order)
         )
         
         order.update(checkout_session_id: stripe_session.id)
@@ -21,8 +21,8 @@ class OrdersController < ApplicationController
         session[:cart_id] = nil
     end
 
-    def show
-        @order = current_user.orders.find(params[:id])
+    def index
+      @orders = Order.where(open: false, state: "paid", user_id: current_user.id)  
     end
 
     def destroy

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_11_101137) do
+ActiveRecord::Schema.define(version: 2020_09_21_140809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -133,6 +133,8 @@ ActiveRecord::Schema.define(version: 2020_09_11_101137) do
     t.boolean "is_assigned", default: false
     t.string "state", default: "pending"
     t.integer "delivery_price"
+    t.boolean "open", default: true
+    t.datetime "order_time"
     t.index ["cart_id", "user_id"], name: "index_orders_on_cart_id_and_user_id", unique: true
     t.index ["cart_id"], name: "index_orders_on_cart_id"
     t.index ["user_id"], name: "index_orders_on_user_id"

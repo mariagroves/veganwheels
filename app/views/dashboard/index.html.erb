@@ -1,0 +1,111 @@
+<div class="container white-content-box">
+    <div class="dashboard__top">
+        <%= image_tag "glasses.png" %>
+        <h1>hello <%=current_user.first_name%></h1>
+    </div>
+    <div class="dashboard__main">
+        <div class="dashboard__box">
+            <div class="dashboard__box--title">
+                <h2 class="uppercase font-weight-bold">Your Account</h2>
+            </div>
+            <div class="dashboard__box--section">
+                <div class="dashboard__box--top">
+                    <h3 class="uppercase font-weight-bold">Account</h3>
+                    <%= link_to "EDIT", edit_user_registration_path(current_user), class: "dashboard__box--link" %>
+                </div>
+                <div class="dashboard__box--info">
+                    <div class="dashboard__box--label">
+                        <h4 class="uppercase font-weight-bold">Name</h4>
+                    </div>
+                    <p class="dashboard__box--margin"><%=current_user.first_name%> <%=current_user.last_name%></p>
+                </div>
+                <div class="dashboard__box--info">
+                    <div class="dashboard__box--label">
+                        <h4 class="uppercase font-weight-bold">Phone Number</h4>
+                    </div>
+                    <p class="dashboard__box--margin"><%=current_user.phone%></p>
+                </div>
+                <div class="dashboard__box--info">
+                    <div class="dashboard__box--label">
+                        <h4 class="uppercase font-weight-bold">Email</h4>
+                    </div>
+                    <p class="dashboard__box--margin"><%=current_user.email%></p>
+                </div>
+                <div class="dashboard__box--info">
+                    <div class="dashboard__box--label">
+                        <h4 class="uppercase font-weight-bold">Address</h4>
+                    </div>
+                    <p><%=current_user.street_address%></p>
+                    <p><%=current_user.city%></p>
+                    <p><%=current_user.county%></p>
+                    <p class="dashboard__box--margin"><%=current_user.postcode%></p>
+                </div>
+            </div>
+        </div>
+        <div class="dashboard__divide"></div>
+        <div class="dashboard__box">
+            <div class="dashboard__box--title">
+                <h2 class="uppercase font-weight-bold">Your Orders</h2>
+            </div>
+            <div class="dashboard__box--section">
+                <div class="dashboard__box--top">
+                    <h3 class="uppercase font-weight-bold">Current Order</h3>
+                </div>
+                <%if current_user.orders.where(open: true, state: "paid").present?%>
+                    <%current_user.orders.where(open: true, state: "paid").each do |order|%>
+                    <div class="dashboard__box--info">
+
+                    <a data-toggle="collapse" href="#collapse-<%=order.id%>" aria-expanded="false" aria-controls="collapse-<%=order.id%>">
+                            <div class="dashboard__box--margin dashboard__box--order">
+                                <h4 class="uppercase font-weight-bold "><%=order.order_items.first.menu_item.restaurant.name%></h4>
+                                <h4 class="uppercase font-weight-bold ">£ <%=to_pounds(order.total_price)%></h4>
+                            </div>
+                            <p class="dashboard__box--margin">Order placed at<%=order.order_time.strftime(" %l:%M %p")%> on <%=order.order_time.strftime("%e %B %Y")%></p>
+                            <p class="dashboard__box--margin dashboard__box--alert">Your order is being prepared.</p>    
+                    </a>
+                    <div class="collapse" id="collapse-<%=order.id%>">
+                        <%= render 'partials/order', order: order%>
+                    </div>
+
+                    </div>
+                    <%end%>
+                <%else%>
+                    <p class="dashboard__box--message">You have no current orders!</p>
+                <%end%>
+            </div>
+            <div class="dashboard__box--section">
+                <div class="dashboard__box--top">
+                    <h3 class="uppercase font-weight-bold">Past Orders</h3>
+                </div>
+                <%if current_user.orders.where(open: false, state: "paid").present?%>
+                    <%current_user.orders.where(open: false, state: "paid").limit(2).each do |order|%>
+                    <div class="dashboard__box--info">
+
+                    <a data-toggle="collapse" href="#collapse-<%=order.id%>" aria-expanded="false" aria-controls="collapse-<%=order.id%>">
+
+                        <div class="dashboard__box--margin dashboard__box--order">
+                            <h4 class="uppercase font-weight-bold "><%=order.order_items.first.menu_item.restaurant.name%></h4>
+                            <h4 class="uppercase font-weight-bold ">£ <%=to_pounds(order.total_price)%></h4>
+                        </div>
+                        <p class="dashboard__box--margin">Order placed at<%=order.order_time.strftime(" %l:%M %p")%> on <%=order.order_time.strftime("%e %B %Y")%></p>
+                        <p class="dashboard__box--margin dashboard__box--success">Your order was delivered.</p>
+                    </a>
+                    <div class="collapse" id="collapse-<%=order.id%>">
+                        <%= render 'partials/order', order: order%>
+                    </div>
+
+                    </div>
+                    <%end%>
+                    
+                    <%if current_user.orders.where(open: false, state: "paid").count > 2%>
+                        <%= link_to "See all past orders", orders_path, class: "uppercase dashboard__box--link"%>
+                    <%end%>
+
+                <%else%>
+                    <p class="dashboard__box--message">You have no past orders!</p>
+                <%end%>    
+            </div>
+        </div>
+    </div>
+</div>
+
