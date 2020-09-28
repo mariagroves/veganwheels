@@ -6,14 +6,10 @@ class OrderItem < ApplicationRecord
   accepts_nested_attributes_for :order_item_options
   before_save :set_unit_price
   before_save :set_total
- 
-  # def destroy_orphaned_cart
-  #   cart = self.cart
-  #   yield # executes a DELETE database statement
-  #   if cart.order_items.length == 0
-  #     cart.destroy
-  #   end  
-  # end
+
+  def name
+    "#{self.menu_item.name}"
+  end
 
   def unit_price
     self.menu_item.price

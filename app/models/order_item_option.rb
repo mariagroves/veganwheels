@@ -5,6 +5,10 @@ class OrderItemOption < ApplicationRecord
   before_save :set_total
   before_save :set_quantity
 
+  def name
+    self.menu_option.name
+  end
+
   def quantity
     self.order_item.quantity
   end

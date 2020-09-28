@@ -1,7 +1,8 @@
 class OrdersController < ApplicationController
     def create
         cart = Cart.find(params[:cart_id])
-        order  = Order.create!(cart: cart, user: current_user)
+        restaurant = cart.order_items.first.menu_item.restaurant
+        order  = Order.create!(cart: cart, user: current_user, restaurant: restaurant)
         
         stripe_session = Stripe::Checkout::Session.create(
           payment_method_types: ['card'],

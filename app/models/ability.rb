@@ -14,12 +14,21 @@ class Ability
       can :update, Restaurant, admin_user_id: user.id
       can :manage, Section, restaurant_id: user.restaurant.id
       can :manage, MenuItem, restaurant_id: user.restaurant.id
-        user.restaurant.menu_items.each do |menu_item|
-          can :manage, MenuOption, menu_item_id: menu_item.id
-        end
+      user.restaurant.menu_items.each do |menu_item|
+        can :manage, MenuOption, menu_item_id: menu_item.id
+      end
       can :create, Section
       can :create, MenuItem
       can :create, MenuOption
+      can :manage, Order, restaurant_id: user.restaurant.id
+      user.restaurant.orders.each do |order|
+        can :manage, OrderItem, cart_id: order.cart_id
+      end 
+      user.restaurant.orders.each do |order|
+        order.cart.order_items.each do |order_item|
+          can :manage, OrderItemOption, order_item_id: order_item.id
+        end
+      end 
     end
     # Define abilities for the passed in user here. For example:
     #

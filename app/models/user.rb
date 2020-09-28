@@ -7,4 +7,12 @@ class User < ApplicationRecord
   has_many :orders
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  def name
+    "#{first_name}" + " #{last_name}"
+  end
+
+  def address
+    "#{street_address}, " + "#{city}, " + "#{county}, " + "#{postcode}"
+  end
 end

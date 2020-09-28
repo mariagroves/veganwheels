@@ -2,6 +2,7 @@ class Restaurant < ApplicationRecord
     has_one_attached :photo
     has_many :menu_items, dependent: :destroy
     has_many :sections
+    has_many :orders
     belongs_to :admin_user
     validates :name, presence: true
     validates :address, presence: true

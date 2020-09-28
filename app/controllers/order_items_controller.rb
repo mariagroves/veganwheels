@@ -22,6 +22,10 @@ class OrderItemsController < ApplicationController
         end
         
         render 'order_items/create' if @order_item.save
+
+        has_side = @order_item.order_item_options.exists?
+        @order_item.update(has_side: has_side)
+        
         session[:cart_id] = @cart.id
     end
 

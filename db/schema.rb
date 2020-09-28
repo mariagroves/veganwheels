@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_21_140809) do
+ActiveRecord::Schema.define(version: 2020_09_28_091820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,6 +118,7 @@ ActiveRecord::Schema.define(version: 2020_09_21_140809) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "cart_id"
+    t.boolean "has_side"
     t.index ["cart_id"], name: "index_order_items_on_cart_id"
     t.index ["menu_item_id"], name: "index_order_items_on_menu_item_id"
   end
@@ -135,8 +136,10 @@ ActiveRecord::Schema.define(version: 2020_09_21_140809) do
     t.integer "delivery_price"
     t.boolean "open", default: true
     t.datetime "order_time"
+    t.bigint "restaurant_id"
     t.index ["cart_id", "user_id"], name: "index_orders_on_cart_id_and_user_id", unique: true
     t.index ["cart_id"], name: "index_orders_on_cart_id"
+    t.index ["restaurant_id"], name: "index_orders_on_restaurant_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -194,6 +197,7 @@ ActiveRecord::Schema.define(version: 2020_09_21_140809) do
   add_foreign_key "order_item_options", "order_items"
   add_foreign_key "order_items", "menu_items"
   add_foreign_key "orders", "carts"
+  add_foreign_key "orders", "restaurants"
   add_foreign_key "orders", "users"
   add_foreign_key "restaurants", "admin_users"
   add_foreign_key "sections", "restaurants"
