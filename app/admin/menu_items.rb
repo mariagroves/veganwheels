@@ -2,14 +2,8 @@ ActiveAdmin.register MenuItem do
   permit_params :name, :price, :description, :is_active, :restaurant_id, :section_id
 
   belongs_to :section, optional: true
-    
-  sidebar "Sides", only: [:show] do
-    li link_to "See Sides",    admin_menu_item_menu_options_path(resource)
-    li link_to "Create New Side",    new_admin_menu_item_menu_option_path(resource)
-  end
 
   config.clear_action_items!
-  
   
   index do
     selectable_column
@@ -35,6 +29,25 @@ ActiveAdmin.register MenuItem do
       row :is_active
       row :section
     end
+
+    panel "Sides" do
+      table_for(resource.menu_options) do
+        column :name
+        column :description
+        column :price do |item|
+          number_to_currency(to_pounds(item.price), unit: "£")
+        end
+        column("Actions") do |side|
+          span link_to "View", admin_menu_option_path(side)
+          span link_to "Edit", edit_admin_menu_option_path(side)
+          span link_to "Delete", admin_menu_option_path(side), method: :delete
+        end
+      end
+    end
+  end
+
+  action_item :new, only: :show do
+    link_to 'Create new side', new_admin_menu_item_menu_option_path(resource)
   end
 
   menu label: "Menu Items"
@@ -44,11 +57,6 @@ ActiveAdmin.register MenuItem do
   end
 
   form partial: 'form'
-
-  # unless proc{ current_admin_user.role } == 'admin'
-    # filter :section, collection: proc { Section.where(restaurant_id: current_admin_user.restaurant) }, label: "Menu section"
-    
-  # end
 
   filter :restaurant
   filter :name

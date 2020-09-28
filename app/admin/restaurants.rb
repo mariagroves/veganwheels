@@ -7,7 +7,6 @@ ActiveAdmin.register Restaurant do
     li link_to "Create New Section",    new_admin_restaurant_section_path(resource)
   end
  
-  filter :admin_user
   filter :name
   filter :email
  

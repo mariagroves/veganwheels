@@ -7,8 +7,8 @@ ActiveAdmin.register Order do
 
   index do
     selectable_column
-    column :cart
-    column :user
+    column :id
+    column "Customer Name", :user
     column :restaurant
     column :order_price do |item|
       number_to_currency(to_pounds(item.order_price), unit: "£")
@@ -19,16 +19,15 @@ ActiveAdmin.register Order do
     column :total_price do |item|
       number_to_currency(to_pounds(item.total_price), unit: "£")
     end
-    column :is_assigned
-    column :state
-    column :open
-    column :order_time
+    column "Assigned to rider", :is_assigned
+    column "Payment", :state
+    column "Order in progress", :open
+    column "Time order placed", :order_time
     actions
   end
 
   show do
     attributes_table do
-      row :cart
       row :user
       row :restaurant
       row :order_price do |item|
@@ -55,7 +54,7 @@ ActiveAdmin.register Order do
       end
     end
 
-    panel "Items" do
+    panel "Menu items" do
       table_for(resource.cart.order_items) do
         column :name
         column :quantity
@@ -68,6 +67,7 @@ ActiveAdmin.register Order do
         end
       end
     end
+
     resource.cart.order_items.each do |order_item|
       if order_item.has_side
       panel "Sides for #{order_item.name}" do
@@ -86,13 +86,15 @@ ActiveAdmin.register Order do
     end
   end
 
-  filter :user
+  filter :id
+  filter :user_first_name, as: :string, label: "Customer's first name"
+  filter :user_last_name, as: :string, label: "Customer's last name"
   filter :restaurant
-  filter :order_price
-  filter :total_price
-  filter :is_assigned
-  filter :state
-  filter :open
+  filter :order_price, label: "Order price in pence"
+  filter :total_price, label: "Total price in pence"
+  filter :is_assigned, label: "Assigned to rider"
+  filter :state, label: "Payment [pending/paid]"
+  filter :open, label: "Order in progress"
   filter :order_time
 
 end
