@@ -3,7 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :phone, presence: true 
+  validates :phone, presence: true
+  validates :street_address, presence: true 
+  validates :city, presence: true 
+  validates :postcode, presence: true 
   has_many :orders
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
@@ -13,6 +16,6 @@ class User < ApplicationRecord
   end
 
   def address
-    "#{street_address}, " + "#{city}, " + "#{county}, " + "#{postcode}"
+    [street_address, city, county, postcode, country].compact.join(', ')
   end
 end

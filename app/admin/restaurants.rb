@@ -1,14 +1,10 @@
 ActiveAdmin.register Restaurant do
 
-  permit_params :name, :address, :open_time, :close_time, :about, :phone, :email, :latitude, :longitude, :imagekey, :website, :photo, :admin_user_id
-
-  sidebar "Menu Sections", only: [:show] do
-    li link_to "See Menu Sections",    admin_restaurant_sections_path(resource)
-    li link_to "Create New Section",    new_admin_restaurant_section_path(resource)
-  end
+  permit_params :name, :street_address, :city, :county, :postcode, :open_time, :close_time, :about, :phone, :email, :latitude, :longitude, :imagekey, :website, :photo, :admin_user_id, :is_open
  
   filter :name
   filter :email
+  filter :is_open
  
   index do
     column :name
@@ -20,6 +16,7 @@ ActiveAdmin.register Restaurant do
     column :phone
     column "Opening time", :open_time
     column "Closing time", :close_time
+    column :is_open
     actions
   end
 
@@ -41,10 +38,27 @@ ActiveAdmin.register Restaurant do
       row :website
       row :open_time
       row :close_time
+      row :is_open
       row :photo do |restaurant|
         image_tag url_for(restaurant.photo)
       end
     end
+
+    panel "Menu Sections for #{resource.name}" do
+      table_for(resource.sections) do
+        column :name
+        column :order
+        column("Actions") do |section|
+          span link_to "View", admin_section_path(section)
+          span link_to "Edit", edit_admin_section_path(section)
+          span link_to "Delete", admin_section_path(section), method: :delete
+        end
+      end
+    end
+  end
+
+  action_item :new, only: :show do
+    link_to 'Create new menu section', new_admin_restaurant_section_path(resource)
   end
 
 end

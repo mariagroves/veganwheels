@@ -1,0 +1,60 @@
+ActiveAdmin.register User do
+
+  permit_params :email, :first_name, :last_name, :phone, :street_address, :city, :county, :postcode
+
+  config.clear_action_items!
+  menu label: "Customers"
+  controller do
+    before_action { @page_title = "Customers" }
+  end
+
+  index do
+    selectable_column
+    column :email
+    column :first_name
+    column :last_name
+    column :phone
+    column :street_address
+    column :city
+    column :county
+    column :postcode
+    actions
+  end
+
+  filter :email
+  filter :first_name
+  filter :last_name
+  filter :phone
+  filter :street_address
+  filter :city
+  filter :county
+  filter :postcode
+
+  show do
+    attributes_table do
+      row :email
+      row :first_name
+      row :last_name
+      row :phone
+      row :street_address
+      row :city
+      row :county
+      row :postcode
+    end
+  end
+
+  form do |f|
+    f.inputs do
+      f.input :email
+      f.input :first_name
+      f.input :last_name
+      f.input :phone
+      f.input :street_address
+      f.input :city
+      f.input :county
+      f.input :postcode
+    end
+    f.actions
+  end
+  
+end

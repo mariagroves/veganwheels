@@ -9,6 +9,7 @@
   <%if @restaurants.present? %>
   <div class="cards">
       <% @restaurants.each do |restaurant| %>
+      <%if restaurant.is_open%>
         <%= link_to restaurant_path(restaurant) do %>
             <div class="card card--<%= restaurant.imagekey %>">
               <div class="card__title">
@@ -21,6 +22,7 @@
               </div>
             </div>
         <%end%>
+      <%end%>
       <%end%> 
   </div>
   <%else%>

@@ -2,10 +2,14 @@
     <%= f.semantic_errors %>
     <%= f.inputs "Restaurant" do %>
         <%= f.input :name %>
-        <%= f.input :address%>
+        <%= f.input :street_address%>
+        <%= f.input :city%>
+        <%= f.input :county%>
+        <%= f.input :postcode%>
         <%= f.input :about%>
         <%= f.input :open_time%>
         <%= f.input :close_time%>
+        <%= f.input :is_open%>
         <%= f.input :phone%>
         <%= f.input :email%>
         <%= f.input :website%>

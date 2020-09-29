@@ -1,5 +1,6 @@
 class OrderItemsController < ApplicationController
     before_action :set_menu_item, only: [ :new, :create ]
+    before_action :raise_pending_error, only: [:create]
     skip_before_action :authenticate_user!, only: [:new, :create, :destroy]
 
     def new
@@ -7,17 +8,13 @@ class OrderItemsController < ApplicationController
     end
 
     def create
-        if user_signed_in? && current_user.orders.where(state: 'pending').present?
-            render 'order_items/checkout_error'
-            return
-        end
         @order_item = OrderItem.new(order_item_params)
         @cart = current_cart
         @order_item.cart = @cart
         @order_item.menu_item = @menu_item
 
         if !@cart.order_items.empty? && @order_item.menu_item.restaurant != @cart.order_items.first.menu_item.restaurant
-            render 'order_items/error'
+            render 'order_items/wrong_restaurant_error'
             return
         end
         
@@ -48,4 +45,10 @@ class OrderItemsController < ApplicationController
         @menu_item = MenuItem.find(params[:menu_item_id])
     end
 
+    def raise_pending_error
+        if user_signed_in? && current_user.orders.where(state: 'pending').present?
+            render 'order_items/checkout_error'
+            return
+        end
+    end
 end
