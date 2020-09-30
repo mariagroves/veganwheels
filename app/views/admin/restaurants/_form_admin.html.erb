@@ -1,20 +1,46 @@
 <%= semantic_form_for [:admin, @restaurant], builder: ActiveAdmin::FormBuilder do |f|%>
     <%= f.semantic_errors %>
     <%= f.inputs "Restaurant" do %>
-        <%= f.input :admin_user %>
-        <%= f.input :name %>
-        <%= f.input :street_address%>
-        <%= f.input :city%>
-        <%= f.input :county%>
-        <%= f.input :postcode%>
-        <%= f.input :about%>
-        <%= f.input :open_time%>
-        <%= f.input :close_time%>
-        <%= f.input :is_open%>
-        <%= f.input :phone%>
-        <%= f.input :email%>
-        <%= f.input :website%>
-        <%= f.input :photo, as: :file%>
+    <%= f.inputs :name => "Basic Information" do %>
+            <%= f.input :admin_user %>
+            <%= f.input :name %>
+            <%= f.input :about%>
+            <%= f.input :phone%>
+            <%= f.input :email%>
+            <%= f.input :website%>
+        <% end %>
+
+        <%= f.inputs :name => "Address" do %>
+            <%= f.input :street_address%>
+            <%= f.input :city%>
+            <%= f.input :county%>
+            <%= f.input :postcode%>
+        <% end %>
+
+        <%= f.inputs :name => "Set the hours the restaurant is available on VeganWheels. Leave blank if closed." do %>
+            <%= f.input :monday_opens_at%>
+            <%= f.input :monday_closes_at%>
+            <%= f.input :tuesday_opens_at%>
+            <%= f.input :tuesday_closes_at%>
+            <%= f.input :wednesday_opens_at%>
+            <%= f.input :wednesday_closes_at%>
+            <%= f.input :thursday_opens_at%>
+            <%= f.input :thursday_closes_at%>
+            <%= f.input :friday_opens_at%>
+            <%= f.input :friday_closes_at%>
+            <%= f.input :saturday_opens_at%>
+            <%= f.input :saturday_closes_at%>
+            <%= f.input :sunday_opens_at%>
+            <%= f.input :sunday_closes_at%>
+        <% end %>
+
+        <%= f.inputs :name => "Change the restaurant's cover image below" do %>
+            <%= f.input :photo, as: :file%>
+        <% end %>
+
+        <%= f.inputs :name => "Change the restaurant's availability on VeganWheels below. If unchecked, the restaurant will not appear on the VeganWheels website." do %>
+            <%= f.input :is_open%>
+        <% end %>
     <% end %>
     <%= f.actions %>
 <% end %>

@@ -31,9 +31,11 @@
                                 <%= link_to "See map", "https://www.google.com/maps/search/?api=1&query=#{@restaurant.latitude},#{@restaurant.longitude}", target: "_blank" %>
                                  
                             </div>
-                            <div class="info-box__section--box">
-                                <i class="fas fa-phone-square-alt"></i>
-                                <%=@restaurant.phone%>
+                            <div class="info-box__section--box info-box__section--multiple">
+                                <div><i class="fas fa-phone-square-alt"></i>
+                                <%=@restaurant.phone%></div>
+                               
+                                <div><i class="fas fa-laptop"></i><%= link_to "Visit our website", @restaurant.website, target: "_blank" %></div>
                             </div>
                             <div class="info-box__section--box">
                                 <i class="fas fa-envelope-square"></i>
@@ -43,22 +45,11 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12 col-lg-6">
-                        <div class="info-box__section">
-                            <div class="info-box__section--box">
-                                <h3 class="subtitle">Website</h3>
-                                <%= link_to "Visit our website", @restaurant.website, target: "_blank" %>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6">
+                    <div class="col-12">
                         <div class="info-box__section">
                             <div class="info-box__section--box">
                                 <h3 class="subtitle">Available</h3>
-                                <%open_time = Time.at(@restaurant.open_time)%>
-                                <%close_time = Time.at(@restaurant.close_time)%>
-                                <%=open_time.strftime("%I:%M %p")%> - 
-                                <%=close_time.strftime("%I:%M %p")%>     
+                                <%=@restaurant.opening_hours%>
                                 </div>
                             </div>
                         </div>

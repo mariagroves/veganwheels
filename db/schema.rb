@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_29_103059) do
+ActiveRecord::Schema.define(version: 2020_09_29_120942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,8 +145,6 @@ ActiveRecord::Schema.define(version: 2020_09_29_103059) do
 
   create_table "restaurants", force: :cascade do |t|
     t.string "name"
-    t.integer "open_time"
-    t.integer "close_time"
     t.text "about"
     t.string "phone"
     t.string "email"
@@ -163,6 +161,20 @@ ActiveRecord::Schema.define(version: 2020_09_29_103059) do
     t.string "county"
     t.string "postcode"
     t.string "country", default: "United Kingdom"
+    t.time "monday_opens_at"
+    t.time "tuesday_opens_at"
+    t.time "wednesday_opens_at"
+    t.time "thursday_opens_at"
+    t.time "friday_opens_at"
+    t.time "saturday_opens_at"
+    t.time "sunday_opens_at"
+    t.time "monday_closes_at"
+    t.time "tuesday_closes_at"
+    t.time "wednesday_closes_at"
+    t.time "thursday_closes_at"
+    t.time "friday_closes_at"
+    t.time "saturday_closes_at"
+    t.time "sunday_closes_at"
     t.index ["admin_user_id"], name: "index_restaurants_on_admin_user_id"
   end
 

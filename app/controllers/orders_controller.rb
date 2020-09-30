@@ -7,8 +7,9 @@ class OrdersController < ApplicationController
         stripe_session = Stripe::Checkout::Session.create(
           payment_method_types: ['card'],
           line_items: [{
-            name: order.id,
-            # images: [teddy.photo_url],
+            name: "Order #{order.id} from #{order.restaurant.name}",
+            # images: [order.restaurant.photo],
+            description: 'Thank you for ordering with Vegan Wheels!',
             amount: order.total_price,
             currency: 'gbp',
             quantity: 1

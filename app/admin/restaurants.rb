@@ -1,6 +1,6 @@
 ActiveAdmin.register Restaurant do
 
-  permit_params :name, :street_address, :city, :county, :postcode, :open_time, :close_time, :about, :phone, :email, :latitude, :longitude, :imagekey, :website, :photo, :admin_user_id, :is_open
+  permit_params :name, :street_address, :city, :county, :postcode, :about, :phone, :email, :latitude, :longitude, :imagekey, :website, :photo, :admin_user_id, :is_open, :monday_opens_at, :monday_closes_at, :tuesday_opens_at, :tuesday_closes_at,:wednesday_opens_at, :wednesday_closes_at, :thursday_opens_at, :thursday_closes_at, :friday_opens_at, :friday_closes_at,:saturday_opens_at, :saturday_closes_at, :sunday_opens_at,:sunday_closes_at
  
   filter :name
   filter :email
@@ -14,8 +14,7 @@ ActiveAdmin.register Restaurant do
     column :website
     column :email
     column :phone
-    column "Opening time", :open_time
-    column "Closing time", :close_time
+    column :opening_hours
     column :is_open
     actions
   end
@@ -32,12 +31,11 @@ ActiveAdmin.register Restaurant do
       row :admin_user
       row :name
       row :about
+      row :opening_hours
       row :address
       row :phone
       row :email
       row :website
-      row :open_time
-      row :close_time
       row :is_open
       row :photo do |restaurant|
         image_tag url_for(restaurant.photo)

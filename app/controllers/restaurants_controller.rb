@@ -3,7 +3,7 @@ class RestaurantsController < ApplicationController
     skip_before_action :authenticate_user!, only: [:index, :show]
 
     def index
-        @restaurants = Restaurant.all
+        @restaurants = Restaurant.all.sort_by(&:id)
         @search = params["search"]
         if @search.present?
             @postcode = @search["postcode"] # "G327QR"

@@ -52,15 +52,15 @@
                     <h3 class="uppercase font-weight-bold">Current Order</h3>
                 </div>
                 <%if current_user.orders.where(open: true, state: "paid").present?%>
-                    <%current_user.orders.where(open: true, state: "paid").each do |order|%>
+                    <%current_user.orders.where(open: true, state: "paid").order('id DESC').each do |order|%>
                     <div class="dashboard__box--info">
 
                     <a data-toggle="collapse" href="#collapse-<%=order.id%>" aria-expanded="false" aria-controls="collapse-<%=order.id%>">
                             <div class="dashboard__box--margin dashboard__box--order">
-                                <h4 class="uppercase font-weight-bold "><%=order.order_items.first.menu_item.restaurant.name%></h4>
+                                <h4 class="uppercase font-weight-bold "><%=order.restaurant.name%></h4>
                                 <h4 class="uppercase font-weight-bold ">£ <%=to_pounds(order.total_price)%></h4>
                             </div>
-                            <p class="dashboard__box--margin">Order placed at<%=order.order_time.strftime(" %l:%M %p")%> on <%=order.order_time.strftime("%e %B %Y")%></p>
+                            <p class="dashboard__box--margin">Order <%=order.id%> placed at<%=order.order_time.strftime(" %l:%M %p")%> on <%=order.order_time.strftime("%e %B %Y")%></p>
                             <p class="dashboard__box--margin dashboard__box--alert">Your order is being prepared.</p>    
                     </a>
                     <div class="collapse" id="collapse-<%=order.id%>">
@@ -84,10 +84,10 @@
                     <a data-toggle="collapse" href="#collapse-<%=order.id%>" aria-expanded="false" aria-controls="collapse-<%=order.id%>">
 
                         <div class="dashboard__box--margin dashboard__box--order">
-                            <h4 class="uppercase font-weight-bold "><%=order.order_items.first.menu_item.restaurant.name%></h4>
+                            <h4 class="uppercase font-weight-bold "><%=order.restaurant.name%></h4>
                             <h4 class="uppercase font-weight-bold ">£ <%=to_pounds(order.total_price)%></h4>
                         </div>
-                        <p class="dashboard__box--margin">Order placed at<%=order.order_time.strftime(" %l:%M %p")%> on <%=order.order_time.strftime("%e %B %Y")%></p>
+                        <p class="dashboard__box--margin">Order <%=order.id%> placed at<%=order.order_time.strftime(" %l:%M %p")%> on <%=order.order_time.strftime("%e %B %Y")%></p>
                         <p class="dashboard__box--margin dashboard__box--success">Your order was delivered.</p>
                     </a>
                     <div class="collapse" id="collapse-<%=order.id%>">
