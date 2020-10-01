@@ -8,14 +8,12 @@
 
                 <div class="checkout__box">
                     <%= link_to "EDIT", edit_user_registration_path(current_user), class: "checkout__box--link" %>
-                    <p><%=current_user.first_name%> <%=current_user.last_name%></p>
-                    <p><%=current_user.street_address%></p>
-                    <p><%=current_user.city%></p>
-                    <p><%=current_user.county%></p>
-                    <p><%=current_user.postcode%></p>
+                    <p><%=current_user.name%></p>
+                    <p><%=current_user.address%></p>
+
                 </div>
 
-                <h3>Your order from <%=@order.order_items.first.menu_item.restaurant.name%>:</h3>
+                <h3>Your order from <%=@order.restaurant.name%>:</h3>
 
                 <div class="checkout__box">
                     <%get_unique(@order.cart).each do |order_item|%>
@@ -56,6 +54,13 @@
                             <%end%>
                         </div>
                         <%end%>
+                    <%end%>
+                    <%if order_item.note.present?%>
+                        <div class="modal__cart--item">
+                            <div class="modal__cart--side">
+                                <p>Note: <%=order_item.note%></p>
+                            </div>
+                        </div>
                     <%end%>
                     <%end%>
                     <div class="modal__cart--item">

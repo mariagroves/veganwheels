@@ -3,20 +3,7 @@
         <h3 class="uppercase font-weight-bold">Past Orders</h3>
     </div>
     <%@orders.each do |order|%>
-        <div class="dashboard__box--info">
-            <a data-toggle="collapse" href="#collapse-<%=order.id%>" aria-expanded="false" aria-controls="collapse-<%=order.id%>">
-
-                <div class="dashboard__box--margin dashboard__box--order">
-                    <h4 class="uppercase font-weight-bold "><%=order.order_items.first.menu_item.restaurant.name%></h4>
-                    <h4 class="uppercase font-weight-bold ">£ <%=to_pounds(order.total_price)%></h4>
-                </div>
-                <p class="dashboard__box--margin">Order placed at<%=order.order_time.strftime(" %l:%M %p")%> on <%=order.order_time.strftime("%e %B %Y")%></p>
-                <p class="dashboard__box--margin dashboard__box--success">Your order was delivered.</p>
-            </a>
-            <div class="collapse" id="collapse-<%=order.id%>">
-                <%= render 'partials/order', order: order%>
-            </div>
-        </div>
+        <%= render 'partials/order', order: order%>
     <%end%>
 
     <%= link_to dashboard_index_path do%>
@@ -24,4 +11,5 @@
         <i class="fas fa-chevron-left"></i>
         Back to my dashboard</p>
     <%end%>
+    <%= render 'partials/modal_cart_bg'%>
 </div>

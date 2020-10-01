@@ -9,7 +9,10 @@
       <% end %>
         <h1 class="vwform__heading text-center">Welcome back</h1>
         <div class="mt-3 mb-3">
-          <p class="vwform__field">Don't have an account yet? <%= link_to "Sign up here.", new_registration_path(resource_name), class: "vwform__field--link" %></p>
+          <div class="vwform__field vwform__alert">
+            <p>Don't have an account yet?</p>
+            <p><%= link_to "Sign up here.", new_registration_path(resource_name), class: "vwform__field--link" %></p>
+          </div>
         </div>
           <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <div class="form-inputs">

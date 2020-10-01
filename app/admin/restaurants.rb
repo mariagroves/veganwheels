@@ -1,6 +1,10 @@
 ActiveAdmin.register Restaurant do
 
   permit_params :name, :street_address, :city, :county, :postcode, :about, :phone, :email, :latitude, :longitude, :imagekey, :website, :photo, :admin_user_id, :is_open, :monday_opens_at, :monday_closes_at, :tuesday_opens_at, :tuesday_closes_at,:wednesday_opens_at, :wednesday_closes_at, :thursday_opens_at, :thursday_closes_at, :friday_opens_at, :friday_closes_at,:saturday_opens_at, :saturday_closes_at, :sunday_opens_at,:sunday_closes_at
+
+  after_create do |restaurant|
+    restaurant.update(imagekey: rand(1..4))
+  end
  
   filter :name
   filter :email

@@ -17,7 +17,7 @@
                     <div class="dashboard__box--label">
                         <h4 class="uppercase font-weight-bold">Name</h4>
                     </div>
-                    <p class="dashboard__box--margin"><%=current_user.first_name%> <%=current_user.last_name%></p>
+                    <p class="dashboard__box--margin"><%=current_user.name%></p>
                 </div>
                 <div class="dashboard__box--info">
                     <div class="dashboard__box--label">
@@ -53,21 +53,7 @@
                 </div>
                 <%if current_user.orders.where(open: true, state: "paid").present?%>
                     <%current_user.orders.where(open: true, state: "paid").order('id DESC').each do |order|%>
-                    <div class="dashboard__box--info">
-
-                    <a data-toggle="collapse" href="#collapse-<%=order.id%>" aria-expanded="false" aria-controls="collapse-<%=order.id%>">
-                            <div class="dashboard__box--margin dashboard__box--order">
-                                <h4 class="uppercase font-weight-bold "><%=order.restaurant.name%></h4>
-                                <h4 class="uppercase font-weight-bold ">£ <%=to_pounds(order.total_price)%></h4>
-                            </div>
-                            <p class="dashboard__box--margin">Order <%=order.id%> placed at<%=order.order_time.strftime(" %l:%M %p")%> on <%=order.order_time.strftime("%e %B %Y")%></p>
-                            <p class="dashboard__box--margin dashboard__box--alert">Your order is being prepared.</p>    
-                    </a>
-                    <div class="collapse" id="collapse-<%=order.id%>">
                         <%= render 'partials/order', order: order%>
-                    </div>
-
-                    </div>
                     <%end%>
                 <%else%>
                     <p class="dashboard__box--message">You have no current orders!</p>
@@ -79,33 +65,18 @@
                 </div>
                 <%if current_user.orders.where(open: false, state: "paid").present?%>
                     <%current_user.orders.where(open: false, state: "paid").limit(2).each do |order|%>
-                    <div class="dashboard__box--info">
-
-                    <a data-toggle="collapse" href="#collapse-<%=order.id%>" aria-expanded="false" aria-controls="collapse-<%=order.id%>">
-
-                        <div class="dashboard__box--margin dashboard__box--order">
-                            <h4 class="uppercase font-weight-bold "><%=order.restaurant.name%></h4>
-                            <h4 class="uppercase font-weight-bold ">£ <%=to_pounds(order.total_price)%></h4>
-                        </div>
-                        <p class="dashboard__box--margin">Order <%=order.id%> placed at<%=order.order_time.strftime(" %l:%M %p")%> on <%=order.order_time.strftime("%e %B %Y")%></p>
-                        <p class="dashboard__box--margin dashboard__box--success">Your order was delivered.</p>
-                    </a>
-                    <div class="collapse" id="collapse-<%=order.id%>">
                         <%= render 'partials/order', order: order%>
-                    </div>
-
-                    </div>
                     <%end%>
                     
                     <%if current_user.orders.where(open: false, state: "paid").count > 2%>
                         <%= link_to "See all past orders", orders_path, class: "uppercase dashboard__box--link"%>
                     <%end%>
-
                 <%else%>
                     <p class="dashboard__box--message">You have no past orders!</p>
                 <%end%>    
             </div>
         </div>
     </div>
+    <%= render 'partials/modal_cart_bg'%>
 </div>
 

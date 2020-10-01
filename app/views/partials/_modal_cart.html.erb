@@ -57,6 +57,13 @@
                 </div>
                 <%end%>
             <%end%>
+            <%if order_item.note.present?%>
+                <div class="modal__cart--item">
+                    <div class="modal__cart--side">
+                        <p>Note: <%=order_item.note%></p>
+                    </div>
+                </div>
+            <%end%>
             </div>
         <%end%>
         <div class="modal__cart--item">

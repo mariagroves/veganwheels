@@ -1,0 +1,54 @@
+<div class="dashboard__box--details">
+    <%get_unique(order.cart).each do |order_item|%>
+        <div class="dashboard__box--item">
+            <%duplicates = get_duplicates(order_item, order.cart)%>
+            <%if duplicates.empty?%>
+                <div class="modal__cart--itemwrapper">
+                    <div>   
+                        <p><%=order_item.quantity%> <%=order_item.menu_item.name%></p>
+                    </div>
+                </div>
+                <p>£<%=to_pounds(order_item.total_price)%></p>
+            <%else%>
+                <div class="modal__cart--itemwrapper">
+                    <div>
+                        <%quantity_sum = order_item.quantity + duplicates.each_with_object([]) {|oi,array| array<<oi.quantity }.sum%>
+                        <%price_sum = order_item.total_price + duplicates.each_with_object([]) {|oi,array| array<<oi.total_price }.sum%>
+                        <p><%=quantity_sum%> <%=order_item.menu_item.name%></p>
+                    </div>
+                </div>
+                <p>£<%=to_pounds(price_sum)%></p>
+            <%end%>
+        </div>
+        <%if order_item.order_item_options.present?%>
+            <%order_item.order_item_options.each do |option|%>
+            <div class="dashboard__box--item">
+                <p class="modal__cart--side"><%=option.menu_option.name%></p>
+                <%if duplicates.empty?%>
+                    <%if option.unit_price != 0%>
+                        <p>£<%=to_pounds(option.total_price)%></p>
+                    <%end%>
+                <%else%>
+                    <%if option.unit_price != 0%>
+                        <%count = duplicates.count + 1%>
+                        <%total = count*option.unit_price%>
+                        <p>£<%=to_pounds(total)%></p>
+                    <%end%>
+                <%end%>
+            </div>
+            <%end%>
+        <%end%>
+        <%if order_item.note.present?%>
+            <div class="dashboard__box--item">
+                <div class="modal__cart--side">
+                    <p>Note: <%=order_item.note%></p>
+                </div>
+            </div>
+        <%end%>
+    <%end%>
+
+    <div class="dashboard__box--item">
+        <p>Delivery charge</p>
+        <p>£<%=to_pounds(order.delivery_price)%></p>
+    </div>
+</div>
