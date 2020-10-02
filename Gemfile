@@ -24,6 +24,7 @@ gem 'activeadmin'
 gem 'cancancan'
 gem 'stripe'
 gem 'stripe_event'
+gem 'arctic_admin'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'

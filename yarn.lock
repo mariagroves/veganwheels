@@ -787,6 +787,11 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
+"@fortawesome/fontawesome-free@^5.15.0":
+  version "5.15.0"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.15.0.tgz#631b04d6301fee06d4bd7a9824fe7157735cbdb6"
+  integrity sha512-wXetjQBNMTP59MAYNR1tdahMDOLx3FYj3PKdso7PLFLDpTvmAIqhSSEqnSTmWKahRjD+Sh5I5635+5qaoib5lw==
+
 "@rails/actioncable@^6.0.0-alpha":
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/@rails/actioncable/-/actioncable-6.0.2.tgz#bcba9bcd6ee09a47c6628336e07399a68ca87814"
@@ -1142,6 +1147,11 @@ aproba@^1.0.3, aproba@^1.1.1:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/aproba/-/aproba-1.2.0.tgz#6802e6264efd18c790a1b0d517f0f2627bf2c94a"
   integrity sha512-Y9J6ZjXtoYh8RnXVCMOU/ttDmk1aBjunq9vO0ta5x85WDQiQfUF9sIPBITdbiiIVcBo03Hi3jMxigBtsddlXRw==
+
+arctic_admin@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/arctic_admin/-/arctic_admin-3.2.0.tgz#e3278d9b1897e96f9a1ba0032cde8fa56ea76915"
+  integrity sha512-OpleIwJOMueKcajnqAE33ET1jz1Iqo+8ybpYnTYkX+hOMJxLaHRmzXX040ZhtaZmPKDQaEhDrSNSU8azMlbojw==
 
 are-we-there-yet@~1.1.2:
   version "1.1.5"

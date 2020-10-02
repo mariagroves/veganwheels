@@ -41,6 +41,26 @@ ActiveAdmin.register User do
       row :county
       row :postcode
     end
+
+    panel "Orders" do
+      table_for(resource.orders) do
+        column :restaurant
+        column :order_price do |item|
+          number_to_currency(to_pounds(item.order_price), unit: "£")
+        end
+        column :delivery_price do |item|
+          number_to_currency(to_pounds(item.delivery_price), unit: "£")
+        end
+        column :total_price do |item|
+          number_to_currency(to_pounds(item.total_price), unit: "£")
+        end
+        column :open
+        column :order_time
+        column("Actions") do |side|
+          span link_to "View", admin_order_path(side)
+        end
+      end
+    end
   end
 
   form do |f|
