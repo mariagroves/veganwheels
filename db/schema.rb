@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_29_120942) do
+ActiveRecord::Schema.define(version: 2020_10_07_162344) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,20 @@ ActiveRecord::Schema.define(version: 2020_09_29_120942) do
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "deliveries", force: :cascade do |t|
+    t.bigint "order_id", null: false
+    t.bigint "rider_user_id", null: false
+    t.boolean "is_collected", default: false
+    t.boolean "is_delivered", default: false
+    t.datetime "time_collected"
+    t.datetime "time_delivered"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_deliveries_on_order_id"
+    t.index ["rider_user_id", "order_id"], name: "index_deliveries_on_rider_user_id_and_order_id", unique: true
+    t.index ["rider_user_id"], name: "index_deliveries_on_rider_user_id"
   end
 
   create_table "menu_items", force: :cascade do |t|
@@ -178,6 +192,24 @@ ActiveRecord::Schema.define(version: 2020_09_29_120942) do
     t.index ["admin_user_id"], name: "index_restaurants_on_admin_user_id"
   end
 
+  create_table "rider_users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "first_name"
+    t.string "last_name"
+    t.boolean "is_available", default: false
+    t.boolean "is_active", default: true
+    t.string "phone"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "role", default: "rider", null: false
+    t.index ["email"], name: "index_rider_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_rider_users_on_reset_password_token", unique: true
+  end
+
   create_table "sections", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -209,6 +241,8 @@ ActiveRecord::Schema.define(version: 2020_09_29_120942) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "deliveries", "orders"
+  add_foreign_key "deliveries", "rider_users"
   add_foreign_key "menu_items", "restaurants"
   add_foreign_key "menu_options", "menu_items"
   add_foreign_key "order_item_options", "menu_options"

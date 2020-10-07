@@ -28,7 +28,7 @@
                                  <%@restaurant.address.split(',').each do |line|%>
                                     <p><%=line%></p>
                                  <%end%>
-                                <%= link_to "See map", "https://www.google.com/maps/search/?api=1&query=#{@restaurant.latitude},#{@restaurant.longitude}", target: "_blank" %>
+                                <%= link_to "See map", "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(@restaurant.address)}", target: "_blank" %>
                                  
                             </div>
                             <div class="info-box__section--box info-box__section--multiple">

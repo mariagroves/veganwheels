@@ -6,6 +6,25 @@ ActiveAdmin.setup do |config|
   #
   config.site_title = "Veganwheels"
 
+
+  config.load_paths = [File.expand_path('app/admin', Rails.root), File.expand_path('app/rider', Rails.root)]
+
+  config.default_namespace = :admin
+
+  config.namespace :admin do |admin|
+    admin.site_title = "VeganWheels Admin"
+    admin.authentication_method = :authenticate_admin_user!
+    admin.current_user_method = :current_admin_user
+    admin.logout_link_path = :destroy_admin_user_session_path
+  end
+
+  config.namespace :rider do |supplier|
+    supplier.site_title = "VeganWheels Riders"
+    supplier.authentication_method = :authenticate_rider_user!
+    supplier.current_user_method = :current_rider_user
+    supplier.logout_link_path = :destroy_rider_user_session_path
+  end
+
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
   #

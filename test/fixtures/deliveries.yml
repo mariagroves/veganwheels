@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  order: one
+  rider_user: one
+  is_collected: false
+  is_delivered: false
+  time_collected: 2020-10-02 14:43:35
+  time_delivered: 2020-10-02 14:43:35
+
+two:
+  order: two
+  rider_user: two
+  is_collected: false
+  is_delivered: false
+  time_collected: 2020-10-02 14:43:35
+  time_delivered: 2020-10-02 14:43:35

@@ -4,10 +4,17 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    user ||= AdminUser.new
-
     if user.role == 'admin'
       can :manage, :all
+    elsif user.role == 'rider' && !user.is_active
+      can :read, ActiveAdmin::Page, name: "Dashboard"
+    elsif user.role == 'rider' && user.is_active
+      can :read, ActiveAdmin::Page, name: "Dashboard"
+      can :read, Order, is_assigned: false, open: true
+      can :read, RiderUser, id: user.id
+      can :update, RiderUser, id: user.id
+      can :read, Delivery, rider_user_id: user.id
+      can :destroy, Delivery, rider_user_id: user.id
     elsif  user.role == 'restaurant'
       can :read, ActiveAdmin::Page, name: "Dashboard"
       can :read, Restaurant, admin_user_id: user.id

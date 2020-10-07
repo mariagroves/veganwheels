@@ -16,6 +16,7 @@ class User < ApplicationRecord
   end
 
   def address
-    [street_address, city, county, postcode, country].compact.join(', ')
+    address = [street_address, city, county, postcode, country].reject { |e| e.to_s.empty? }
+    address.join(', ')
   end
 end

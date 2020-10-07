@@ -7,8 +7,8 @@ ActiveAdmin.register Order do
 
   index do
     selectable_column
-    column :id
-    column "Customer Name", :user
+    column "Order no", :id
+    column "Customer", :user
     column :restaurant
     column :order_price do |item|
       number_to_currency(to_pounds(item.order_price), unit: "£")
@@ -28,24 +28,34 @@ ActiveAdmin.register Order do
 
   show do
     attributes_table do
-      row :user
-      row :restaurant
-      row :order_price do |item|
-        number_to_currency(to_pounds(item.order_price), unit: "£")
+      row "Order no" do
+        resource.id
       end
-      row :delivery_price do |item|
-        number_to_currency(to_pounds(item.delivery_price), unit: "£")
+      row "Customer" do
+        resource.user.name
       end
-      row :total_price do |item|
-        number_to_currency(to_pounds(item.total_price), unit: "£")
+      row :order_price do
+        number_to_currency(to_pounds(resource.order_price), unit: "£")
       end
-      row :is_assigned
-      row :state
-      row :open
+      row :delivery_price do
+        number_to_currency(to_pounds(resource.delivery_price), unit: "£")
+      end
+      row :total_price do
+        number_to_currency(to_pounds(resource.total_price), unit: "£")
+      end
+      row "Assigned to rider" do
+        resource.is_assigned
+      end
+      row "Payment" do
+        resource.state
+      end
+      row "Order in progress" do
+        resource.open
+      end
       row :order_time
     end
 
-    panel "User Details" do
+    panel "Customer Details" do
       table_for(resource.user) do
         column :name
         column :phone
@@ -86,7 +96,7 @@ ActiveAdmin.register Order do
     end
   end
 
-  filter :id
+  filter :id, label: "Order number"
   filter :user_first_name, as: :string, label: "Customer's first name"
   filter :user_last_name, as: :string, label: "Customer's last name"
   filter :restaurant

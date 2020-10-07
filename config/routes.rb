@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
+  devise_for :rider_users, ActiveAdmin::Devise.config.merge({path: '/rider'})
   ActiveAdmin.routes(self)
   devise_for :users
   resources :dashboard, only: [:index]
