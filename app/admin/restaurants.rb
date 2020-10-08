@@ -18,8 +18,7 @@ ActiveAdmin.register Restaurant do
     column :website
     column :email
     column :phone
-    column :opening_hours
-    column :is_open
+    column "Open", :is_open
     actions
   end
 
