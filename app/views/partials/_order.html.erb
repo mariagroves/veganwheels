@@ -5,7 +5,7 @@
             <h4 class="uppercase font-weight-bold ">£ <%=to_pounds(order.total_price)%></h4>
         </div>
         <p class="dashboard__box--margin">Order <%=order.id%> placed at<%=order.order_time.strftime(" %l:%M %p")%> on <%=order.order_time.strftime("%e %B %Y")%></p>
-        <p class="dashboard__box--margin dashboard__box--success">Your order was XXX.</p>
+        <p class="dashboard__box--margin dashboard__box--<%=order.status_report.keys.first.to_s%>"><%=order.status_report.values.first%></p>
     </a>
     <div class="collapse" id="collapse-<%=order.id%>">
         <%= render 'partials/order_details', order: order%>

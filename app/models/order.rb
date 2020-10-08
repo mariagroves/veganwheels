@@ -20,6 +20,18 @@ class Order < ApplicationRecord
     id
   end
 
+  def status_report
+    if !self.delivery.present?
+      {alert: "Your order is being assigned to a rider."}
+    elsif !self.delivery.is_collected
+      {notice: "The rider is picking up your order."}
+    elsif self.delivery.is_collected && !self.delivery.is_delivered
+      {notice: "You order has been collected."}
+    elsif self.delivery.is_delivered
+      {success: "Your order has been delivered."}
+    end
+  end
+
   private
 
   def set_order_price
