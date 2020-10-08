@@ -4,6 +4,7 @@ ActiveAdmin.register Delivery, namespace: :rider do
   config.clear_action_items!
   config.filters = false
   config.batch_actions = false
+  config.sort_order = 'is_delivered_asc'
   menu label: "My Deliveries"
   controller do
     before_action { @page_title = "My Deliveries" }
@@ -43,7 +44,7 @@ ActiveAdmin.register Delivery, namespace: :rider do
         f.inputs do 
           f.input :is_collected, input_html: { :value => del.is_collected }, as: :hidden
         end
-         f.action :submit, label: del.is_collected ?  "Mark Collected" : "Mark Uncollected"
+         f.action :submit, label: del.is_collected ?  "Mark Uncollected" : "Mark Collected"
       end
     end
     column "Delivered", :is_delivered
@@ -53,7 +54,7 @@ ActiveAdmin.register Delivery, namespace: :rider do
         f.inputs do 
           f.input :is_delivered, input_html: { :value => del.is_delivered }, as: :hidden
         end
-         f.action :submit, label: del.is_delivered ?  "Mark Delivered" : "Mark Not Delivered"
+         f.action :submit, label: del.is_delivered ?  "Mark Not Delivered" : "Mark Delivered"
       end
     end
     actions
@@ -61,10 +62,13 @@ ActiveAdmin.register Delivery, namespace: :rider do
   
 
   member_action :toggle_collected, method: [:post, :patch] do
-    if params[:delivery][:is_collected] == "true"
-      Delivery.find(params[:id]).update(is_collected: false)
+    delivery = Delivery.find(params[:id])
+    if delivery.is_delivered && delivery.is_collected
+      flash[:error] = "Please mark the order as not delivered first." 
+    elsif delivery.is_collected
+      delivery.update(is_collected: false)
     else
-      Delivery.find(params[:id]).update(is_collected: true)
+      delivery.update(is_collected: true)
     end
     redirect_to rider_deliveries_path
   end
@@ -72,7 +76,9 @@ ActiveAdmin.register Delivery, namespace: :rider do
   member_action :toggle_delivered, method: [:post, :patch] do
     delivery = Delivery.find(params[:id])
     flash[:error] = "Please mark the order as collected first." if !delivery.is_collected
-    if params[:delivery][:is_delivered] == "true"
+    if delivery.is_delivered && Time.now - delivery.updated_at > 5.minutes
+      flash[:error] = "You cannot mark this order as not delivered as more than 5 minutes have passed since you marked it as delivered."
+    elsif delivery.is_delivered
       delivery.update(is_delivered: false)
     else
       delivery.update(is_delivered: true) if delivery.is_collected 
@@ -88,6 +94,12 @@ ActiveAdmin.register Delivery, namespace: :rider do
       row "Customer" do
         resource.order.user.name
       end
+      row "Customer Phone" do
+        resource.order.user.phone
+      end
+      row "Delivery Address" do
+        link_to resource.order.user.address, "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(resource.order.user.address)}", target: "_blank"
+      end
       row "Restaurant" do
         resource.order.restaurant.name
       end
@@ -96,9 +108,6 @@ ActiveAdmin.register Delivery, namespace: :rider do
       end
       row "Restaurant Address" do
         link_to resource.order.restaurant.address, "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(resource.order.user.address)}", target: "_blank"
-      end
-      row "Delivery Address" do
-        link_to resource.order.user.address, "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(resource.order.user.address)}", target: "_blank"
       end
       row "Collected" do
         resource.is_collected
