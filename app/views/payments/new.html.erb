@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-12">
             <div class="checkout mx-auto">
-                <h2 class="uppercase font-weight-bold">Checkout summary</h1>
+                <h2 class="uppercase font-weight-bold mx-auto">Checkout summary</h1>
 
                 <h3>Your delivery details:</h3>
 
@@ -10,8 +10,15 @@
                     <%= link_to "EDIT", edit_user_registration_path(current_user), class: "checkout__box--link" %>
                     <p><%=current_user.name%></p>
                     <p><%=current_user.address%></p>
-
                 </div>
+                
+                <%if @order.delivery_instructions.present?%>
+                    <h3>Your delivery instructions:</h3>
+
+                    <div class="checkout__box">
+                        <p><%=@order.delivery_instructions%></p>
+                    </div>
+                <%end%>
 
                 <h3>Your order from <%=@order.restaurant.name%>:</h3>
 

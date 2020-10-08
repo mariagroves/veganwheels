@@ -79,10 +79,12 @@
             <p class="font-weight-bold uppercase">Total</p>
             <p id="total">£<%= to_pounds(@cart.get_total)%></p>
         </div>
-        <div class="modal__cart--buttons">
-            <%= form_tag orders_path do %>
-                <%= hidden_field_tag 'cart_id', @cart.id %>
-                <%= submit_tag 'Check out', class: 'button__fill button__fill--red' %>
+        <div class="modal__cart--form">
+            <%= form_with(model: Order.new, local: true) do |form| %>
+                    <%= form.label :delivery_instructions, 'Delivery Instructions' %>
+                    <div><%= form.text_area :delivery_instructions %></div>
+                    <%= form.hidden_field :cart_id, value: @cart.id %>
+                    <%= form.submit 'Check out', class: 'button__fill button__fill--red' %>
             <% end %>
         
             <div class="button__fill button__fill--redl" id="cart-modal-close">Continue browsing</div>

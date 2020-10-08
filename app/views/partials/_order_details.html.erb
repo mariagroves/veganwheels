@@ -5,7 +5,7 @@
             <%if duplicates.empty?%>
                 <div class="modal__cart--itemwrapper">
                     <div>   
-                        <p><%=order_item.quantity%> <%=order_item.menu_item.name%></p>
+                        <p class="font-weight-bold"><%=order_item.quantity%> <%=order_item.menu_item.name%></p>
                     </div>
                 </div>
                 <p>£<%=to_pounds(order_item.total_price)%></p>
@@ -14,7 +14,7 @@
                     <div>
                         <%quantity_sum = order_item.quantity + duplicates.each_with_object([]) {|oi,array| array<<oi.quantity }.sum%>
                         <%price_sum = order_item.total_price + duplicates.each_with_object([]) {|oi,array| array<<oi.total_price }.sum%>
-                        <p><%=quantity_sum%> <%=order_item.menu_item.name%></p>
+                        <p class="font-weight-bold"><%=quantity_sum%> <%=order_item.menu_item.name%></p>
                     </div>
                 </div>
                 <p>£<%=to_pounds(price_sum)%></p>
@@ -48,7 +48,7 @@
     <%end%>
 
     <div class="dashboard__box--item">
-        <p>Delivery charge</p>
+        <p class="font-weight-bold">Delivery charge</p>
         <p>£<%=to_pounds(order.delivery_price)%></p>
     </div>
 </div>

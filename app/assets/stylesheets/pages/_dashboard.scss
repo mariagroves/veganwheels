@@ -41,7 +41,8 @@
 
         &--info {
             margin-bottom: 2rem;
-            border-bottom: 1px solid $color-red-light;  
+            border-bottom: 1px solid $color-red-light; 
+            padding-bottom: 2rem; 
         }
 
         &--margin {
@@ -75,13 +76,17 @@
         }
 
         &--details {
-            padding-bottom: 1rem;
+            background-color: white;
+            padding: 1rem;
+            border-radius: .3rem;
         }
 
         &--item {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 1rem;
+            &:not(:last-child) {
+                margin-bottom: 1rem;
+            }  
         }
             
     }

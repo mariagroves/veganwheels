@@ -49,15 +49,9 @@ ActiveAdmin.register Order, namespace: :rider do
       row "Order no" do
         resource.id
       end
-      row "Customer" do
-        resource.user.name
-      end
       row :restaurant
       row "Restaurant Address" do
         link_to resource.restaurant.address, "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(order.user.address)}", target: "_blank"
-      end
-      row "Delivery Address" do
-        link_to resource.user.address, "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(order.user.address)}", target: "_blank"
       end
       row :order_time
     end
@@ -66,6 +60,12 @@ ActiveAdmin.register Order, namespace: :rider do
       table_for(resource.user) do
         column :name
         column :phone
+        column "Delivery Address", :address do |user|
+          link_to user.address, "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(user.address)}", target: "_blank"
+        end
+        column "Delivery Instructions" do 
+          resource.delivery_instructions
+        end
       end
     end
 

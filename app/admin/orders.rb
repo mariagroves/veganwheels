@@ -46,6 +46,7 @@ ActiveAdmin.register Order do
       row "Assigned to rider" do
         resource.is_assigned
       end
+      row :delivery_instructions
       if current_admin_user.role == "admin"
         row "Payment" do
           resource.state

@@ -1,8 +1,9 @@
 class OrdersController < ApplicationController
     def create
-        cart = Cart.find(params[:cart_id])
+        cart = Cart.find(order_params[:cart_id])
         restaurant = cart.order_items.first.menu_item.restaurant
-        order  = Order.create!(cart: cart, user: current_user, restaurant: restaurant)
+        delivery_instructions = order_params[:delivery_instructions]
+        order  = Order.create!(cart: cart, user: current_user, restaurant: restaurant, delivery_instructions: delivery_instructions)
         
         stripe_session = Stripe::Checkout::Session.create(
           payment_method_types: ['card'],
@@ -31,5 +32,11 @@ class OrdersController < ApplicationController
         @order = current_user.orders.find(params[:id])
         @order.destroy
         redirect_to root_path
+    end
+
+    private
+
+    def order_params
+        params.require(:order).permit(:delivery_instructions, :cart_id)
     end
 end

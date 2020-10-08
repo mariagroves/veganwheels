@@ -91,15 +91,6 @@ ActiveAdmin.register Delivery, namespace: :rider do
       row "Order no" do
         resource.order.id
       end
-      row "Customer" do
-        resource.order.user.name
-      end
-      row "Customer Phone" do
-        resource.order.user.phone
-      end
-      row "Delivery Address" do
-        link_to resource.order.user.address, "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(resource.order.user.address)}", target: "_blank"
-      end
       row "Restaurant" do
         resource.order.restaurant.name
       end
@@ -123,6 +114,12 @@ ActiveAdmin.register Delivery, namespace: :rider do
       table_for(resource.order.user) do
         column :name
         column :phone
+        column "Delivery Address", :address do |user|
+          link_to user.address, "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(user.address)}", target: "_blank"
+        end
+        column "Delivery Instructions" do 
+          resource.order.delivery_instructions
+        end
       end
     end
 

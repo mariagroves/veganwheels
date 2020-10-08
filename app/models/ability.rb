@@ -10,7 +10,7 @@ class Ability
       can :read, ActiveAdmin::Page, name: "Dashboard"
     elsif user.role == 'rider' && user.is_active
       can :read, ActiveAdmin::Page, name: "Dashboard"
-      can :read, Order, is_assigned: false, open: true
+      can :read, Order, is_assigned: false, open: true, state: "paid"
       can :read, RiderUser, id: user.id
       can :update, RiderUser, id: user.id
       can :read, Delivery, rider_user_id: user.id
