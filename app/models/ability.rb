@@ -17,6 +17,8 @@ class Ability
       can :destroy, Delivery, rider_user_id: user.id
     elsif  user.role == 'restaurant'
       can :read, ActiveAdmin::Page, name: "Dashboard"
+      can :read, AdminUser, id: user.id
+      can :update, AdminUser, id: user.id
       can :read, Restaurant, admin_user_id: user.id
       can :update, Restaurant, admin_user_id: user.id
       can :manage, Section, restaurant_id: user.restaurant.id
