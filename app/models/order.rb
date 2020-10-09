@@ -7,7 +7,10 @@ class Order < ApplicationRecord
   before_save :set_order_price
   before_save :set_delivery_price
   before_save :set_total_price
+  # rider gets notified once order paid
   after_update :notify_riders
+  # restaurant gets notified once assigned a rider
+  after_update :notify_restaurant
   validates :user, :cart, presence: true
   # user can't checkout with the same cart multiple times
   validates :cart, uniqueness: {scope: :user}, on: :create
@@ -45,7 +48,19 @@ class Order < ApplicationRecord
               )
       end
     end
-end
+  end
+
+  def notify_restaurant
+    if self.is_assigned && self.open && state == "paid"
+      client = Twilio::REST::Client.new
+      
+      client.messages.create(
+          from: ENV['TWILIO_PHONE_NUMBER'],
+          to: self.restaurant.admin_user.phone,
+          body: 'You have a new order on VeganWheels!'
+      )
+    end
+  end
 
   private
 
