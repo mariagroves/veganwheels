@@ -7,6 +7,7 @@ class Order < ApplicationRecord
   before_save :set_order_price
   before_save :set_delivery_price
   before_save :set_total_price
+  after_update :notify_riders
   validates :user, :cart, presence: true
   # user can't checkout with the same cart multiple times
   validates :cart, uniqueness: {scope: :user}, on: :create
@@ -31,6 +32,20 @@ class Order < ApplicationRecord
       {success: "Your order has been delivered."}
     end
   end
+
+  def notify_riders
+    if !self.is_assigned && self.open && state == "paid"
+      client = Twilio::REST::Client.new
+
+      RiderUser.where(is_active: true, is_available: true).find_each do |rider|
+              client.messages.create(
+                  from: ENV['TWILIO_PHONE_NUMBER'],
+                  to: rider.phone,
+                  body: 'A new delivery job is available on VeganWheels!'
+              )
+      end
+    end
+end
 
   private
 
