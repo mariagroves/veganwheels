@@ -41,6 +41,10 @@ ActiveAdmin.register Restaurant do
     if restaurant.stripe_account_id.nil? || restaurant.stripe_account_id.empty?
       account = Stripe::Account.create({
         type: 'standard',
+        capabilities: {
+          card_payments: {requested: true},
+          transfers: {requested: true}
+        }
       })
       restaurant.update(stripe_account_id: account.id)
     end
