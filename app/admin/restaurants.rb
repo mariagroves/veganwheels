@@ -2,6 +2,8 @@ ActiveAdmin.register Restaurant do
 
   permit_params :name, :street_address, :city, :county, :postcode, :about, :phone, :email, :latitude, :longitude, :imagekey, :website, :photo, :admin_user_id, :is_open, :monday_opens_at, :monday_closes_at, :tuesday_opens_at, :tuesday_closes_at,:wednesday_opens_at, :wednesday_closes_at, :thursday_opens_at, :thursday_closes_at, :friday_opens_at, :friday_closes_at,:saturday_opens_at, :saturday_closes_at, :sunday_opens_at,:sunday_closes_at
 
+  config.batch_actions = false
+
   after_create do |restaurant|
     restaurant.update(imagekey: rand(1..4))
   end
@@ -12,6 +14,16 @@ ActiveAdmin.register Restaurant do
  
   index do
     column :name
+    if current_admin_user.role == "restaurant" && !current_admin_user.restaurant.is_onboarded
+      column do |restaurant|
+        active_admin_form_for restaurant, url: stripe_connect_admin_restaurant_path(restaurant), method: :post do |f|
+          f.inputs do 
+            f.input :restaurant_id, input_html: { :value => restaurant.id }, as: :hidden
+          end
+          f.action :submit, label: "Connect To Stripe"
+        end
+      end
+    end
     column :address
     column :admin_user if current_admin_user.role == "admin"
     column :about
@@ -19,12 +31,38 @@ ActiveAdmin.register Restaurant do
     column :email
     column :phone
     column "Open", :is_open
+    column "Stripe Account", :is_onboarded
     actions
+  end
+
+  member_action :stripe_connect, method: [:post, :patch] do
+    restaurant = Restaurant.find(params[:id])
+  
+    if restaurant.stripe_account_id.nil? || restaurant.stripe_account_id.empty?
+      account = Stripe::Account.create({
+        type: 'standard',
+      })
+      restaurant.update(stripe_account_id: account.id)
+    end
+    account_links = Stripe::AccountLink.create({
+      account: restaurant.stripe_account_id,
+      refresh_url: stripe_connect_admin_restaurant_url(restaurant),
+      return_url: admin_restaurants_url,
+      type: 'account_onboarding',
+    })
+    redirect_to account_links.url
   end
 
   menu label: "Restaurant Information"
   controller do
     before_action { @page_title = "Restaurant Information" }
+    before_action :set_notice, only: :index
+
+    private
+
+    def set_notice
+      flash.now[:error] = 'Please complete Stripe onboarding.' if current_admin_user.role == "restaurant" && !current_admin_user.restaurant.is_onboarded
+    end
   end
 
   form partial: 'form'

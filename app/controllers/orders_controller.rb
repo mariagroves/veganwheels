@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
         delivery_instructions = order_params[:delivery_instructions]
         order  = Order.create!(cart: cart, user: current_user, restaurant: restaurant, delivery_instructions: delivery_instructions)
         
-        stripe_session = Stripe::Checkout::Session.create(
+        stripe_session = Stripe::Checkout::Session.create({
           payment_method_types: ['card'],
           line_items: [{
             name: "Order #{order.id} from #{order.restaurant.name}",
@@ -15,9 +15,12 @@ class OrdersController < ApplicationController
             currency: 'gbp',
             quantity: 1
           }],
+          payment_intent_data: {
+            application_fee_amount: 150,
+          },
           success_url: dashboard_index_url,
-          cancel_url: new_order_payment_url(order)
-        )
+          cancel_url: new_order_payment_url(order),
+          }, {stripe_account: restaurant.stripe_account_id})
         
         order.update(checkout_session_id: stripe_session.id)
         redirect_to new_order_payment_path(order)
