@@ -36,25 +36,36 @@ ActiveAdmin.register Restaurant do
   end
 
   member_action :stripe_connect, method: [:post, :patch] do
-    restaurant = Restaurant.find(params[:id])
-  
-    if restaurant.stripe_account_id.nil? || restaurant.stripe_account_id.empty?
-      account = Stripe::Account.create({
-        type: 'standard',
-        capabilities: {
-          card_payments: {requested: true},
-          transfers: {requested: true}
-        }
+    begin
+      restaurant = Restaurant.find(params[:id])
+    
+      if restaurant.stripe_account_id.nil? || restaurant.stripe_account_id.empty?
+        account = Stripe::Account.create({
+          type: 'standard'
+        })
+        restaurant.update(stripe_account_id: account.id)
+      end
+      account_links = Stripe::AccountLink.create({
+        account: restaurant.stripe_account_id,
+        refresh_url: stripe_connect_admin_restaurant_url(restaurant),
+        return_url: admin_dashboard_url,
+        type: 'account_onboarding',
       })
-      restaurant.update(stripe_account_id: account.id)
+      redirect_to account_links.url
+
+    rescue  ::Stripe::CardError,                   # card declined
+            ::Stripe::RateLimitError,              # too many requests made to the api too quickly
+            ::Stripe::InvalidRequestError,         # invalid parameters were supplied to Stripe's api
+            ::Stripe::AuthenticationError,         # authentication with stripe's api failed
+            ::Stripe::APIConnectionError,          # network communication with stripe failed
+            ::Stripe::StripeError,                 # generic error
+            ::ActiveRecord::ActiveRecordError => e # something broke saving our records
+
+        # email dev about error
+      puts e
+      flash[:error] = "Unfortunately, something has gone wrong. Our team has been notified. Please try again later and get in touch if the issue persists."
+      redirect_to admin_dashboard_path
     end
-    account_links = Stripe::AccountLink.create({
-      account: restaurant.stripe_account_id,
-      refresh_url: stripe_connect_admin_restaurant_url(restaurant),
-      return_url: admin_restaurants_url,
-      type: 'account_onboarding',
-    })
-    redirect_to account_links.url
   end
 
   menu label: "Restaurant Information"

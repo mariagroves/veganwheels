@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :menu_items, only: [ :new, :create ]
   end
   root to: 'pages#home'
+  get 'error', to: 'pages#error'
   resources :menu_items, only: [ :edit, :update, :destroy, :show ] do
     resources :menu_options, only: [ :new, :create ]
     resources :order_items, only: [ :new, :create ]

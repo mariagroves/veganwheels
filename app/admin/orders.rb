@@ -119,7 +119,7 @@ ActiveAdmin.register Order do
   filter :order_price, label: "Order price in pence"
   filter :total_price, label: "Total price in pence"
   filter :is_assigned, label: "Assigned to rider"
-  filter :state, label: "Payment [pending/paid]"
+  filter :state, label: "Payment [pending/paid/refunded]"
   filter :open, label: "Order in progress"
   filter :order_time
 

@@ -98,7 +98,8 @@
 <script>
     const paymentButton = document.getElementById('pay');
     paymentButton.addEventListener('click', () => {
-    const stripe = Stripe('<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>');
+    const stripe = Stripe('<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>', {
+                        stripeAccount: '<%= @order.restaurant.stripe_account_id%>'});
     stripe.redirectToCheckout({
         sessionId: '<%= @order.checkout_session_id %>'
     });

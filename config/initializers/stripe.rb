@@ -14,4 +14,6 @@ StripeEvent.signing_secrets = [
 StripeEvent.configure do |events|
   events.subscribe 'checkout.session.completed', StripeCheckoutSessionService.new
   events.subscribe 'account.updated', StripeConnectedAccountService.new
+  events.subscribe 'charge.refunded', StripeRefundService.new
+  events.subscribe 'account.application.deauthorized', StripeAccountDeauthorizedService.new
 end

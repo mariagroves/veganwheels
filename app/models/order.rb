@@ -25,8 +25,10 @@ class Order < ApplicationRecord
   end
 
   def status_report
-    if !self.delivery.present?
+    if !self.delivery.present? && self.state == "paid"
       {alert: "Your order is being assigned to a rider."}
+    elsif self.state == "refunded"
+      {alert: "Your order has been cancelled and refunded."}
     elsif !self.delivery.is_collected
       {notice: "The rider is picking up your order."}
     elsif self.delivery.is_collected && !self.delivery.is_delivered
