@@ -1,6 +1,7 @@
 class OrderItemsController < ApplicationController
     before_action :set_menu_item, only: [ :new, :create ]
     before_action :raise_pending_error, only: [:create]
+    before_action :raise_closed_error, only: [:create]
     skip_before_action :authenticate_user!, only: [:new, :create, :destroy]
 
     def new
@@ -48,6 +49,14 @@ class OrderItemsController < ApplicationController
     def raise_pending_error
         if user_signed_in? && current_user.orders.where(state: 'pending').present?
             render 'order_items/checkout_error'
+            return
+        end
+    end
+
+    def raise_closed_error
+        menu_item = MenuItem.find(params[:menu_item_id])
+        if !menu_item.restaurant.is_open
+            render 'order_items/closed_restaurant_error'
             return
         end
     end

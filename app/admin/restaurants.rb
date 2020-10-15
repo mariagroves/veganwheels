@@ -1,6 +1,6 @@
 ActiveAdmin.register Restaurant do
 
-  permit_params :name, :street_address, :city, :county, :postcode, :about, :phone, :email, :latitude, :longitude, :imagekey, :website, :photo, :admin_user_id, :is_open, :monday_opens_at, :monday_closes_at, :tuesday_opens_at, :tuesday_closes_at,:wednesday_opens_at, :wednesday_closes_at, :thursday_opens_at, :thursday_closes_at, :friday_opens_at, :friday_closes_at,:saturday_opens_at, :saturday_closes_at, :sunday_opens_at,:sunday_closes_at
+  permit_params :name, :street_address, :city, :county, :postcode, :about, :phone, :email, :latitude, :longitude, :imagekey, :website, :photo, :admin_user_id, :is_open, :is_published, :monday_opens_at, :monday_closes_at, :tuesday_opens_at, :tuesday_closes_at,:wednesday_opens_at, :wednesday_closes_at, :thursday_opens_at, :thursday_closes_at, :friday_opens_at, :friday_closes_at,:saturday_opens_at, :saturday_closes_at, :sunday_opens_at,:sunday_closes_at
 
   config.batch_actions = false
 
@@ -31,8 +31,27 @@ ActiveAdmin.register Restaurant do
     column :email
     column :phone
     column "Open", :is_open
+    column do |restaurant|
+      active_admin_form_for restaurant, url: toggle_open_admin_restaurant_path(restaurant), method: :patch do |f|
+        f.inputs do 
+          f.input :is_open, input_html: { :value => restaurant.is_open}, as: :hidden
+        end
+         f.action :submit, label: restaurant.is_open ?  "Mark Closed" : "Mark Open"
+      end
+    end
+    column "Published", :is_published
     column "Stripe Account", :is_onboarded
     actions
+  end
+
+  member_action :toggle_open, method: [:post, :patch] do
+    restaurant = Restaurant.find(params[:id])
+    if restaurant.is_open
+      restaurant.update(is_open: false)
+    else
+      restaurant.update(is_open: true)
+    end
+    redirect_to admin_restaurants_path
   end
 
   member_action :stripe_connect, method: [:post, :patch] do
@@ -94,7 +113,7 @@ ActiveAdmin.register Restaurant do
       row :website
       row :is_open
       row :photo do |restaurant|
-        image_tag url_for(restaurant.photo)
+        image_tag url_for(restaurant.photo), style: 'height:50%;width:auto;'
       end
     end
 

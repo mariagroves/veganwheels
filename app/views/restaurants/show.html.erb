@@ -1,6 +1,11 @@
 <div class="container white-content-box">
     <div class="row">
         <div class="col-12 col-lg-5">
+            <%if !@restaurant.is_open%>
+                <div class="badge">
+                    Closed
+                </div>
+            <%end%>
             <div class="show-card">
                 <div class="show-card__title">
                     <% @restaurant.name.split.each do |word| %>
@@ -8,8 +13,8 @@
                     <%end%>
                 </div>
                 <div class="show-card__image">
-                <%= cl_image_tag @restaurant.photo.key, crop: :fill %>
-              </div>
+                    <%= cl_image_tag @restaurant.photo.key, crop: :fill %>
+                </div>
             </div>
         </div>
         <div class="col-12 col-lg-7">
@@ -48,7 +53,11 @@
                     <div class="col-12">
                         <div class="info-box__section">
                             <div class="info-box__section--box">
-                                <h3 class="subtitle">Available</h3>
+                                <%if @restaurant.is_open%>
+                                    <h3 class="subtitle">Available</h3>
+                                <%else%>
+                                    <h3 class="subtitle warning">Sorry, we're currently closed. Our typical opening hours are:</h3>
+                                <%end%>
                                 <%=@restaurant.opening_hours%>
                                 </div>
                             </div>

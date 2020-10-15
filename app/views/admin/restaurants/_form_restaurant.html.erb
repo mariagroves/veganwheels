@@ -37,9 +37,16 @@
             <%= f.input :photo, as: :file%>
         <% end %>
 
-        <%= f.inputs :name => "Change the restaurant's availability on VeganWheels below. If unchecked, the restaurant will not appear on the VeganWheels website." do %>
+        <%= f.inputs :name => "Change whether customers can order from this restaurant. If checked, food is available to order." do %>
             <%= f.input :is_open%>
         <% end %>
+
+        <%= f.inputs :name => "Change whether this restaurant appears on the VeganWheels website here. When ready to publish, make sure this is checked." do %>
+            <%= f.input :is_published%>
+        <% end %>
     <% end %>
-    <%= f.actions %>
+    <%= f.actions do %>
+      <%= f.action(:submit) %>
+      <%= f.action(:cancel) %>
+    <% end %>
 <% end %>

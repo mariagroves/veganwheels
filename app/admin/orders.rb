@@ -20,8 +20,8 @@ ActiveAdmin.register Order do
       number_to_currency(to_pounds(item.total_price), unit: "£")
     end
     column "Assigned to rider", :is_assigned
-    column "Payment", :state if current_admin_user.role == "admin"
-    column "Order in progress", :open if current_admin_user.role == "admin"
+    column "Payment", :state
+    column "Order in progress", :open
     column "Time order placed", :order_time
     actions
   end
@@ -30,9 +30,6 @@ ActiveAdmin.register Order do
     attributes_table do
       row "Order no" do
         resource.id
-      end
-      row "Customer" do
-        resource.user.name
       end
       row :order_price do
         number_to_currency(to_pounds(resource.order_price), unit: "£")
@@ -47,13 +44,11 @@ ActiveAdmin.register Order do
         resource.is_assigned
       end
       row :delivery_instructions
-      if current_admin_user.role == "admin"
-        row "Payment" do
-          resource.state
-        end
-        row "Order in progress" do
-          resource.open
-        end
+      row "Payment" do
+        resource.state
+      end
+      row "Order in progress" do
+        resource.open
       end
       row :order_time
     end

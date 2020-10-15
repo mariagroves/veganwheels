@@ -75,3 +75,21 @@
         }
     }
 }
+
+.badge {
+    top: 2rem;
+    left: 3rem;
+    position: absolute;
+    z-index: 5;
+    height: 5rem;
+    width: auto;
+    background-color:$color-red-dark;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 4rem;
+    padding: 2rem;
+}
+
+.warning {
+    color: $color-red-dark;
+}
