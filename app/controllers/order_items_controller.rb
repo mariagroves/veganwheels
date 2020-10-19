@@ -53,9 +53,10 @@ class OrderItemsController < ApplicationController
         end
     end
 
-    def raise_closed_error
-        menu_item = MenuItem.find(params[:menu_item_id])
-        if !menu_item.restaurant.is_open
+    def raise_closed_error 
+        restaurant = MenuItem.find(params[:menu_item_id]).restaurant
+
+        if restaurant.is_currently_closed?
             render 'order_items/closed_restaurant_error'
             return
         end

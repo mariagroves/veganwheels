@@ -1,7 +1,7 @@
 <div class="container white-content-box">
     <div class="row">
         <div class="col-12 col-lg-5">
-            <%if !@restaurant.is_open%>
+            <%if @restaurant.is_currently_closed?%>
                 <div class="badge">
                     Closed
                 </div>
@@ -53,7 +53,7 @@
                     <div class="col-12">
                         <div class="info-box__section">
                             <div class="info-box__section--box">
-                                <%if @restaurant.is_open%>
+                                <%if !@restaurant.is_currently_closed?%>
                                     <h3 class="subtitle">Available</h3>
                                 <%else%>
                                     <h3 class="subtitle warning">Sorry, we're currently closed. Our typical opening hours are:</h3>

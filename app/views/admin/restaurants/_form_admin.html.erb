@@ -17,7 +17,7 @@
             <%= f.input :postcode%>
         <% end %>
 
-        <%= f.inputs :name => "Set the hours the restaurant is available on VeganWheels. Leave blank if closed." do %>
+        <%= f.inputs :name => "Set the hours the restaurant is available on VeganWheels. Leave blank if closed. Hours should be set before the restaurant is published on the app." do %>
             <%= f.input :monday_opens_at%>
             <%= f.input :monday_closes_at%>
             <%= f.input :tuesday_opens_at%>
@@ -38,11 +38,11 @@
             <%= f.input :photo, as: :file%>
         <% end %>
 
-        <%= f.inputs :name => "Change whether customers can order from #{@restaurant} here. If checked, your food is available to order." do %>
+        <%= f.inputs :name => "Change whether customers can order from the restaurant here. If checked, your food is available to order." do %>
             <%= f.input :is_open%>
         <% end %>
 
-        <%= f.inputs :name => "Change whether #{@restaurant} appears on the VeganWheels website here. When ready to publish, make sure this is checked." do %>
+        <%= f.inputs :name => "Change whether the restaurant appears on the VeganWheels website here. When ready to publish, make sure this is checked." do %>
             <%= f.input :is_published%>
         <% end %>
     <% end %>
