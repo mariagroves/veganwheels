@@ -26,6 +26,9 @@ gem 'stripe'
 gem 'stripe_event'
 gem 'arctic_admin'
 gem 'twilio-ruby'
+gem 'sidekiq'
+gem 'sidekiq-failures'
+gem 'whenever', require: false
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'

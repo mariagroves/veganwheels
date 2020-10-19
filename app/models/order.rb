@@ -9,7 +9,7 @@ class Order < ApplicationRecord
   before_save :set_total_price
   # rider gets notified once order paid
   after_update :notify_riders
-  # restaurant gets notified once assigned a rider
+  # restaurant gets notified once order paid
   after_update :notify_restaurant
   validates :user, :cart, presence: true
   # user can't checkout with the same cart multiple times
@@ -53,7 +53,7 @@ class Order < ApplicationRecord
   end
 
   def notify_restaurant
-    if self.is_assigned && self.open && state == "paid"
+    if !self.is_assigned && self.open && state == "paid"
       client = Twilio::REST::Client.new
       
       client.messages.create(

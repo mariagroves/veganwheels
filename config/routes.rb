@@ -19,4 +19,8 @@ Rails.application.routes.draw do
     resources :payments, only: :new
   end
   mount StripeEvent::Engine, at: '/stripe-webhooks'
+  require "sidekiq/web"
+  authenticate :admin_user do
+    mount Sidekiq::Web, at: '/admin/sidekiq'
+  end
 end
