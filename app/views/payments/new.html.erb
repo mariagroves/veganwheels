@@ -3,7 +3,6 @@
         <div class="col-12">
             <div class="checkout mx-auto">
                 <h2 class="uppercase font-weight-bold mx-auto">Checkout summary</h1>
-                <p id="countdown"></p>
 
                 <h3>Your delivery details:</h3>
 
@@ -100,48 +99,26 @@
 </div>
 <script src="https://js.stripe.com/v3/"></script>
 <script>
+
     const modalWarning = document.getElementsByClassName('modal-warning')[0];
 
     const paymentButton = document.getElementById('pay');
     paymentButton.addEventListener('click', () => {
-        const closedStatus = '<%= @order.restaurant.is_currently_closed?%>'
-        console.log(closedStatus)
-        if (closedStatus == 'false') {
-            const stripe = Stripe('<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>', {
-                            stripeAccount: '<%= @order.restaurant.stripe_account_id%>'});
-            stripe.redirectToCheckout({
-                sessionId: '<%= @order.checkout_session_id %>'
-            });
-        } else {
-            console.log("it's closed")
-        }
-    });
-
-    window.addEventListener('load', (event) => {
-        setTimeout(() => {
-        modalWarning.classList.add('bckg-active');
-        }, 3000);
-
-        startTimer = (duration, display) => {
-            var timer = duration, minutes, seconds;
-            setInterval(() => {
-                minutes = parseInt(timer / 60, 10);
-                seconds = parseInt(timer % 60, 10);
-
-                minutes = minutes < 10 ? "0" + minutes : minutes;
-                seconds = seconds < 10 ? "0" + seconds : seconds;
-
-                display.textContent = "This checkout expires in " + minutes + ":" + seconds;
-
-                if (--timer < 0) { timer = duration;}
-            }, 1000);
-        };
-
-        
-        const tenMinutes = 60 * 10;
-        display = document.querySelector('#countdown');
-        startTimer(tenMinutes, display);
-        
+    fetch("<%= status_restaurant_path(@order.restaurant)%>")
+        .then(response => response.json()) 
+        .then((data) => {
+            const closed = data['status']
+            if (closed) {
+                modalWarning.classList.add('bckg-active')
+            } else {
+                const stripe = Stripe('<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>', {
+                                        stripeAccount: '<%= @order.restaurant.stripe_account_id%>'}
+                                );
+                stripe.redirectToCheckout({
+                    sessionId: '<%= @order.checkout_session_id %>'
+                });
+            }
+        });
     });
 
 </script>

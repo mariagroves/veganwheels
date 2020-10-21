@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   resources :dashboard, only: [:index]
   resources :restaurants do
     resources :menu_items, only: [ :new, :create ]
+    member do
+      get 'status'
+    end
   end
   root to: 'pages#home'
   get 'error', to: 'pages#error'

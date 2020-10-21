@@ -27,4 +27,10 @@ class RestaurantsController < ApplicationController
         @restaurant = Restaurant.find(params[:id])
     end
 
+    def status
+        @restaurant = Restaurant.find(params[:id])
+        status = @restaurant.is_currently_closed?
+        render :json => {:status => status}
+    end
+
 end
