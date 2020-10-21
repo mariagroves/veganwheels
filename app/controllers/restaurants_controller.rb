@@ -3,7 +3,7 @@ class RestaurantsController < ApplicationController
     skip_before_action :authenticate_user!, only: [:index, :show]
 
     def index
-        @restaurants = Restaurant.all.sort_by(&:id)
+        @restaurants = Restaurant.includes(:photo_attachment).all.sort_by(&:id)
         @search = params["search"]
         if @search.present?
             @postcode = @search["postcode"] # "G327QR"
@@ -25,6 +25,7 @@ class RestaurantsController < ApplicationController
 
     def show
         @restaurant = Restaurant.find(params[:id])
+        @menu_items = @restaurant.menu_items.includes(:section).where(is_active: true)
     end
 
     def status

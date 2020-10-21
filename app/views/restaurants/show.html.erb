@@ -76,7 +76,7 @@
             </div>
         </div>
         <div class="row menu">
-            <%@restaurant.menu_items.where(is_active: true).each do |item|%>
+            <%@menu_items.each do |item|%>
                 <%if item.section == section%>
                 <div class="col-12 col-lg-6">
                 <%= link_to menu_item_path(item), remote: true do%>

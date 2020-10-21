@@ -144,7 +144,6 @@
 
     input[type=text] {
         width: 4rem;
-        // border: 1px solid $color-primary-dark;
         text-align: center;
         border-radius: .25rem;
         background-color: $color-light-grey;
@@ -179,6 +178,8 @@
     input[type=checkbox]:checked {
         background-color: $color-primary-dark;
     }
+
+    button:focus {outline:0;}
 
     .quantity-select {
         display: flex;
