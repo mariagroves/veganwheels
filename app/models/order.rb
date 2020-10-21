@@ -20,6 +20,12 @@ class Order < ApplicationRecord
   #   Delivery.where(order_id: id)
   #  end
 
+  def self.delete_expired_orders
+    Order.where('created_at <= ?', Time.now - 10.hours).where(state: 'pending').each do |order|
+      OrderWorker.perform_async(order.id)
+    end
+  end
+
   def name
     id
   end

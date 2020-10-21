@@ -14,18 +14,8 @@ class Restaurant < ApplicationRecord
     geocoded_by :address
     after_validation :geocode
 
-    def self.restaurant_reminder
-        # self.all.each do |restaurant|
-        #   return if restaurant.is_closed_today?
-            opening_reminder_time = Restaurant.find(228).reminder_times[0]
-            closing_reminder_time = Restaurant.find(228).reminder_times[1]
-            RestaurantUpdateWorker.perform_at(opening_reminder_time, 'open', 228)
-            RestaurantUpdateWorker.perform_at(closing_reminder_time, 'close', 228)
-        # end
-    end
-
-    def reminder_times
-        [opening_time_today - 15.minutes, closing_time_today - 15.minutes]
+    def is_currently_closed?
+        self.before_opening_time? || self.after_closing_time? || self.is_closed_today? || !self.is_open
     end
 
     def is_closed_today?
@@ -34,10 +24,6 @@ class Restaurant < ApplicationRecord
         opens_at_time = self.send open_today 
         closes_at_time = self.send close_today
         return opens_at_time == closes_at_time || opens_at_time.nil?
-    end
-
-    def is_currently_closed?
-        self.before_opening_time? || self.after_closing_time? || self.is_closed_today? || !self.is_open
     end
 
     def before_opening_time?

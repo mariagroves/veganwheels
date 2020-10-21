@@ -1,5 +1,5 @@
 env :PATH, ENV['PATH']
 set :output, "log/cron.log"
-every 1.day, at: ['14:22 pm'] do
-    runner "Restaurant.restaurant_reminder", :environment => "development"
+every 10.hours do
+    runner "Order.delete_expired_orders", :environment => "development"
 end
