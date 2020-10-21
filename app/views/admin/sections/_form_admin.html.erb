@@ -5,5 +5,8 @@
         <%= f.input :name %>
         <%= f.input :order, :label => "Order in the menu", :as => :select, :collection => 1..10%>
     <% end %>
-    <%= f.actions %>
+    <%= f.actions do %>
+      <%= f.action(:submit) %>
+      <%= f.action(:cancel) %>
+    <% end %>
 <% end %>

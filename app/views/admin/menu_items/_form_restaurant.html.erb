@@ -6,7 +6,10 @@
         <%= f.input :name %>
         <%= f.input :price, :label => "Prince in pence" %>
         <%= f.input :description %>
-        <%= f.input :is_active %>
+        <%= f.input :is_active, :label => "Active"  %>
     <% end %>
-    <%= f.actions %>
+    <%= f.actions do %>
+      <%= f.action(:submit) %>
+      <%= f.action(:cancel) %>
+    <% end %>
 <% end %>

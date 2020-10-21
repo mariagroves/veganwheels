@@ -3,7 +3,7 @@ class Order < ApplicationRecord
   belongs_to :cart
   belongs_to :restaurant
   has_many :order_items, through: :cart
-  has_one :delivery
+  has_one :delivery, dependent: :destroy
   before_save :set_order_price
   before_save :set_delivery_price
   before_save :set_total_price

@@ -124,7 +124,9 @@ ActiveAdmin.register Restaurant do
         column("Actions") do |section|
           span link_to "View", admin_section_path(section)
           span link_to "Edit", edit_admin_section_path(section)
-          span link_to "Delete", admin_section_path(section), method: :delete
+          if !section.menu_items.present?
+            span link_to "Delete", admin_section_path(section), method: :delete
+          end
         end
       end
     end

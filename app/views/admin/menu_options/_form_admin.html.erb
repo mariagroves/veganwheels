@@ -6,5 +6,8 @@
         <%= f.input :price, :label => "Prince in pence" %>
         <%= f.input :description, :label => "Description (max 50 characters)" %>
     <% end %>
-    <%= f.actions %>
+    <%= f.actions do %>
+      <%= f.action(:submit) %>
+      <%= f.action(:cancel) %>
+    <% end %>
 <% end %>

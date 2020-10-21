@@ -3,7 +3,7 @@ class RiderUser < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :deliveries
+  has_many :deliveries, dependent: :restrict_with_error
   validate :rider_is_active
 
   def name

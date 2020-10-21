@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates :street_address, presence: true 
   validates :city, presence: true 
   validates :postcode, presence: true 
-  has_many :orders
+  has_many :orders, dependent: :destroy
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 

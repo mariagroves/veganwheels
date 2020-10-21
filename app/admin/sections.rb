@@ -22,7 +22,9 @@ ActiveAdmin.register Section do
         column("Actions") do |item|
           span link_to "View", admin_menu_item_path(item)
           span link_to "Edit", edit_admin_menu_item_path(item)
-          span link_to "Delete", admin_menu_item_path(item), method: :delete
+          if !item.order_items.present?
+            span link_to "Delete", admin_menu_item_path(item), method: :delete
+          end
         end
       end
     end

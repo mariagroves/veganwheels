@@ -12,7 +12,7 @@ ActiveAdmin.register MenuItem do
       number_to_currency(to_pounds(item.price), unit: "£")
     end
     column :description
-    column :is_active
+    column "Active", :is_active
     column :restaurant if current_admin_user.role == 'admin'
     column "Menu section", :section
     actions
@@ -40,7 +40,9 @@ ActiveAdmin.register MenuItem do
         column("Actions") do |side|
           span link_to "View", admin_menu_option_path(side)
           span link_to "Edit", edit_admin_menu_option_path(side)
-          span link_to "Delete", admin_menu_option_path(side), method: :delete
+          if !side.order_item_options.present?
+            span link_to "Delete", admin_menu_option_path(side), method: :delete
+          end
         end
       end
     end
