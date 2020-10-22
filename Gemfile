@@ -2,11 +2,10 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.6'
-
+# Generates data for seed
 gem 'faker'
 # Nice styling for DB in console
 gem 'pry'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'
 # Use postgresql as the database for Active Record
@@ -17,19 +16,24 @@ gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 4.0'
-
-gem 'dotenv-rails', groups: [:development, :test]
+# Images
 gem 'cloudinary'
+# Administration framework
 gem 'activeadmin'
+# Theme for ActiveAdmin
+gem 'arctic_admin'
+# Authorizations
 gem 'cancancan'
+# Payment
 gem 'stripe'
 gem 'stripe_event'
-gem 'arctic_admin'
+# SMS
 gem 'twilio-ruby'
+# Background processing
 gem 'sidekiq'
 gem 'sidekiq-failures'
+# Cron jobs in development
 gem 'whenever', require: false
-
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
@@ -49,6 +53,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'dotenv-rails'
 end
 
 group :development do
@@ -59,6 +64,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'bullet'
+  gem 'letter_opener'
 end
 
 group :test do

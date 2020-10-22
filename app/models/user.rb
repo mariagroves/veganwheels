@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates :city, presence: true 
   validates :postcode, presence: true 
   has_many :orders, dependent: :destroy
+  after_create :send_welcome_email
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -18,5 +19,11 @@ class User < ApplicationRecord
   def address
     address = [street_address, city, county, postcode, country].reject { |e| e.to_s.empty? }
     address.join(', ')
+  end
+
+  private
+
+  def send_welcome_email
+    MailWorker.perform_async(self.id)
   end
 end

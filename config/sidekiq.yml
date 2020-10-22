@@ -1,8 +1,10 @@
-:concurrency: 3
-:timeout: 60
+:concurrency: 2
+:timeout: 8
 :verbose: true
 :queues:
-# Queue priority: 
-# https://github.com/mperham/sidekiq/wiki/Advanced-Options
-  - default
+  - critical
   - mailers
+  - default
+  - active_storage_analysis
+  - active_storage_purge
+  - low
