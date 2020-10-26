@@ -1,0 +1,14 @@
+<style>
+body {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.5;
+}
+</style>
+
+<h3>Hello <%=@user.first_name%></h3>
+
+<p>Your order <%=@order.id%> from <%=@order.restaurant.name%> has been refunded.</p>
+
+<p>You can see the details of this order on your <%= link_to 'dashboard', dashboard_index_url%>.</p> 

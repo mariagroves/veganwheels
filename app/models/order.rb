@@ -15,11 +15,6 @@ class Order < ApplicationRecord
   # user can't checkout with the same cart multiple times
   validates :cart, uniqueness: {scope: :user}, on: :create
 
-  #  this is a hotfix for ActiveAdmin has_one delivery / belongs_to order issue
-  # def deliveries
-  #   Delivery.where(order_id: id)
-  #  end
-
   def self.delete_expired_orders
     Order.where('created_at <= ?', Time.now - 10.hours).where(state: 'pending').each do |order|
       OrderWorker.perform_async(order.id)

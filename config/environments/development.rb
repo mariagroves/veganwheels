@@ -4,7 +4,7 @@ Rails.application.configure do
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
-  config.hosts << "700eb9baa99c.ngrok.io"
+  config.hosts << "c0fad2ef8de2.ngrok.io"
 
   # N + 1 logging
   config.after_initialize do

@@ -1,4 +1,4 @@
-class MailWorker
+class WelcomeEmailWorker
   include Sidekiq::Worker
   sidekiq_options queue: 'mailers'
 

@@ -24,6 +24,6 @@ class User < ApplicationRecord
   private
 
   def send_welcome_email
-    MailWorker.perform_async(self.id)
+    WelcomeEmailWorker.perform_async(self.id)
   end
 end
