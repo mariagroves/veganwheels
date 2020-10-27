@@ -43,6 +43,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'simple_form'
 gem 'geocoder'
 gem 'devise'
+gem 'telephone_number'
+gem 'strong_password', '~> 0.0.8'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -66,6 +68,7 @@ group :development do
   gem 'bullet'
   gem 'letter_opener'
   gem 'better_errors'
+  gem "binding_of_caller"
   gem 'brakeman'
 end
 

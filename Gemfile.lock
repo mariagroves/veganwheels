@@ -83,6 +83,8 @@ GEM
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
     bindex (0.8.1)
+    binding_of_caller (0.8.0)
+      debug_inspector (>= 0.0.1)
     bootsnap (1.4.9)
       msgpack (~> 1.0)
     brakeman (4.10.0)
@@ -109,6 +111,7 @@ GEM
     concurrent-ruby (1.1.7)
     connection_pool (2.2.3)
     crass (1.0.6)
+    debug_inspector (0.0.3)
     devise (4.7.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -305,6 +308,8 @@ GEM
     stripe_event (2.3.1)
       activesupport (>= 3.1)
       stripe (>= 2.8, < 6)
+    strong_password (0.0.9)
+    telephone_number (1.4.9)
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -349,6 +354,7 @@ DEPENDENCIES
   activeadmin
   arctic_admin
   better_errors
+  binding_of_caller
   bootsnap (>= 1.4.2)
   brakeman
   bullet
@@ -376,6 +382,8 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   stripe
   stripe_event
+  strong_password (~> 0.0.8)
+  telephone_number
   twilio-ruby
   tzinfo-data
   web-console (>= 3.3.0)

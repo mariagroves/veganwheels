@@ -4,8 +4,11 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :phone, presence: true
+  validates :phone, telephone_number: {country: :GB, types: [:mobile]}
+  validates :password, password_strength: {min_entropy: 10}
   validates :street_address, presence: true 
   validates :city, presence: true 
+  validate :location_is_glasgow
   validates :postcode, presence: true 
   has_many :orders, dependent: :destroy
   after_create :send_welcome_email
@@ -19,6 +22,12 @@ class User < ApplicationRecord
   def address
     address = [street_address, city, county, postcode, country].reject { |e| e.to_s.empty? }
     address.join(', ')
+  end
+
+  def location_is_glasgow
+    if self.city != "Glasgow"
+      errors.add(:city, "Vegan Wheels is currently only available in Glasgow.")
+    end
   end
 
   private

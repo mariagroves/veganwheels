@@ -17,26 +17,21 @@
                         autofocus: true,
                         label_html: { class: "vwform__field" }%>
             <%= f.input :street_address,
-                        # required: true,
                         autofocus: true,
                         label_html: { class: "vwform__field" }%>
             <%= f.input :city,
-                        # required: true,
                         autofocus: true,
                         label_html: { class: "vwform__field" }%>
             <%= f.input :county,
-                        # required: true,
                         autofocus: true,
                         label_html: { class: "vwform__field" }%>
             <%= f.input :postcode,
-                        # required: true,
                         autofocus: true,
                         label_html: { class: "vwform__field" }%>
             <%= f.input :phone,
-                        # as: :integer,
                         required: true,
                         autofocus: true,
-                        error: "Please enter a valid UK phone number.",
+                        error: "Please enter a valid UK mobile phone number.",
                         label: "Mobile phone",
                         label_html: { class: "vwform__field" }%>
             <%= f.input :email,
@@ -45,12 +40,10 @@
                         input_html: { autocomplete: "email" },
                         label_html: { class: "vwform__field" }%>
             <%= f.input :password,
-                        # required: true,
                         hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                         input_html: { autocomplete: "new-password"},
                         label_html: { class: "vwform__field" }%>
             <%= f.input :password_confirmation,
-                        # required: true,
                         input_html: { autocomplete: "new-password"},
                         label_html: { class: "vwform__field" }%>
           </div>
