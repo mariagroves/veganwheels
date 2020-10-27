@@ -60,8 +60,7 @@ class OrdersController < ApplicationController
              ::Stripe::StripeError,                 # generic error
              ::ActiveRecord::ActiveRecordError => e # something broke saving our records
 
-        # email dev about error
-        puts e
+        ExceptionNotifier.notify_exception(e, env: request.env)
         order.destroy
         redirect_to error_path
       end

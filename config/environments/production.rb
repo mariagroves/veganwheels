@@ -63,6 +63,12 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: "veganwheels.herokuapp.com" }
   config.action_mailer.perform_caching = false
 
+  config.middleware.use ExceptionNotification::Rack,
+    email: {
+      email_prefix: '[ERROR] ',
+      sender_address: %{"notifier" <donotreply.veganwheels@gmail.com>},
+      exception_recipients: %w{veganwheels.dev@gmail.com}
+    }
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false

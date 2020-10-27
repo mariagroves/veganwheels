@@ -125,6 +125,9 @@ GEM
       dotenv (= 2.7.6)
       railties (>= 3.2)
     erubi (1.9.0)
+    exception_notification (4.4.3)
+      actionmailer (>= 4.0, < 7)
+      activesupport (>= 4.0, < 7)
     faker (2.14.0)
       i18n (>= 1.6, < 2)
     faraday (1.1.0)
@@ -364,6 +367,7 @@ DEPENDENCIES
   cloudinary
   devise
   dotenv-rails
+  exception_notification
   faker
   geocoder
   jbuilder (~> 2.7)

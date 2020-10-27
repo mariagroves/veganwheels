@@ -45,6 +45,7 @@ gem 'geocoder'
 gem 'devise'
 gem 'telephone_number'
 gem 'strong_password', '~> 0.0.8'
+gem 'exception_notification'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

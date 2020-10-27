@@ -80,8 +80,7 @@ ActiveAdmin.register Restaurant do
             ::Stripe::StripeError,                 # generic error
             ::ActiveRecord::ActiveRecordError => e # something broke saving our records
 
-        # email dev about error
-      puts e
+      ExceptionNotifier.notify_exception(e, env: request.env)
       flash[:error] = "Unfortunately, something has gone wrong. Our team has been notified. Please try again later and get in touch if the issue persists."
       redirect_to admin_dashboard_path
     end
