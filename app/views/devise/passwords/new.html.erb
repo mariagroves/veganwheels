@@ -1,18 +1,40 @@
-<h2>Forgot your password?</h2>
+<style>
+body {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.5;
+}
+</style>
 
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
+<div class="container white-content-box">
+  <div class="row">
+    <div class="col-12">      
+      <%= link_to :back do%>
+        <p class="uppercase dashboard__box--link">
+        <i class="fas fa-chevron-left"></i>
+        Back</p>
+      <%end%>
+      <div class="vwform mx-auto">
+        <h1 class="vwform__heading">Forgot your password?</h1>
+        <p class="mt-4 mb-4">Enter your email and we will send you instructions to reset your password.</p>
 
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
+          <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+            <%= f.error_notification %>
+
+            <div class="form-inputs">
+              <%= f.input :email,
+                          required: true,
+                          autofocus: true,
+                          input_html: { autocomplete: "email" },
+                          label_html: { class: "vwform__field" }%>
+            </div>
+
+            <div class="form-actions">
+              <%= f.button :submit, "Reset password", class: "button__fill button__fill--sgreen" %>
+            </div>
+          <% end %>
+      </div>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

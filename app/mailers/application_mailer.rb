@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'veganwheels.dev@gmail.com'
+  default from: 'donotreply.veganwheels@gmail.com'
   layout 'mailer'
 end
