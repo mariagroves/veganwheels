@@ -2,6 +2,7 @@ class OrderItemsController < ApplicationController
     before_action :set_menu_item, only: [ :new, :create ]
     before_action :raise_pending_error, only: [:create]
     before_action :raise_closed_error, only: [:create]
+    before_action :raise_location_error, only: [:create]
     skip_before_action :authenticate_user!, only: [:new, :create, :destroy]
 
     def new
@@ -58,6 +59,17 @@ class OrderItemsController < ApplicationController
 
         if restaurant.is_currently_closed?
             render 'order_items/closed_restaurant_error'
+            return
+        end
+    end
+
+    def raise_location_error
+        restaurant = MenuItem.find(params[:menu_item_id]).restaurant
+
+        distance = restaurant.distance_from(Geocoder.search(current_user.address).first.coordinates, :km)
+
+        if distance > 5 
+            render 'order_items/location_error'
             return
         end
     end
