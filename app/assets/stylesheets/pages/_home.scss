@@ -28,7 +28,7 @@
 .features {
     height: 100vh;
     width: 100%;
-    background-color: $color-white;
+    background-color: $color-light-grey;
 
     @include respond(tab-land) {
         height: auto;
@@ -57,7 +57,6 @@
     &__text {
         margin-bottom: 4rem;
         width: 35rem;
-
         &:last-child {
             margin-top: -2rem;
         }
@@ -65,198 +64,45 @@
 }
 
 .about {
+    height: 100vh;
+    width: 100%;
+    background-color: $color-primary-medium;
 
-    &__main {
+    &__content {
+        display: flex;
+        flex-direction: row;
+    }
+
+    &__image {
+        width: 50%;
         height: 100vh;
-        width: 100%;
-        position: relative;
-        background-color: $color-primary-medium;
-        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
 
-        @include respond(tab-port) {
+        img {
+            max-width: 100%;
             height: auto;
-        }
-
-        &::before {
-            content: ' ';
-            background-image: url(asset_path('Lightbulb.png'));
-            background-size: cover;
-            opacity: 0.2;
-            display: block;
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-
-            @include respond(tab-port){
-                content: none;
-            }
         }
     }
 
-    &__cta {
-        height: 12vh;
-        width: 100%;
-        background-color: $color-black;
-        position: relative;
 
-        @include respond(tab-port) {
-            background-color: $color-yellow-dark;
-            height: 25rem;
+    &__box {
+            width: 50%;
+            height: 100vh;
+            padding: 5rem;
             display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        &--footer {            
-            display: none;
-            @include respond(tab-port) {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-            h1 {
-                color: $color-primary-dark;
-            }
-        }
-
-        &--shape {
-            position: absolute;
-            z-index: 8;
-            top: -11rem;
-            left: 37rem;
-            border-radius: 57% 43% 59% 41% / 63% 50% 50% 37%;
-            background-color: $color-yellow-dark;
-            height: 34vh;
-            width: 45%;
-            display: flex;
-            justify-content: center;
-            align-items:center;
             flex-direction: column;
-            padding-top: 4rem;
-            
-            @include respond(tab-port) {
-                display: none;
-            }
-
-            h1 {
-                color: $color-primary-dark;
-            }
-        }
-    }
-
-    &__text-box {
-        width: 72rem;
-        height: 45rem;
-        padding-left: 10rem;
-        padding-right: 10rem;
-        padding-top: 5rem;
-
-        @include respond(tab-port){
-            width: auto;
-            height: auto;
-            padding-right: 0 5rem 0 5rem;
-        }
-
-        @include respond(large-phone){
-            width: auto;
-            height: auto;
-            padding: 0 2rem 0 2rem;
-        }
+            justify-content: center;
 
         h1 {
-            color: $color-primary-dark;
-            margin-top: 4.5rem;
+            color: $color-yellow-dark;
         }
     }
 
-    &__shape {
-        &--photo {
-            z-index: 6;
-            position: absolute;
-            top: 13vh;
-            left: 28rem;
-            height: 20rem;
-            width: 20rem;
-            border-radius: 50%;
-            background-image: url(asset_path('sheep.jpg'));
-            background-size: cover;
-            transform: rotate(355deg);
-            @include respond(tab-port){
-                display: none;
-            }
-        }
-
-        &--yellow {
-            z-index: 4;
-            position: absolute;
-            top: 8vh;
-            left: 25rem;
-            border-radius: 29% 71% 57% 43% / 63% 70% 30% 37%;
-            background-color: $color-yellow-dark;
-            height: 25rem;
-            width: 25rem;
-            @include respond(tab-port){
-                display: none;
-            }
-        }
-
-        &--big {
-            z-index: 5;
-            position: absolute;
-            bottom: -20rem;
-            left: 35rem;
-            border-radius: 81% 19% 81% 19% / 31% 17% 83% 69%;
-            background-color: $color-primary-light;
-            height: 100rem;
-            width: 58%;
-
-            @include respond(tab-port){
-                position: unset;
-                display: block;
-                width: 100%;
-                height: auto;
-                padding: 4rem;
-                border-radius: 48% 52% 62% 38% / 51% 67% 33% 49%;
-            }
-
-            @include respond(large-phone){
-                position: unset;
-                display: block;
-                width: 100%;
-                height: auto;
-                border-radius: 0;
-                padding: 2rem;
-            }
-        }
-
-        &--medium {
-            z-index: 5;
-            position: absolute;
-            top: 30vh;
-            right: -15rem;
-            border-radius: 100% 0% 57% 43% / 27% 48% 52% 73%;
-            background-color: $color-primary-light;
-            height: 40vh;
-            width: 20%;
-            @include respond(large-phone){
-                display: none;
-            }
-        }
-
-        &--small {
-            z-index: 5;
-            position: absolute;
-            bottom: -8rem;
-            left: -7rem;
-            border-radius: 48% 52% 16% 84% / 31% 48% 52% 69%;
-            background-color: $color-primary-light;
-            height: 30vh;
-            width: 20%;
-            @include respond(large-phone){
-                display: none;
-            }
-        }
+    &__text {
+        margin-top: 1rem;
+        text-align: justify;
     }
 }

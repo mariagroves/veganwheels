@@ -3,9 +3,9 @@
         <div class="row hero__content">
             <div class="col-12 order-2 col-xl-7 order-xl-1">
                 <div class="hero__text-box">
-                    <h1>Vegan Wheels is a vegan food delivery service in Glasgow</h1> 
+                    <h1>Welcome to Vegan Wheels, a Glasgow-based food delivery service</h1> 
 
-                    <h2 class="margin-medium"> We want to make it as easy as possible to eat delicious vegan food.</h2>  
+                    <h2 class="margin-medium"> We are a cooperative with a passion for protecting animals. We connect some of Glasgow’s best vegan restaurants and cafes with a quick and efficient delivery service. All our profits are donated to an animal charity chosen by our members.</h2>  
                 
                     <h2 class="margin-medium">With Vegan Wheels you can order from the best local restaurants and be confident that none of your money goes to businesses that use animal products.</h2>
                 </div>
@@ -46,18 +46,18 @@
 <div class="features">
     <div class="container">
         <div class="row">
-            <h1 class="margin-large text-justify text-center">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus magna adipiscing suspendisse diam. Convallis mi.
+            <h1 class="margin-large text-justify text-center mx-auto">
+            A new platform for Glasgow's vegan community
             </h1>
         </div>
         <div class="row">
             <div class="col-12 col-lg-4 features__images">
                 <div class="features__images--box">
-                    <%= image_tag "HP Group 1.png" %>
+                    <%= image_tag "HP Group 3.png" %>
                 </div>
                 <div class="features__text">
-                    <h2 class="subheading text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
-                    <h3 class="text-justify text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet praesent non auctor.</h3>
+                    <h2 class="text-center font-weight-bold">More than a delivery service</h2>
+                    <h3 class="text-justify">We not only aim to provide an amazing delivery service, but also a platform for Glasgow’s vegan community to communicate and share ideas that will help the vegan movement grow and improve the quality of life for animals.</h3>
                 </div>
             </div>
             <div class="col-12 col-lg-4 features__images">
@@ -65,17 +65,17 @@
                    <%= image_tag "HP Group 2.png" %>
                 </div>
                 <div class="features__text">
-                    <h2 class="subheading text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
-                    <h3 class="text-justify text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet praesent non auctor.</h3>
+                    <h2 class="text-center font-weight-bold mt-4">Easy to join and use</h2>
+                    <h3 class="text-justify">When you sign up we ask for some key information, such as your email, mobile number and address. None of your information will be shared with anyone outside of Vegan Wheels. We strongly believe in data privacy.</h3>
                 </div>
             </div>
             <div class="col-12 col-lg-4 features__images">
                 <div class="features__images--box">
-                   <%= image_tag "HP Group 3.png" %>
+                   <%= image_tag "HP Group 1.png" %>
                 </div>
                 <div class="features__text">
-                    <h2 class="subheading text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h2>
-                    <h3 class="text-justify text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet praesent non auctor.</h3>
+                    <h2 class="text-center font-weight-bold mt-4">Eat well, feel good</h2>
+                    <h3 class="text-justify">By signing up for our platform you will be able to order from vegan restaurants based in Glasgow that are not usually available for home delivery. And you will be helping to improve animal welfare at the same time.</h3>
                 </div>
             </div>
         </div>
@@ -89,13 +89,15 @@
 </div>
 <div id="about-section">
     <div class="about">
-        <div class="about__main">
-            <div class="container">
-                <div class="about__shape--photo"></div>
-                <div class="about__shape--yellow"></div>
-                <div class="about__shape--big">
-                    <div class="about__text-box container">
-                        <h1 class="margin-large text-justify text-center">Lorem ipsum dolor sit amet.</h1>
+        <div class="about__content container">
+            <div class="about__image">
+                <%= image_tag "Together.png" %>
+            </div>
+            <div class="about__box container">
+                
+                    <h1 class="text-justify text-center">About us</h1>
+
+                    <div class="about__text">
                         <h3 class="paragraph">Sollicitudin augue lobortis sem volutpat diam amet sit malesuada. Habitasse volutpat feugiat lobortis rhoncus elit ac aliquam. Vulputate tincidunt lacus tempus tempor nibh sit. Ut pellentesque mattis senectus non. Sapien in gravida tincidunt nisi, ullamcorper. Amet tellus a orci, cras orci. Hac pellentesque lacus senectus sed ut. Ullamcorper iaculis nullam quis enim cursus urna ultrices adipiscing.</h3>
 
                         <h3 class="paragraph">Nam non integer nunc, eget laoreet diam condimentum. Dictum elementum ut faucibus odio eget. Eget sed imperdiet mauris, habitant. Turpis sit lorem cras enim et netus etiam. Nullam scelerisque congue sed adipiscing id arcu nibh adipiscing.</h3> 
@@ -103,25 +105,11 @@
                         <h3 class="paragraph">Nam non integer nunc, eget laoreet diam condimentum. Dictum elementum ut faucibus odio eget. Eget sed imperdiet mauris, habitant.</h3> 
                         
                         <h3 class="paragraph">Consectetur tristique sed in tortor mauris morbi ante sed.</h3>
+
+                        <%= link_to "Join Us", new_user_session_path, class: "button__fill button__fill--bgreenl mx-auto"%>
                     </div>
-                </div>
-                <div class="about__shape--medium"></div>  
-                <div class="about__shape--small"></div>
-            </div>
-        </div>
-        <div class="about__cta">
-            <div class="about__cta--footer">
-                    <h1>Get started with Vegan Wheels</h1>
-                    <div class="button-big uppercase">
-                        <a href="#">Sign up</a>
-                    </div>
-            </div>
-            <div class="about__cta--shape">
-                    <h1>Get started with Vegan Wheels</h1>
-                    <div class="button button--big">
-                        <a href="#">Sign up</a>
-                    </div>
-            </div>
+               
+            </div>         
         </div>
     </div>
     <%= render 'partials/modal_cart_bg'%>

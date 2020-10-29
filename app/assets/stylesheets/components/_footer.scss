@@ -1,9 +1,12 @@
 .footer {
     flex-shrink: 0;
-    height: 25rem;
+    height: 30rem;
     width: 100%;
-    background-color: $color-black;
-    padding-top: 9rem;
+    background-color:  $color-light-grey;
+    color: $color-black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     @include respond(tab-port) {
         height: auto;
@@ -12,12 +15,12 @@
 
     [class^="col-"] {
         &:not(:last-child) {
-            border-right: 1px solid $color-yellow-dark;
+            border-right: 1px solid $color-black;
             height: auto; 
 
             @include respond(tab-port) {
                 border-right: none;
-                border-bottom: 1px solid $color-yellow-dark;
+                border-bottom: 1px solid $color-black;
             }
         }
         @include respond(tab-port) {
@@ -28,7 +31,6 @@
     &__column {
         display: flex;
         justify-content: center;
-        color: $color-yellow-dark;
 
         .title {
             font-weight: 600;
@@ -60,14 +62,14 @@
     a {
         &:link,
         &:visited {
-            color: $color-yellow-dark;
+            color: $color-black;;
             font-weight: 600;
             text-transform: uppercase;
         }
 
         &:hover {
             text-decoration: none;
-            color: $color-primary-light;
+            color: $color-primary-dark;
         }
     }
 }

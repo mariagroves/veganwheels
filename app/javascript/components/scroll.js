@@ -2,7 +2,6 @@
   const buttonHero = document.querySelector('.scroll-hero');
   const buttonFeatures = document.querySelector('.scroll-features');
   buttonHero.addEventListener('click', (event) => {
-    console.log("hello!");
     document.querySelector('.features').scrollIntoView({ 
       behavior: 'smooth' 
     });
@@ -13,11 +12,3 @@
     });
   }); 
 };
-
-
-
-
-// this function runs when the DOM is ready, i.e. when the document has been parsed
-// document.addEventListener("DOMContentLoaded", function() { 
- 
-// });

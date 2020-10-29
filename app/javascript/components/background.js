@@ -1,4 +1,4 @@
-if (window.location.pathname == "/restaurants" || "/restaurants/") {
+if (window.location.pathname == "/") {
     const content = document.querySelector(".content");
-    content.classList.add("background");
+    content.classList.remove("background");
   };
