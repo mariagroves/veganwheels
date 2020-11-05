@@ -64,9 +64,9 @@ puts "finished creating business information"
 
 puts "creating users"
 
-User.create(email: "mariagrovesh@gmail.com", password: 12345678, phone: "01234567890", first_name: "Maria", last_name: "Groves", street_address: "12 Rose Street", city: "Glasgow", postcode: "G3 6RB")
+User.create(email: "mariagrovesh@gmail.com", password: 12345678, phone: "+44595910074", first_name: "Maria", last_name: "Groves", street_address: "12 Rose Street", city: "Glasgow", postcode: "G3 6RB")
 
-User.create(email: "andy@email.com", password: 12345678, phone: "01234567890", first_name: "Andy", last_name: "Yeung", street_address: "12 High Street", city: "Glasgow", postcode: "G3 6RB")
+User.create(email: "andy@email.com", password: 12345678, phone: "+447941520562", first_name: "Andy", last_name: "Yeung", street_address: "12 High Street", city: "Glasgow", postcode: "G3 6RB")
 
 puts "finished creating users"
 
