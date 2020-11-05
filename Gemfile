@@ -47,6 +47,7 @@ gem 'telephone_number'
 gem 'strong_password', '~> 0.0.8'
 gem 'exception_notification'
 gem 'activeadmin_quill_editor'
+gem 'mail_form'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

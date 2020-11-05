@@ -2,11 +2,12 @@
     flex-shrink: 0;
     height: 30rem;
     width: 100%;
-    background-color:  $color-light-grey;
+    background-color:  $color-primary-medium;
     color: $color-black;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-top: 2px solid $color-black;
 
     @include respond(tab-port) {
         height: auto;
@@ -15,12 +16,12 @@
 
     [class^="col-"] {
         &:not(:last-child) {
-            border-right: 1px solid $color-black;
+            border-right: 2px solid $color-black;
             height: auto; 
 
             @include respond(tab-port) {
                 border-right: none;
-                border-bottom: 1px solid $color-black;
+                border-bottom: 2px solid $color-black;
             }
         }
         @include respond(tab-port) {
@@ -73,7 +74,7 @@
 
         &:hover {
             text-decoration: none;
-            color: $color-primary-dark;
+            color: white;
         }
     }
 }
