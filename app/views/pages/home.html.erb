@@ -1,10 +1,11 @@
 <div class="hero">
-    <div class="container">
+    <div class="container">    
         <% flash.each do |type, msg| %>
-      <div class="alert alert-info">
-        <%= msg %>
-      </div>
-    <% end %>
+            <div class="alert alert-info">
+                <%= msg %>
+            </div>
+        <% end %>
+        
         <div class="row hero__content">
             <div class="col-12 order-2 col-xl-7 order-xl-1">
                 <div class="hero__text-box">

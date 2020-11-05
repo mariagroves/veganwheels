@@ -10,7 +10,6 @@ class OrdersController < ApplicationController
             payment_method_types: ['card'],
             line_items: [{
               name: "Order #{order.id} from #{order.restaurant.name}",
-              # images: [order.restaurant.photo],
               description: 'Thank you for ordering with Vegan Wheels!',
               amount: order.total_price,
               currency: 'gbp',
@@ -27,7 +26,6 @@ class OrdersController < ApplicationController
         order.update(checkout_session_id: stripe_session.id)
         redirect_to new_order_payment_path(order)
         session[:cart_id] = nil
-        # OrderWorker.perform_at(10.minutes.from_now, order.id)
       end
     end
 
@@ -37,12 +35,6 @@ class OrdersController < ApplicationController
 
     def destroy
         @order = current_user.orders.find(params[:id])
-
-        # queue = Sidekiq::ScheduledSet.new
-        # queue.each do |job|
-        #   job.delete if (job.klass == 'OrderWorker' && job.args.first == @order.id)
-        # end
-
         @order.destroy
         redirect_to restaurant_path(@order.restaurant)
     end
