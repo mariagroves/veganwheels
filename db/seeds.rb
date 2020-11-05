@@ -9,6 +9,8 @@ require 'time'
 require 'faker'
 
 puts "destroying seed"
+Delivery.destroy_all
+RiderUser.destroy_all
 OrderItemOption.destroy_all
 OrderItem.destroy_all
 Order.destroy_all
@@ -25,19 +27,26 @@ puts "finished destroying seed"
 
 puts "creating admins"
 
-admin1 = AdminUser.create(email: "mono@email.com", password: 123456, role: "restaurant")
-admin2 = AdminUser.create(email: "13thnote@email.com", password: 123456, role: "restaurant")
-admin3 = AdminUser.create(email: "vandv@email.com", password: 123456, role: "restaurant")
-admin4 = AdminUser.create(email: "flyingduck@email.com", password: 123456, role: "restaurant")
-admin5 = AdminUser.create(email: "glasvegan@email.com", password: 123456, role: "restaurant")
-admin6 = AdminUser.create(email: "stereo@email.com", password: 123456, role: "restaurant")
-admin7 = AdminUser.create(email: "78@email.com", password: 123456, role: "restaurant")
-admin8 = AdminUser.create(email: "serenitynow@email.com", password: 123456, role: "restaurant")
-admin9 = AdminUser.create(email: "picnic@email.com", password: 123456, role: "restaurant")
-admin10 = AdminUser.create(email: "soulkitchen@email.com", password: 123456, role: "restaurant")
-AdminUser.create(email: "admin@email.com", password: 123456, role: "admin")
+admin1 = AdminUser.create(email: "mono@email.com", password: 12345678, role: "restaurant")
+admin2 = AdminUser.create(email: "13thnote@email.com", password: 12345678, role: "restaurant")
+admin3 = AdminUser.create(email: "vandv@email.com", password: 12345678, role: "restaurant")
+admin4 = AdminUser.create(email: "flyingduck@email.com", password: 12345678, role: "restaurant")
+admin5 = AdminUser.create(email: "glasvegan@email.com", password: 12345678, role: "restaurant")
+admin6 = AdminUser.create(email: "stereo@email.com", password: 12345678, role: "restaurant")
+admin7 = AdminUser.create(email: "78@email.com", password: 12345678, role: "restaurant")
+admin8 = AdminUser.create(email: "serenitynow@email.com", password: 12345678, role: "restaurant")
+admin9 = AdminUser.create(email: "picnic@email.com", password: 12345678, role: "restaurant")
+admin10 = AdminUser.create(email: "soulkitchen@email.com", password: 12345678, role: "restaurant")
+AdminUser.create(email: "admin@email.com", password: 12345678, role: "admin")
 
 puts "finished creating admins"
+
+puts "creating riders"
+
+RiderUser.create(email: "andy@email.com", password: 12345678, first_name: "Andy", last_name: "Yeung", phone: "+447941520562")
+RiderUser.create(email: "maria@email.com", password: 12345678, first_name: "Maria", last_name: "Groves", phone: "+447595910074")
+
+puts "finished creating riders"
 
 puts "creating business information"
 
@@ -55,9 +64,9 @@ puts "finished creating business information"
 
 puts "creating users"
 
-User.create(email: "maria@email.com", password: 123456, phone: "01234567890", first_name: "Maria", last_name: "Groves", street_address: "12 Rose Street", city: "Glasgow", postcode: "G3 6RB")
+User.create(email: "mariagrovesh@gmail.com", password: 12345678, phone: "01234567890", first_name: "Maria", last_name: "Groves", street_address: "12 Rose Street", city: "Glasgow", postcode: "G3 6RB")
 
-User.create(email: "andy@email.com", password: 123456, phone: "01234567890", first_name: "Andy", last_name: "Yeung", street_address: "12 High Street", city: "Glasgow", postcode: "G3 6RB")
+User.create(email: "andy@email.com", password: 12345678, phone: "01234567890", first_name: "Andy", last_name: "Yeung", street_address: "12 High Street", city: "Glasgow", postcode: "G3 6RB")
 
 puts "finished creating users"
 
@@ -88,7 +97,8 @@ restaurant1 = Restaurant.create(
     email: "mono@email.com",
     imagekey: 1,
     website: "http://www.monocafebar.com/",
-    admin_user: admin1
+    admin_user: admin1,
+    is_published: true
 )
 
 restaurant2 = Restaurant.create(
@@ -115,7 +125,8 @@ restaurant2 = Restaurant.create(
     email: "13thnote@email.com",
     imagekey: 2,
     website: "http://13thnote.co.uk/",
-    admin_user: admin2
+    admin_user: admin2,
+    is_published: true
 )
 
 restaurant3 = Restaurant.create(
@@ -142,7 +153,8 @@ restaurant3 = Restaurant.create(
     email: "vandv@email.com",
     imagekey: 3,
     website: "https://www.facebook.com/thevandvcafe/",
-    admin_user: admin3
+    admin_user: admin3,
+    is_published: true
 )
 
 restaurant4 = Restaurant.create(
@@ -169,7 +181,8 @@ restaurant4 = Restaurant.create(
     email: "flyingduck@email.com",
     imagekey: 4,
     website: "https://www.theflyingduck.org/",
-    admin_user: admin4
+    admin_user: admin4,
+    is_published: true
 )
 
 restaurant5 = Restaurant.create(
@@ -192,11 +205,12 @@ restaurant5 = Restaurant.create(
     sunday_opens_at: Time.utc(2000, 1, 1, 00, 00),
     sunday_closes_at: Time.utc(2000, 1, 1, 00, 00),
     about: "100% plant based fast food in the heart of Glasgow. Sustainable and vegan, so you know you can treat yourself guilt-free!",
-    phone: '01412263075',
+    phone: '+447595910074',
     email: "glasvegan@email.com",
     imagekey: 1,
     website: "https://www.facebook.com/theglasvegan/",
-    admin_user: admin5
+    admin_user: admin5,
+    is_published: true
 )
 
 restaurant6 = Restaurant.create(
@@ -223,7 +237,8 @@ restaurant6 = Restaurant.create(
     email: "stereo@email.com",
     imagekey: 2,
     website: "https://www.stereocafebar.com/",
-    admin_user: admin6
+    admin_user: admin6,
+    is_published: true
 )
 
 restaurant7 = Restaurant.create(
@@ -250,7 +265,8 @@ restaurant7 = Restaurant.create(
     email: "78@email.com",
     imagekey: 3,
     website: "https://www.the78barandkitchen.com/",
-    admin_user: admin7
+    admin_user: admin7,
+    is_published: true
 )
 
 restaurant8 = Restaurant.create(
@@ -277,7 +293,8 @@ restaurant8 = Restaurant.create(
     email: "serenitynow@email.com",
     imagekey: 4,
     website: "https://www.serenitynowcafe.com/",
-    admin_user: admin8
+    admin_user: admin8,
+    is_published: true
 )
 
 restaurant9 = Restaurant.create(
@@ -304,7 +321,8 @@ restaurant9 = Restaurant.create(
     email: "picnic@email.com",
     imagekey: 1,
     website: "http://picnic-cafe.co.uk/",
-    admin_user: admin9
+    admin_user: admin9,
+    is_published: true
 )
 
 restaurant10 = Restaurant.create(
@@ -331,7 +349,8 @@ restaurant10 = Restaurant.create(
     email: "soulkitchen@email.com",
     imagekey: 2,
     website: "https://www.soulfoodkitchen.co.uk/",
-    admin_user: admin10
+    admin_user: admin10,
+    is_published: true
 )
 
 photo1 = URI.open('https://bigseventravel.com/wp-content/uploads/2019/12/oh.jpg')
