@@ -8,6 +8,7 @@
     "@rails/activestorage": "^6.0.0-alpha",
     "@rails/ujs": "^6.0.0-alpha",
     "@rails/webpacker": "4.2.2",
+    "activeadmin_quill_editor": "blocknotes/activeadmin_quill_editor",
     "arctic_admin": "^3.2.0",
     "bootstrap": "^4.5.2",
     "jquery": "^3.5.1",

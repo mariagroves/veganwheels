@@ -16,10 +16,10 @@
             </div>
             <div class="col-12 col-lg-4 footer__column">
                 <div class="footer__column--box">
-                    <a href="#">FAQs</a>
-                    <a href="#">Terms and Conditions</a>
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Illustrations</a>  
+                    <%=link_to "FAQs", faqs_path%>
+                    <%=link_to "Terms and Conditions", terms_path%>
+                    <%=link_to "Privacy Policy", privacy_path%>
+                    <%=link_to "Illustrations", "https://absurd.design/", target: "_blank"%>
                 </div>
             </div>
             <div class="col-12 col-lg-4 footer__column">
@@ -27,11 +27,11 @@
                     <p class="title">Contact us</p>
                     <div class="email">
                         <i class="fas fa-envelope"></i>
-                        <p>name@name.com</p>
+                        <p><%=Business.first.email%></p>
                     </div>
                     <div class="phone">
                         <i class="fas fa-phone-square-alt"></i>
-                        <p>0123456789</p>
+                        <p><%=Business.first.phone%></p>
                     </div>
                 </div>
             </div>

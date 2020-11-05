@@ -1,0 +1,19 @@
+<div class="container white-content-box">
+  <div class="row">
+    <div class="col-12">
+      <%= link_to :back do%>
+        <p class="uppercase dashboard__box--link">
+        <i class="fas fa-chevron-left"></i>
+        Back</p>
+      <%end%>
+      
+      <div class="text-center">
+        <h1 class="vwform__heading">Privacy Policy</h1>
+      </div>
+      <div class="pr-5 pl-5">
+        <%=raw(Business.first.privacy)%>
+      </div>
+    </div>
+  </div>
+  <%= render 'partials/modal_cart_bg'%>
+</div>

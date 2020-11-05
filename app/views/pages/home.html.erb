@@ -63,7 +63,7 @@
                 </div>
                 <div class="features__text">
                     <h2 class="text-center font-weight-bold">More than a delivery service</h2>
-                    <h3 class="text-justify">We not only aim to provide an amazing delivery service, but also a platform for Glasgow’s vegan community to communicate and share ideas that will help the vegan movement grow and improve the quality of life for animals.</h3>
+                    <p class="text-justify">We not only aim to provide an amazing delivery service, but also a platform for Glasgow’s vegan community to communicate and share ideas that will help the vegan movement grow and improve the quality of life for animals.</p>
                 </div>
             </div>
             <div class="col-12 col-lg-4 features__images">
@@ -71,8 +71,8 @@
                    <%= image_tag "HP Group 2.png" %>
                 </div>
                 <div class="features__text">
-                    <h2 class="text-center font-weight-bold mt-4">Easy to join and use</h2>
-                    <h3 class="text-justify">When you sign up we ask for some key information, such as your email, mobile number and address. None of your information will be shared with anyone outside of Vegan Wheels. We strongly believe in data privacy.</h3>
+                    <h2 class="text-center font-weight-bold features__margin">Easy to join and use</h2>
+                    <p class="text-justify">When you sign up we ask for some key information, such as your email, mobile number and address. None of your information will be shared with anyone outside of Vegan Wheels. We strongly believe in data privacy.</p>
                 </div>
             </div>
             <div class="col-12 col-lg-4 features__images">
@@ -80,8 +80,8 @@
                    <%= image_tag "HP Group 1.png" %>
                 </div>
                 <div class="features__text">
-                    <h2 class="text-center font-weight-bold mt-4">Eat well, feel good</h2>
-                    <h3 class="text-justify">By signing up for our platform you will be able to order from vegan restaurants based in Glasgow that are not usually available for home delivery. And you will be helping to improve animal welfare at the same time.</h3>
+                    <h2 class="text-center font-weight-bold features__margin">Eat well, feel good</h2>
+                    <p class="text-justify">By signing up for our platform you will be able to order from vegan restaurants based in Glasgow that are not usually available for home delivery. And you will be helping to improve animal welfare at the same time.</p>
                 </div>
             </div>
         </div>
@@ -104,13 +104,7 @@
                     <h1 class="text-justify text-center">About us</h1>
 
                     <div class="about__text">
-                        <h3 class="paragraph">Sollicitudin augue lobortis sem volutpat diam amet sit malesuada. Habitasse volutpat feugiat lobortis rhoncus elit ac aliquam. Vulputate tincidunt lacus tempus tempor nibh sit. Ut pellentesque mattis senectus non. Sapien in gravida tincidunt nisi, ullamcorper. Amet tellus a orci, cras orci. Hac pellentesque lacus senectus sed ut. Ullamcorper iaculis nullam quis enim cursus urna ultrices adipiscing.</h3>
-
-                        <h3 class="paragraph">Nam non integer nunc, eget laoreet diam condimentum. Dictum elementum ut faucibus odio eget. Eget sed imperdiet mauris, habitant. Turpis sit lorem cras enim et netus etiam. Nullam scelerisque congue sed adipiscing id arcu nibh adipiscing.</h3> 
-
-                        <h3 class="paragraph">Nam non integer nunc, eget laoreet diam condimentum. Dictum elementum ut faucibus odio eget. Eget sed imperdiet mauris, habitant.</h3> 
-                        
-                        <h3 class="paragraph">Consectetur tristique sed in tortor mauris morbi ante sed.</h3>
+                        <%=raw(Business.first.about)%>
 
                         <%= link_to "Join Us", new_user_registration_path, class: "button__fill button__fill--bgreenl mx-auto"%>
                     </div>

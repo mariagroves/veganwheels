@@ -5,6 +5,7 @@ class Ability
 
   def initialize(user)
     if user.role == 'admin'
+      can :read, ActiveAdmin::Page, name: "Dashboard"
       can :manage, AdminUser
       can :read, Business
       can :create, Business
