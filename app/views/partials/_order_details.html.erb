@@ -51,4 +51,11 @@
         <p class="font-weight-bold">Delivery charge</p>
         <p>£<%=to_pounds(order.delivery_price)%></p>
     </div>
+
+    <%if order.is_assigned && !order.delivery.is_delivered%>
+        <div>
+            <p>Your rider is <%=order.delivery.rider_user.first_name%>.</p>
+            <p>You can contact them on <%=order.delivery.rider_user.phone%></p>
+        </div>
+    <%end%>
 </div>
