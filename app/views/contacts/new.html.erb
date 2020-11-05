@@ -1,0 +1,32 @@
+<div class="container white-content-box">
+  <div class="row">
+    <div class="col-12">
+      <%= link_to :back do%>
+        <p class="uppercase dashboard__box--link">
+        <i class="fas fa-chevron-left"></i>
+        Back</p>
+      <%end%>
+      
+      <div class="text-center">
+        <h1 class="vwform__heading">Join us</h1>
+
+        <p>Are you a plant-based restaurant curious about our platform? Are you interested in working with us as a rider? Drop us an email!</p>
+      </div>
+
+      <div class="vwform-contact mx-auto">
+        <%= simple_form_for @contact, :html => {:class => 'form-horizontal' } do |f| %>
+            <%= f.input :name, :required => true, label_html: { class: "vwform__field" }%>
+            <%= f.input :email, :required => true, label_html: { class: "vwform__field" } %>
+            <%= f.input :message, :as => :text, :required => true, label_html: { class: "vwform__field" } %>
+            <div class= "hidden">
+              <%= f.input :nickname, :hint => 'Leave this field blank!' %>
+            </div>
+            <div>
+              <%= f.button :submit, "Send message", class: "button__fill button__fill--sgreen" %>
+            </div>
+        <% end %>
+      </div>
+      
+    </div>
+  </div>
+</div>

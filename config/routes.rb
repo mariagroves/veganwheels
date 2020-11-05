@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   end
   root to: 'pages#home'
   get 'error', to: 'pages#error'
+  match '/contacts',     to: 'contacts#new',             via: 'get'
+  resources :contacts, only: [:new, :create] 
   resources :menu_items, only: [ :edit, :update, :destroy, :show ] do
     resources :menu_options, only: [ :new, :create ]
     resources :order_items, only: [ :new, :create ]

@@ -1,5 +1,10 @@
 <div class="hero">
     <div class="container">
+        <% flash.each do |type, msg| %>
+      <div class="alert alert-info">
+        <%= msg %>
+      </div>
+    <% end %>
         <div class="row hero__content">
             <div class="col-12 order-2 col-xl-7 order-xl-1">
                 <div class="hero__text-box">
@@ -106,7 +111,7 @@
                         
                         <h3 class="paragraph">Consectetur tristique sed in tortor mauris morbi ante sed.</h3>
 
-                        <%= link_to "Join Us", new_user_session_path, class: "button__fill button__fill--bgreenl mx-auto"%>
+                        <%= link_to "Join Us", new_user_registration_path, class: "button__fill button__fill--bgreenl mx-auto"%>
                     </div>
                
             </div>         
