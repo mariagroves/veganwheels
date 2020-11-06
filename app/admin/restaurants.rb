@@ -41,6 +41,7 @@ ActiveAdmin.register Restaurant do
     end
     column "Published", :is_published
     column "Stripe Account", :is_onboarded
+    column "Stripe Account ID", :stripe_account_id
     actions
   end
 

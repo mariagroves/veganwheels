@@ -27,16 +27,16 @@ puts "finished destroying seed"
 
 puts "creating admins"
 
-admin1 = AdminUser.create(email: "mono@email.com", password: 12345678, role: "restaurant")
-admin2 = AdminUser.create(email: "13thnote@email.com", password: 12345678, role: "restaurant")
-admin3 = AdminUser.create(email: "vandv@email.com", password: 12345678, role: "restaurant")
-admin4 = AdminUser.create(email: "flyingduck@email.com", password: 12345678, role: "restaurant")
-admin5 = AdminUser.create(email: "glasvegan@email.com", password: 12345678, role: "restaurant")
-admin6 = AdminUser.create(email: "stereo@email.com", password: 12345678, role: "restaurant")
-admin7 = AdminUser.create(email: "78@email.com", password: 12345678, role: "restaurant")
-admin8 = AdminUser.create(email: "serenitynow@email.com", password: 12345678, role: "restaurant")
-admin9 = AdminUser.create(email: "picnic@email.com", password: 12345678, role: "restaurant", phone: "+447595910074")
-admin10 = AdminUser.create(email: "soulkitchen@email.com", password: 12345678, role: "restaurant")
+admin1 = AdminUser.create(email: "mono@email.com", password: 12345678, role: "restaurant", phone: "+447595910074")
+admin2 = AdminUser.create(email: "13thnote@email.com", password: 12345678, role: "restaurant", phone: "+447595910074")
+admin3 = AdminUser.create(email: "vandv@email.com", password: 12345678, role: "restaurant", phone: "+447595910074")
+admin4 = AdminUser.create(email: "flyingduck@email.com", password: 12345678, role: "restaurant", phone: "+447595910074")
+admin5 = AdminUser.create(email: "glasvegan@email.com", password: 12345678, role: "restaurant", phone: "+447595910074")
+admin6 = AdminUser.create(email: "stereo@email.com", password: 12345678, role: "restaurant", phone: "+447595910074")
+admin7 = AdminUser.create(email: "78@email.com", password: 12345678, role: "restaurant", phone: "+447595910074")
+admin8 = AdminUser.create(email: "serenitynow@email.com", password: 12345678, role: "restaurant", phone: "+447595910074")
+admin9 = AdminUser.create(email: "picnic@email.com", password: 12345678, role: "restaurant", phone: "+447595910074", phone: "+447595910074")
+admin10 = AdminUser.create(email: "soulkitchen@email.com", password: 12345678, role: "restaurant", phone: "+447595910074")
 AdminUser.create(email: "admin@email.com", password: 12345678, role: "admin")
 
 puts "finished creating admins"
@@ -44,9 +44,15 @@ puts "finished creating admins"
 puts "creating riders"
 
 RiderUser.create(email: "andy@email.com", password: 12345678, first_name: "Andy", last_name: "Yeung", phone: "+447941520562")
-RiderUser.create(email: "maria@email.com", password: 12345678, first_name: "Maria", last_name: "Groves", phone: "+447595910074")
+RiderUser.create(email: "maria@email.com", password: 12345678, first_name: "Maria", last_name: "Groves", phone: "+447595910074", is_available: true)
 
 puts "finished creating riders"
+
+puts "creating user"
+
+User.create(first_name: "Maria", last_name: "Groves", email: "mariagrovesh@gmail.com", password: 12345678, phone: "07595910074", street_address: "343 George's Road", city: "Glasgow", postcode: "G3 6JQ")
+
+puts "finished creating user"
 
 puts "creating business information"
 
@@ -342,6 +348,8 @@ restaurant10 = Restaurant.create(
     imagekey: 2,
     website: "https://www.soulfoodkitchen.co.uk/",
     admin_user: admin10,
+    stripe_account_id: "acct_1HkXH1CgNgTq7UEf",
+    is_onboarded: true,
     is_published: true
 )
 
