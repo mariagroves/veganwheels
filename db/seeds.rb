@@ -35,7 +35,7 @@ admin5 = AdminUser.create(email: "glasvegan@email.com", password: 12345678, role
 admin6 = AdminUser.create(email: "stereo@email.com", password: 12345678, role: "restaurant")
 admin7 = AdminUser.create(email: "78@email.com", password: 12345678, role: "restaurant")
 admin8 = AdminUser.create(email: "serenitynow@email.com", password: 12345678, role: "restaurant")
-admin9 = AdminUser.create(email: "picnic@email.com", password: 12345678, role: "restaurant")
+admin9 = AdminUser.create(email: "picnic@email.com", password: 12345678, role: "restaurant", phone: "+447595910074")
 admin10 = AdminUser.create(email: "soulkitchen@email.com", password: 12345678, role: "restaurant")
 AdminUser.create(email: "admin@email.com", password: 12345678, role: "admin")
 
@@ -61,14 +61,6 @@ terms = "<ol><li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repell
 Business.create(delivery_price: 350, phone: "0123456789", email: "hello@veganwheels.com", about: about, faqs: faqs, terms: terms, privacy: privacy)
 
 puts "finished creating business information"
-
-puts "creating users"
-
-User.create(email: "mariagrovesh@gmail.com", password: 12345678, phone: "+44595910074", first_name: "Maria", last_name: "Groves", street_address: "12 Rose Street", city: "Glasgow", postcode: "G3 6RB")
-
-User.create(email: "andy@email.com", password: 12345678, phone: "+447941520562", first_name: "Andy", last_name: "Yeung", street_address: "12 High Street", city: "Glasgow", postcode: "G3 6RB")
-
-puts "finished creating users"
 
 puts "creating restaurants"
 
