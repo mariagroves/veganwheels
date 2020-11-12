@@ -17,7 +17,9 @@
                 
                 <% item.menu_options.each_with_index do |option, index| %>
                     <div>
-                        <input type="checkbox" name="order_item[order_item_options_attributes][<%=index%>][menu_option_id]" id="order_item_options" value="<%=option.id%>"> <%=option.name%>
+                        <input type="checkbox" name="order_item[order_item_options_attributes][<%=index%>][menu_option_id]" id="order_item_options" value="<%=option.id%>"> <%=option.name%> <%if option.price != nil%> 
+                            £<%=to_pounds(option.price)%>
+                        <%end%>
                     </div>
                 <%end%>
             </div>
