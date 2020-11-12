@@ -4,6 +4,8 @@ class AdminUser < ApplicationRecord
   devise :database_authenticatable, 
          :recoverable, :rememberable, :validatable
   has_one :restaurant, dependent: :restrict_with_error
+  validates :phone, presence: true
+  # validates :phone, telephone_number: {country: :GB, types: [:mobile]}
 
   def name
     "#{email}"

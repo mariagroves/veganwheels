@@ -25,8 +25,8 @@ class User < ApplicationRecord
   end
 
   def location_is_glasgow
-    if self.city != "Glasgow"
-      errors.add(:city, "Vegan Wheels is currently only available in Glasgow.")
+    unless self.postcode.match?(/\A(g|G)/)
+      errors.add(:postcode, "Vegan Wheels is currently only available in Glasgow.")
     end
   end
 

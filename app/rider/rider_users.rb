@@ -1,5 +1,4 @@
 ActiveAdmin.register RiderUser, namespace: :rider  do
-
   permit_params :email, :password, :password_confirmation, :reset_password_token, :reset_password_sent_at, :remember_created_at, :first_name, :last_name, :is_available, :is_active, :phone, :role
 
   menu false
@@ -14,7 +13,7 @@ ActiveAdmin.register RiderUser, namespace: :rider  do
         if @rider_user.id == current_id
           sign_in(RiderUser.find(current_id), :bypass => true)
         end
-        flash[:notice] = I18n.t('devise.passwords.updated_not_active')
+        flash[:notice] = "Your record was successfully updated."
         redirect_to rider_rider_user_path(@rider_user)
       else
         render :action => :edit
