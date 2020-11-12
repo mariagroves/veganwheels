@@ -26,7 +26,9 @@ ActiveAdmin.register Restaurant do
     end
     column :address
     column :admin_user if current_admin_user.role == "admin"
-    column :about
+    column :about do |restaurant|
+      truncate(restaurant.about, length: 50)
+    end
     column :website
     column :email
     column :phone
