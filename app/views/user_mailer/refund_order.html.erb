@@ -4,11 +4,35 @@ body {
   font-weight: 400;
   font-size: 20px;
   line-height: 1.5;
+  background-color: #99CCB3;
+
+}
+
+.order_number {
+  color: #DE5E35;
+  padding: 5px;
+  border: 1px dashed #DE5E35;
+  border-radius: 3px;
+}
+
+.email_text {
+  display: flex;
+  flex-direction: column;
+  width: 40rem;
+  background-color: #F7FBF9;
+  padding: 2rem;
+  border-radius: 3px;
+  margin: 1rem auto;
 }
 </style>
 
-<h3>Hello <%=@user.first_name%></h3>
+<div class="email_text">
+  <p style="font-weight:bold">Hello <%=@user.first_name%></p>
 
-<p>Your order <%=@order.id%> from <%=@order.restaurant.name%> has been refunded.</p>
+  <p>Your order <span class="order_number"><%=@order.id%></span> from <%=@order.restaurant.name%> has been refunded.</p>
 
-<p>You can see the details of this order on your <%= link_to 'dashboard', dashboard_index_url%>.</p> 
+  <p>You can see the details of this order on your <%= link_to 'dashboard', dashboard_index_url%>.</p> 
+
+  <p>Best wishes,</p>
+  <p>Vegan Wheels 🌱</p>
+</div>

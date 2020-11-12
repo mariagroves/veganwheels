@@ -31,7 +31,7 @@ class Order < ApplicationRecord
     elsif self.state == "refunded"
       {alert: "Your order has been cancelled and refunded."}
     elsif !self.delivery.is_collected
-      {notice: "The rider is picking up your order."}
+      {notice: "The rider is on the way to pick up your order."}
     elsif self.delivery.is_collected && !self.delivery.is_delivered
       {notice: "You order has been collected."}
     elsif self.delivery.is_delivered
