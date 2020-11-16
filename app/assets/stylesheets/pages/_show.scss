@@ -90,6 +90,16 @@
     padding: 2rem;
 }
 
+.delivery_time {
+    bottom: 1rem;
+    right: 3rem;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: absolute;
+    z-index: 5;
+}
+
 .warning {
     color: $color-red-dark;
 }

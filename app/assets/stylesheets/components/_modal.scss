@@ -88,6 +88,15 @@
             border: 1px solid $color-red-dark;
         }
     }
+
+    &--alert {
+        color: $color-red-dark;
+        margin-top: 1rem;
+        margin-bottom: .5rem;
+        padding: .5rem;
+        border: solid 1px $color-red-dark;
+        border-radius: .25rem;
+    }
 }
 
 .modal__item {

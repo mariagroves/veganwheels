@@ -25,4 +25,12 @@ class Cart < ApplicationRecord
         end
         return quantity
     end
+
+    def restaurant
+        self.order_items.first.menu_item.restaurant
+    end
+
+    def is_below_minimum_spend
+        self.restaurant.min_spend > self.get_subtotal
+    end
 end

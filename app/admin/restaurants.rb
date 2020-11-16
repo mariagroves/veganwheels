@@ -1,6 +1,6 @@
 ActiveAdmin.register Restaurant do
 
-  permit_params :name, :street_address, :city, :county, :postcode, :about, :phone, :email, :latitude, :longitude, :imagekey, :website, :photo, :admin_user_id, :is_open, :is_published, :monday_opens_at, :monday_closes_at, :tuesday_opens_at, :tuesday_closes_at,:wednesday_opens_at, :wednesday_closes_at, :thursday_opens_at, :thursday_closes_at, :friday_opens_at, :friday_closes_at,:saturday_opens_at, :saturday_closes_at, :sunday_opens_at,:sunday_closes_at
+  permit_params :name, :street_address, :city, :county, :postcode, :about, :phone, :email, :latitude, :longitude, :imagekey, :website, :photo, :admin_user_id, :is_open, :is_published, :monday_opens_at, :monday_closes_at, :tuesday_opens_at, :tuesday_closes_at,:wednesday_opens_at, :wednesday_closes_at, :thursday_opens_at, :thursday_closes_at, :friday_opens_at, :friday_closes_at,:saturday_opens_at, :saturday_closes_at, :sunday_opens_at,:sunday_closes_at, :min_spend
 
   config.batch_actions = false
 
@@ -32,6 +32,9 @@ ActiveAdmin.register Restaurant do
     column :website
     column :email
     column :phone
+    column "Minimum Spend", :min_spend do |item|
+      number_to_currency(to_pounds(item.min_spend), unit: "£")
+    end
     column "Open", :is_open
     column do |restaurant|
       active_admin_form_for restaurant, url: toggle_open_admin_restaurant_path(restaurant), method: :patch do |f|
@@ -113,6 +116,9 @@ ActiveAdmin.register Restaurant do
       row :phone
       row :email
       row :website
+      row "Minimum Spend", :min_spend do |item|
+        number_to_currency(to_pounds(item.min_spend), unit: "£")
+      end
       row :is_open
       row :photo do |restaurant|
         image_tag url_for(restaurant.photo), style: 'height:50%;width:auto;'

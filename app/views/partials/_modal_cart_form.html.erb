@@ -1,0 +1,10 @@
+<%if @cart.order_items.present?%>
+    <%= form_with(model: Order.new, local: true) do |form| %>
+            <%= form.label :delivery_instructions, 'Delivery Instructions' %>
+            <div><%= form.text_area :delivery_instructions %></div>
+            <%= form.hidden_field :cart_id, value: @cart.id %>
+            <%= form.submit 'Check out', class: 'button__fill button__fill--red',disabled: @cart.is_below_minimum_spend %>
+    <% end %>
+
+    <div class="button__fill button__fill--redl" id="cart-modal-close">Continue browsing</div>
+<%end%>

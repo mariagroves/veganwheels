@@ -5,6 +5,8 @@ function deleteCart() {
     const modalBg = document.getElementsByClassName('modal-cart')[0];
     const subtotal = document.getElementById('subtotal');
     const total = document.getElementById('total');
+    const warning = document.getElementById('modal__cart--warning');
+    const form = document.getElementById('modal-cart-form');
 
     if (navItems == 1) {
         navCart.remove();
@@ -15,7 +17,9 @@ function deleteCart() {
         document.getElementById("item-<%= @order_item.id %>").remove();
         subtotal.innerHTML = '£<%=to_pounds(@cart.get_subtotal)%>';
         total.innerHTML = '£<%= to_pounds(@cart.get_total)%>';
-        navSection.innerHTML = '<%= j render "order_items/cart", order_item: @order_item, cart: @cart%>'
+        navSection.innerHTML = '<%= j render "order_items/cart", order_item: @order_item, cart: @cart%>';
+        warning.innerHTML = '<%= j render "partials/cart_minimum_warning", cart: @cart%>';
+        form.innerHTML = '<%= j render "partials/modal_cart_form", cart: @cart%>';
     }
 }
 

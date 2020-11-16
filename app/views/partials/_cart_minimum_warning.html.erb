@@ -1,0 +1,3 @@
+<%if @cart.order_items.present? && @cart.restaurant.min_spend.present? && @cart.is_below_minimum_spend%>
+    <p class="modal__cart--alert">Your order is below the £<%=to_pounds(@cart.restaurant.min_spend)%> minimum for this restaurant. Add more items to continue with your order.</p>
+<%end%>

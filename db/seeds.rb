@@ -96,7 +96,8 @@ restaurant1 = Restaurant.create(
     imagekey: 1,
     website: "http://www.monocafebar.com/",
     admin_user: admin1,
-    is_published: true
+    is_published: true, 
+    min_spend: 700
 )
 
 restaurant2 = Restaurant.create(
@@ -124,7 +125,8 @@ restaurant2 = Restaurant.create(
     imagekey: 2,
     website: "http://13thnote.co.uk/",
     admin_user: admin2,
-    is_published: true
+    is_published: true, 
+    min_spend: 700
 )
 
 restaurant3 = Restaurant.create(
@@ -152,7 +154,8 @@ restaurant3 = Restaurant.create(
     imagekey: 3,
     website: "https://www.facebook.com/thevandvcafe/",
     admin_user: admin3,
-    is_published: true
+    is_published: true, 
+    min_spend: 700
 )
 
 restaurant4 = Restaurant.create(
@@ -180,7 +183,8 @@ restaurant4 = Restaurant.create(
     imagekey: 4,
     website: "https://www.theflyingduck.org/",
     admin_user: admin4,
-    is_published: true
+    is_published: true, 
+    min_spend: 700
 )
 
 restaurant5 = Restaurant.create(
@@ -208,7 +212,8 @@ restaurant5 = Restaurant.create(
     imagekey: 1,
     website: "https://www.facebook.com/theglasvegan/",
     admin_user: admin5,
-    is_published: true
+    is_published: true, 
+    min_spend: 700
 )
 
 restaurant6 = Restaurant.create(
@@ -236,7 +241,8 @@ restaurant6 = Restaurant.create(
     imagekey: 2,
     website: "https://www.stereocafebar.com/",
     admin_user: admin6,
-    is_published: true
+    is_published: true, 
+    min_spend: 700
 )
 
 restaurant7 = Restaurant.create(
@@ -264,7 +270,8 @@ restaurant7 = Restaurant.create(
     imagekey: 3,
     website: "https://www.the78barandkitchen.com/",
     admin_user: admin7,
-    is_published: true
+    is_published: true, 
+    min_spend: 700
 )
 
 restaurant8 = Restaurant.create(
@@ -292,7 +299,8 @@ restaurant8 = Restaurant.create(
     imagekey: 4,
     website: "https://www.serenitynowcafe.com/",
     admin_user: admin8,
-    is_published: true
+    is_published: true, 
+    min_spend: 700
 )
 
 restaurant9 = Restaurant.create(
@@ -320,7 +328,8 @@ restaurant9 = Restaurant.create(
     imagekey: 1,
     website: "http://picnic-cafe.co.uk/",
     admin_user: admin9,
-    is_published: true
+    is_published: true, 
+    min_spend: 700
 )
 
 restaurant10 = Restaurant.create(
@@ -350,7 +359,8 @@ restaurant10 = Restaurant.create(
     admin_user: admin10,
     stripe_account_id: "acct_1HkXH1CgNgTq7UEf",
     is_onboarded: true,
-    is_published: true
+    is_published: true, 
+    min_spend: 700
 )
 
 photo1 = URI.open('https://bigseventravel.com/wp-content/uploads/2019/12/oh.jpg')

@@ -1,7 +1,7 @@
 <div class = "modal__box modal__cart">
     <div class="modal__cart--items">
         <div class="modal__cart--top">
-            <h3 class="font-weight-bold">Your order from <%=@cart.order_items.first.menu_item.restaurant.name%></h3>
+            <h3 class="font-weight-bold">Your order from <%=@cart.restaurant.name%></h3>
         </div>
         <%unique_cart = get_unique(@cart)%>
         <%unique_cart.each do |order_item|%>
@@ -79,15 +79,11 @@
             <p class="font-weight-bold uppercase">Total</p>
             <p id="total">£<%= to_pounds(@cart.get_total)%></p>
         </div>
-        <div class="modal__cart--form">
-            <%= form_with(model: Order.new, local: true) do |form| %>
-                    <%= form.label :delivery_instructions, 'Delivery Instructions' %>
-                    <div><%= form.text_area :delivery_instructions %></div>
-                    <%= form.hidden_field :cart_id, value: @cart.id %>
-                    <%= form.submit 'Check out', class: 'button__fill button__fill--red' %>
-            <% end %>
-        
-            <div class="button__fill button__fill--redl" id="cart-modal-close">Continue browsing</div>
+        <div id="modal__cart--warning">
+            <%= render 'partials/cart_minimum_warning', cart: @cart%>
+        </div>
+        <div class="modal__cart--form" id="modal-cart-form">
+            <%= render 'partials/modal_cart_form', cart: @cart%>
         </div>
     </div>
 </div>
