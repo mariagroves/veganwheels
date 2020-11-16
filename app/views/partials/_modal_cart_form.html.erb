@@ -5,6 +5,4 @@
             <%= form.hidden_field :cart_id, value: @cart.id %>
             <%= form.submit 'Check out', class: 'button__fill button__fill--red',disabled: @cart.is_below_minimum_spend %>
     <% end %>
-
-    <div class="button__fill button__fill--redl" id="cart-modal-close">Continue browsing</div>
 <%end%>

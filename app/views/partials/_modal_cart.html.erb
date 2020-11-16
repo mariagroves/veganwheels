@@ -82,8 +82,11 @@
         <div id="modal__cart--warning">
             <%= render 'partials/cart_minimum_warning', cart: @cart%>
         </div>
-        <div class="modal__cart--form" id="modal-cart-form">
-            <%= render 'partials/modal_cart_form', cart: @cart%>
+        <div class="modal__cart--form">
+            <div id="modal-cart-form">
+                <%= render 'partials/modal_cart_form', cart: @cart%>
+            </div>
+            <div class="button__fill button__fill--redl" id="cart-modal-close">Continue browsing</div>
         </div>
     </div>
 </div>
