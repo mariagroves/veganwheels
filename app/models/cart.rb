@@ -31,6 +31,10 @@ class Cart < ApplicationRecord
     end
 
     def is_below_minimum_spend
-        self.restaurant.min_spend > self.get_subtotal
+        if self.restaurant.min_spend.present?
+            self.restaurant.min_spend > self.get_subtotal
+        else
+            return false
+        end
     end
 end
