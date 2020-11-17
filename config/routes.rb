@@ -4,8 +4,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users
   resources :dashboard, only: [:index]
-  resources :restaurants do
-    resources :menu_items, only: [ :new, :create ]
+  resources :restaurants, only: [ :index, :show] do
     member do
       get 'status'
     end
@@ -15,13 +14,11 @@ Rails.application.routes.draw do
   get 'faqs', to: 'pages#faqs'
   get 'terms', to: 'pages#terms'
   get 'privacy', to: 'pages#privacy'
-  match '/contacts',     to: 'contacts#new',             via: 'get'
+  match '/contacts', to: 'contacts#new', via: 'get'
   resources :contacts, only: [:new, :create] 
-  resources :menu_items, only: [ :edit, :update, :destroy, :show ] do
-    resources :menu_options, only: [ :new, :create ]
-    resources :order_items, only: [ :new, :create ]
+  resources :menu_items, only: [ :show ] do
+    resources :order_items, only: [ :create ]
   end
-  resources :menu_options, only: [ :edit, :update, :destroy ]
   resources :order_items, only: [ :destroy]
   resources :orders, only: [:index, :create, :destroy] do
     resources :payments, only: :new

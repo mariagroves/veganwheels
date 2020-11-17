@@ -1,13 +1,9 @@
 class OrderItemsController < ApplicationController
-    before_action :set_menu_item, only: [ :new, :create ]
+    before_action :set_menu_item, only: [ :create ]
     before_action :raise_pending_error, only: [:create]
     before_action :raise_closed_error, only: [:create]
     before_action :raise_location_error, only: [:create]
-    skip_before_action :authenticate_user!, only: [:new, :create, :destroy]
-
-    def new
-        @order_item = OrderItem.new
-    end
+    skip_before_action :authenticate_user!, only: [:create, :destroy]
 
     def create
         @order_item = OrderItem.new(order_item_params)
