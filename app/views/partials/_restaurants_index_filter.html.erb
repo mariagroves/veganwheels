@@ -1,0 +1,11 @@
+<%= simple_form_for :search, 
+    url: restaurants_path, 
+    remote: true,
+    html: {id: :form, class: "mx-auto"},
+    method: "GET" do |f| %>
+    <%= f.input :postcode, 
+    input_html: {value: current_user.postcode },
+    as: :hidden %>  
+    <%= f.button :submit, 'See restaurants that deliver to you', class: 'button__fill button__fill--red button__filter', data: { disable_with: false } %> 
+<% end %>
+

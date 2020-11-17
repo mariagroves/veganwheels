@@ -150,4 +150,9 @@
     a {
         text-decoration: none;
     }
+
+    &__filter {
+        font-size: 1.6rem !important;
+        border-radius: unset;
+    }
 }

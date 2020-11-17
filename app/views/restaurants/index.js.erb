@@ -1,0 +1,16 @@
+var results = document.getElementById('user-restaurants');
+var form = document.getElementById('form')
+var filter = document.getElementById('filter')
+
+function filterIndex() {
+    if (form) {
+        form.remove();
+        filter.innerHTML = '<%= j link_to "See all restaurants", restaurants_path, class: "button__fill button__fill--red mx-auto", remote: true %>';
+
+    } else {
+        filter.innerHTML = '<%= j render 'partials/restaurants_index_filter'%>'
+    }
+    results.innerHTML = '<%= j render "partials/restaurants_index", restaurants: @restaurants %>';
+}
+
+filterIndex();

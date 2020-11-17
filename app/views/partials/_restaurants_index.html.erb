@@ -1,0 +1,26 @@
+<%if @restaurants.present? %>
+    <div class="cards">
+        <% @restaurants.each do |restaurant| %>
+            <%if restaurant.is_published%>
+                <%= link_to restaurant_path(restaurant) do %>
+                    <div class="card card--<%= restaurant.imagekey %>">
+                        <div class="card__title">
+                            <% restaurant.name.split.each do |word| %>
+                            <h1><%=word%></h1>
+                            <%end%>
+                        </div>
+                        <div class="card__mask card__mask--<%= restaurant.imagekey %>">
+                            <%= cl_image_tag restaurant.photo.key, crop: :fill %>
+                        </div>
+                    </div>
+                <%end%>
+            <%end%>
+        <%end%> 
+    </div>
+<%else%>
+    <div class="row justify-content-center">
+        <h1 class="margin-large">
+            Sorry, looks like we are not in your area yet!
+        </h1>
+    </div>
+<%end%>
