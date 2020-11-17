@@ -6,7 +6,7 @@ class RestaurantsController < ApplicationController
         @restaurants = Restaurant.includes(:photo_attachment).all.sort_by(&:id)
         @search = params["search"]
         if @search.present?
-            @postcode = @search["postcode"] # "G327QR"
+            @postcode = @search["postcode"]
             @results_array = []
 
             @results_array << @results = Geocoder.search(@postcode)
