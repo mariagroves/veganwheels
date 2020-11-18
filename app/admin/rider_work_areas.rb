@@ -1,18 +1,21 @@
 ActiveAdmin.register RiderWorkArea do
+  permit_params :work_area_id, :rider_user_id
 
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # Uncomment all parameters which should be permitted for assignment
-  #
-  # permit_params :work_area_id, :rider_user_id
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:work_area_id, :rider_user_id]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
-  
+  index do
+    selectable_column
+    column :work_area
+    column "Rider Name", :rider_user
+    actions
+  end
+
+  filter :work_area
+  filter :rider_user
+
+  show do
+    attributes_table do
+      row :work_area
+      row :rider_user
+    end
+  end
+ 
 end

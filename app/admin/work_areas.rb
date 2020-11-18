@@ -1,18 +1,25 @@
 ActiveAdmin.register WorkArea do
+  permit_params :postcode
 
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # Uncomment all parameters which should be permitted for assignment
-  #
-  # permit_params :postcode
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:postcode]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
-  
+  index do
+    selectable_column
+    column :postcode
+    actions
+  end
+
+  filter :postcode
+
+  show do
+    attributes_table do
+      row :postcode
+    end
+  end
+
+  form do |f|
+    f.inputs do
+      f.input :postcode
+    end
+    f.actions
+  end
+
 end
