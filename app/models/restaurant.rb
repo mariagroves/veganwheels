@@ -9,6 +9,7 @@ class Restaurant < ApplicationRecord
     validates :city, presence: true
     validates :postcode, presence: true
     validates :about, presence: true
+    before_save :postcode_is_formatted
     # this messes with the seed, leave out for now
     # validates :photo, presence: true
     geocoded_by :address
@@ -66,5 +67,11 @@ class Restaurant < ApplicationRecord
             end
         end
         hours.join(', ')
+    end
+
+    def postcode_is_formatted
+        unless self.latitude.present? && self.longitude.present?
+            errors.add(:postcode, "Invalid postcode. Please make sure that the postcode includes a space, eg. 'G2 3AU'.")
+        end
     end
 end
