@@ -23,6 +23,8 @@ class Ability
       can :update, Order
       can :manage, Restaurant
       can :manage, RiderUser
+      can :manage, WorkArea
+      can :manage, RiderWorkArea
       MenuItem.all.each do |menu_item|
         can :destroy, MenuItem, id: menu_item.id if !menu_item.order_items.present?
       end
