@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_16_120304) do
+ActiveRecord::Schema.define(version: 2020_11_18_125539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -227,6 +227,15 @@ ActiveRecord::Schema.define(version: 2020_11_16_120304) do
     t.index ["reset_password_token"], name: "index_rider_users_on_reset_password_token", unique: true
   end
 
+  create_table "rider_work_areas", force: :cascade do |t|
+    t.bigint "work_area_id", null: false
+    t.bigint "rider_user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["rider_user_id"], name: "index_rider_work_areas_on_rider_user_id"
+    t.index ["work_area_id"], name: "index_rider_work_areas_on_work_area_id"
+  end
+
   create_table "sections", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -257,6 +266,12 @@ ActiveRecord::Schema.define(version: 2020_11_16_120304) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "work_areas", force: :cascade do |t|
+    t.string "postcode"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "deliveries", "orders"
   add_foreign_key "deliveries", "rider_users"
@@ -269,5 +284,7 @@ ActiveRecord::Schema.define(version: 2020_11_16_120304) do
   add_foreign_key "orders", "restaurants"
   add_foreign_key "orders", "users"
   add_foreign_key "restaurants", "admin_users"
+  add_foreign_key "rider_work_areas", "rider_users"
+  add_foreign_key "rider_work_areas", "work_areas"
   add_foreign_key "sections", "restaurants"
 end

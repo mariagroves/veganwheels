@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  work_area: one
+  rider_user: one
+
+two:
+  work_area: two
+  rider_user: two
