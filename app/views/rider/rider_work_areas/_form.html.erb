@@ -1,0 +1,11 @@
+<%= semantic_form_for [:rider, @rider_work_area], builder: ActiveAdmin::FormBuilder do |f|%>
+    <%= f.semantic_errors %>
+    <%= f.inputs "Work Area" do %>
+        <%= f.input :rider_user, :as => :select, :collection => RiderUser.where(id: current_rider_user.id)%>
+        <%= f.input :work_area %>
+    <% end %>
+    <%= f.actions do %>
+      <%= f.action(:submit) %>
+      <%= f.action(:cancel) %>
+    <% end %>
+<% end %>

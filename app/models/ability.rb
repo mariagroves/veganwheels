@@ -40,6 +40,8 @@ class Ability
       can :update, RiderUser, id: user.id
       can :read, Delivery, rider_user_id: user.id
       can :destroy, Delivery, rider_user_id: user.id
+      can :create, RiderWorkArea
+      can :manage, RiderWorkArea, rider_user_id: user.id
     elsif  user.role == 'restaurant'
       can :read, ActiveAdmin::Page, name: "Dashboard"
       can :read, AdminUser, id: user.id

@@ -2,6 +2,7 @@ class WorkArea < ApplicationRecord
     validates :postcode, presence: true
     before_save :postcode_is_formatted
     geocoded_by :postcode
+    has_many :rider_work_areas, dependent: :restrict_with_error
     after_validation :geocode
 
     def postcode_is_formatted
