@@ -9,6 +9,8 @@ require 'time'
 require 'faker'
 
 puts "destroying seed"
+RiderWorkArea.destroy_all
+WorkArea.destroy_all
 Delivery.destroy_all
 RiderUser.destroy_all
 OrderItemOption.destroy_all
@@ -43,10 +45,20 @@ puts "finished creating admins"
 
 puts "creating riders"
 
-RiderUser.create(email: "andy@email.com", password: 12345678, first_name: "Andy", last_name: "Yeung", phone: "+447941520562")
-RiderUser.create(email: "maria@email.com", password: 12345678, first_name: "Maria", last_name: "Groves", phone: "+447595910074", is_available: true)
+rider1 = RiderUser.create(email: "andy@email.com", password: 12345678, first_name: "Andy", last_name: "Yeung", phone: "+447747128872")
+rider2 = RiderUser.create(email: "maria@email.com", password: 12345678, first_name: "Maria", last_name: "Groves", phone: "+447595910074", is_available: true)
 
 puts "finished creating riders"
+
+puts "creating rider work areas"
+
+area1 = WorkArea.create(postcode: "G2 3AU")
+area2 = WorkArea.create(postcode: "G4 9HT")
+
+RiderWorkArea.create(rider_user: rider1, work_area: area1)
+RiderWorkArea.create(rider_user: rider2, work_area: area2)
+
+puts "finished creating rider work areas"
 
 puts "creating user"
 
