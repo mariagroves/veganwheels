@@ -48,10 +48,13 @@ ActiveAdmin.register RiderUser, namespace: :rider  do
   end
 
   member_action :toggle_available, method: [:post, :patch] do
-    if params[:rider_user][:is_available] == "true"
-      RiderUser.find(params[:id]).update(is_available: false)
+    rider = RiderUser.find(params[:id])
+    if rider.is_available
+      rider.update(is_available: false)
+    elsif !rider.is_available && rider.rider_work_areas.empty?
+      flash[:error] = "Create at least one work area for this rider in order to make them available to work."
     else
-      RiderUser.find(params[:id]).update(is_available: true)
+      rider.update(is_available: true)
     end
     redirect_to rider_rider_user_path
   end

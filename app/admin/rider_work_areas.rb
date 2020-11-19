@@ -17,5 +17,18 @@ ActiveAdmin.register RiderWorkArea do
       row :rider_user
     end
   end
+
+  controller do
+    def destroy
+      if resource.rider_user.is_available
+        flash[:error] = "The rider is set to available. To delete the rider work area, first set the rider to unavailable."
+        redirect_to admin_rider_work_areas_path
+      else 
+        resource.destroy
+        flash[:notice] = "Rider work area was successfully deleted."
+        redirect_to admin_rider_work_areas_path
+      end
+    end
+  end
  
 end
