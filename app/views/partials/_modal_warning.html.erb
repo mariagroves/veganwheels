@@ -1,3 +1,9 @@
 <div class = "modal__box modal__cart">
-    <p>Sorry, this restaurant is now closed.</p>
+    <%if @order.restaurant.is_currently_closed?%>
+        <p>Sorry, this restaurant is now closed.</p>
+    <%elsif @order.user.is_outside_delivery_area(@order.restaurant)%>
+        <p>Sorry, you are outside the delivery area for this restaurant. Change your address in the dashboard to proceed.</p>
+    <%end%>
+
+    <div class="btn btn-success mt-5">OK</div>
 </div>

@@ -4,11 +4,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users
   resources :dashboard, only: [:index]
-  resources :restaurants, only: [ :index, :show] do
-    member do
-      get 'status'
-    end
-  end
+  resources :restaurants, only: [ :index, :show]
   root to: 'pages#home'
   get 'error', to: 'pages#error'
   get 'faqs', to: 'pages#faqs'
@@ -22,6 +18,9 @@ Rails.application.routes.draw do
   resources :order_items, only: [ :destroy]
   resources :orders, only: [:index, :create, :destroy] do
     resources :payments, only: :new
+    member do
+      get 'status'
+    end
   end
   mount StripeEvent::Engine, at: '/stripe-webhooks'
   require "sidekiq/web"

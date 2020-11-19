@@ -39,6 +39,14 @@ class OrdersController < ApplicationController
         redirect_to restaurant_path(@order.restaurant)
     end
 
+    def status
+      user = Order.find(params[:id]).user
+      restaurant = Order.find(params[:id]).restaurant
+      user_status = user.is_outside_delivery_area(restaurant)
+      restaurant_status = restaurant.is_currently_closed?
+      render :json => {:restaurant_status => restaurant_status, :user_status => user_status}
+    end
+
     private
 
     def with_stripe_error_handling(order, &block)

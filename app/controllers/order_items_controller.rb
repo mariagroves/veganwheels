@@ -63,8 +63,7 @@ class OrderItemsController < ApplicationController
         if user_signed_in?
             restaurant = MenuItem.find(params[:menu_item_id]).restaurant
             begin
-                distance = restaurant.distance_from(Geocoder.search(current_user.address).first.coordinates, :km)
-                if distance > 5 
+                if current_user.is_outside_delivery_area(restaurant)
                     render 'order_items/location_error'
                     return
                 end

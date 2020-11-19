@@ -96,21 +96,28 @@
         </div>
     </div>
     <div class="modal-warning modal__bckg">
-        <%= render 'partials/modal_warning'%>
+        <%= render 'partials/modal_warning', order: @order%>
     </div>  
 </div>
 <script src="https://js.stripe.com/v3/"></script>
 <script>
 
     const modalWarning = document.getElementsByClassName('modal-warning')[0];
+    const button = document.getElementsByClassName('btn')[0];
+
+    button.addEventListener('click', () => {
+        modalWarning.classList.remove('bckg-active')
+    })
 
     const paymentButton = document.getElementById('pay');
     paymentButton.addEventListener('click', () => {
-    fetch("<%= status_restaurant_path(@order.restaurant)%>")
+    fetch("<%= status_order_path(@order)%>")
         .then(response => response.json()) 
         .then((data) => {
-            const closed = data['status']
-            if (closed) {
+            const closed = data['restaurant_status']
+            const user_too_far = data['user_status']
+
+            if (closed || user_too_far) {
                 modalWarning.classList.add('bckg-active')
             } else {
                 const stripe = Stripe('<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>', {

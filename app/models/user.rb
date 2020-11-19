@@ -30,6 +30,10 @@ class User < ApplicationRecord
     end
   end
 
+  def is_outside_delivery_area(restaurant)
+    restaurant.distance_from(Geocoder.search(self.address).first.coordinates, :km) > 5
+  end
+
   private
 
   def send_welcome_email

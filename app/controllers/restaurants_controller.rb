@@ -32,10 +32,4 @@ class RestaurantsController < ApplicationController
         @menu_items = @restaurant.menu_items.includes(:section).where(is_active: true)
     end
 
-    def status
-        @restaurant = Restaurant.find(params[:id])
-        status = @restaurant.is_currently_closed?
-        render :json => {:status => status}
-    end
-
 end
