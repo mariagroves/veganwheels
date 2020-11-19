@@ -44,11 +44,13 @@ class Order < ApplicationRecord
       client = Twilio::REST::Client.new
 
       RiderUser.where(is_active: true, is_available: true).find_each do |rider|
+        if rider.work_areas.near([self.restaurant.latitude, self.restaurant.longitude], 5, units: :km).present?
               client.messages.create(
                   from: ENV['TWILIO_PHONE_NUMBER'],
                   to: rider.phone,
                   body: 'A new delivery job is available on VeganWheels!'
               )
+        end
       end
     end
   end
