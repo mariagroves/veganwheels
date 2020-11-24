@@ -126,6 +126,10 @@
             flex-direction: column;
             justify-content: center;
 
+            @include respond(phone) {
+                padding: 0 15px 0 15px;
+            }
+
         h1 {
             color: $color-yellow-dark;
         }

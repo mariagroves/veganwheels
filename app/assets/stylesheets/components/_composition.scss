@@ -1,17 +1,21 @@
 .composition {
     position: relative;
+    height: 60vh;
+    width: 55vh;
 
     @include respond(tab-land) {
-        float: left;
-        position: relative;
-        left: 67%;
-        height: 47rem;
+        height: 50vh;
+        width: 45vh;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 7rem;
     }
     @include respond(phone) {
-        float: left;
-        position: relative;
-        left: 89%;
-        height: 45rem;
+        height: 40vh;
+        width: 35vh;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 1rem;
     }
 
 
@@ -20,82 +24,53 @@
         &--1 {
             animation: morph1 7s ease-in-out infinite;
             border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-            height: 52rem;
-            width: 41rem;
+            height: 100%;
+            width: 82%;
             transition: all .5s ease-in-out;
             z-index: 3;
             position: absolute;
-            top: 5rem;
-            right: -13rem;
+            top: 8%;
+            right: -16%;
             background-color: $color-yellow-medium;
-
-            @include respond(small-lap) {
-                height: 42rem;
-                width: 31rem;
-                top: 5rem;
-                right: -4rem;
-            }
         }
 
         &--2 {
             animation: morph2 5s ease-out infinite;
             border-radius: 22% 78% 41% 59% / 64% 76% 24% 36%;
-            height: 39rem;
-            width: 36rem;
+            height: 75%;
+            width: 69%;
             transition: all .5s ease-out;
             z-index: 5;
             position: absolute;
-            top: 30rem;
-            right: -3rem;
+            top: 46%;
+            right: -2%;
             background-color: $color-red-light;
-
-            @include respond(small-lap) {
-                height: 29rem;
-                width: 26rem;
-                top: 25rem;
-                right: 4rem;
-                
-            }
         }
 
         &--3 {
             animation: morph3 8s ease-in infinite;
             border-radius: 49% 51% 23% 77% / 54% 57% 43% 46%;
-            height: 44rem;
-            width: 36rem;
+            height: 88%;
+            width: 72%;
             transition: all .6s ease-in;
             z-index: 2;
             position: absolute;
-            top: 20rem;
-            right: 10rem;
+            top: 29%;
+            right: 22%;
             background-color: $color-primary-light;
-
-            @include respond(small-lap) {
-                height: 34rem;
-                width: 26rem;
-                top: 15rem;
-                right: 11rem;
-            }
         }
 
         &--4 {
             animation: morph4 4s linear infinite;
             border-radius: 26% 74% 43% 57% / 25% 26% 74% 75%;
-            height: 40rem;
-            width: 33rem;
+            height: 80%;
+            width: 66%;
             transition: all .5s linear;
             z-index: 4;
             position: absolute;
-            top: 2rem;
-            right: 10rem;
+            top: 11%;
+            right: 21%;
             background-color: $color-blue;
-
-            @include respond(small-lap) {
-                height: 30rem;
-                width: 23rem;
-                right: 12rem;
-                top: 5rem;
-            }
         }
         
     }
@@ -103,24 +78,12 @@
     &__image {
         z-index: 6;
         position: absolute;
-        top: 5rem;
-        right: -15rem;
+        top: 10%;
+        right: -18%;
 
         img {
             max-width: 100%;
             height: auto;
-        }
-
-        @include respond(small-lap){
-            top: 7rem;
-            right: -5rem;
-            width: 45.1rem;
-        }
-
-        @include respond(tab-land) {
-            top: 7rem;
-            right: -5rem;
-            width: 40.8rem;
         }
     }
 }
