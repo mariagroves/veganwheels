@@ -12,6 +12,13 @@
     @include respond(tab-port) {
         height: auto;
         padding-top: 0;
+        border-top: none;
+    }
+
+    &__border {
+        @include respond(tab-port) {
+            border-top: 2px solid $color-black;
+        }
     }
 
     [class^="col-"] {

@@ -1,4 +1,10 @@
 .scroll {
+    opacity: 1;
+
+    @include respond(small-lap) {
+        opacity: 0;
+        height: 0;
+    }
     
     &-hero {
         font-size: 5rem;
@@ -12,13 +18,9 @@
     &-features {
         font-size: 5rem;
         color: $color-primary-dark;
-        margin-top: 4rem;
 
         &:hover + p {
             opacity: 1;
-        }
-        @include respond(phone) {
-            margin-top: 2rem;
         }
     }
 

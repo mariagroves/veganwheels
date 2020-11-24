@@ -32,13 +32,6 @@ body {
     flex: 1 0 auto;
 }
 
-.container {
-    @include respond(large-phone) {
-        padding-right: 4rem;
-        padding-left: 4rem;
-    }
-}
-
 a {
     text-decoration: none;
     color: inherit;

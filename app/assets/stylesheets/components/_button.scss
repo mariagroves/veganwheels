@@ -145,6 +145,14 @@
 
     &__about {
         width: 45.5rem !important;
+
+        @include respond(tab-land) {
+            margin-top: 4rem;
+        }
+
+        @include respond(large-phone) {
+            width: unset !important;
+        }
     }
 
     a {

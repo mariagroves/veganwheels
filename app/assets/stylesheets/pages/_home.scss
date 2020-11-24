@@ -10,8 +10,6 @@
     }
 
     &__content {
-        margin-bottom: 4rem;
-
         @include respond(tab-land) {
             margin-bottom: 1rem;
         }
@@ -44,6 +42,16 @@
         flex-direction: column;
         align-items: center;
 
+        @include respond(tab-land) {
+            &:not(:first-child) {
+                margin-top: 5rem;
+            } 
+
+            &:last-child {
+                margin-bottom: 5rem;
+            }
+        }
+
         img {
             max-width: 100%;
             height: auto;
@@ -55,10 +63,10 @@
     }
 
     &__text {
-        margin-bottom: 4rem;
         width: 35rem;
-        &:last-child {
-            margin-top: -2rem;
+
+        @include respond(large-phone){
+            width: unset;
         }
     }
 
@@ -72,30 +80,48 @@
     width: 100%;
     background-color: $color-primary-medium;
 
+    @include respond(tab-land) {
+        height: unset;
+    }
+
     &__content {
         display: flex;
         flex-direction: row;
     }
 
-    &__image {
-        width: 50%;
-        height: 100vh;
+    &__images {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
 
+        @include respond(tab-land) {
+            margin-top: 4rem;
+        }
+
+        &--box {
+            width: 40rem;
+    
+            @include respond(tab-land) {
+                width: 35rem;
+            }
+        }
+    
         img {
             max-width: 100%;
             height: auto;
         }
     }
 
+    &__area {
+        padding: 5rem;
+        @include respond(large-phone) {
+            padding: 1rem;
+        }
+    }
+
 
     &__box {
-            width: 50%;
-            height: 100vh;
-            padding: 5rem;
             display: flex;
             flex-direction: column;
             justify-content: center;

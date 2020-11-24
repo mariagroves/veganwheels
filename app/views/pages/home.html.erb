@@ -11,9 +11,9 @@
                 <div class="hero__text-box">
                     <h1>Welcome to Vegan Wheels, a Glasgow-based food delivery service</h1> 
 
-                    <h2 class="margin-medium"> We are a cooperative with a passion for protecting animals. We connect some of Glasgow’s best vegan restaurants and cafes with a quick and efficient delivery service. All our profits are donated to an animal charity chosen by our members.</h2>  
+                    <h2 class="margin-medium text-justify"> We are a cooperative with a passion for protecting animals. We connect some of Glasgow’s best vegan restaurants and cafes with a quick and efficient delivery service. All our profits are donated to an animal charity chosen by our members.</h2>  
                 
-                    <h2 class="margin-medium">With Vegan Wheels you can order from the best local restaurants and be confident that none of your money goes to businesses that use animal products.</h2>
+                    <h2 class="margin-medium text-justify">With Vegan Wheels you can order from the best local restaurants and be confident that none of your money goes to businesses that use animal products.</h2>
                 </div>
                 <div class="search-form">
                     <p class="label-yellow uppercase">Enter your postcode to begin</p>
@@ -57,16 +57,16 @@
             </h1>
         </div>
         <div class="row">
-            <div class="col-12 col-lg-4 features__images">
+            <div class="col-12 col-xl-4 features__images">
                 <div class="features__images--box">
                     <%= image_tag "HP Group 3.png" %>
                 </div>
                 <div class="features__text">
-                    <h2 class="text-center font-weight-bold">More than a delivery service</h2>
+                    <h2 class="text-center font-weight-bold features__margin">More than a delivery service</h2>
                     <p class="text-justify">We not only aim to provide an amazing delivery service, but also a platform for Glasgow’s vegan community to communicate and share ideas that will help the vegan movement grow and improve the quality of life for animals.</p>
                 </div>
             </div>
-            <div class="col-12 col-lg-4 features__images">
+            <div class="col-12 col-xl-4 features__images">
                 <div class="features__images--box">
                    <%= image_tag "HP Group 2.png" %>
                 </div>
@@ -75,7 +75,7 @@
                     <p class="text-justify">When you sign up we ask for some key information, such as your email, mobile number and address. None of your information will be shared with anyone outside of Vegan Wheels. We strongly believe in data privacy.</p>
                 </div>
             </div>
-            <div class="col-12 col-lg-4 features__images">
+            <div class="col-12 col-xl-4 features__images">
                 <div class="features__images--box">
                    <%= image_tag "HP Group 1.png" %>
                 </div>
@@ -96,20 +96,26 @@
 <div id="about-section">
     <div class="about">
         <div class="about__content container">
-            <div class="about__image">
-                <%= image_tag "Together.png" %>
-            </div>
-            <div class="about__box container">
-                
-                    <h1 class="text-justify text-center">About us</h1>
-
-                    <div class="about__text">
-                        <%=raw(Business.first.about)%>
-
-                        <%= link_to "Join Us", new_user_registration_path, class: "button__fill button__fill--bgreenl button__about"%>
+            <div class="row">
+                <div class="col-12 col-xl-6 about__images">
+                    <div class="about__images--box">
+                        <%= image_tag "Together.png" %>
                     </div>
-               
-            </div>         
+                </div>
+                <div class="col-12 col-xl-6 about__area">
+                    <div class="about__box">
+                    
+                        <h1 class="text-justify text-center">About us</h1>
+
+                        <div class="about__text">
+                            <%=raw(Business.first.about)%>
+
+                            <%= link_to "Join Us", new_user_registration_path, class: "button__fill button__fill--bgreenl button__about mx-auto"%>
+                        </div>
+                
+                    </div> 
+                </div>
+            </div>        
         </div>
     </div>
     <%= render 'partials/modal_cart_bg'%>
