@@ -9,6 +9,7 @@ class Restaurant < ApplicationRecord
     validates :city, presence: true
     validates :postcode, presence: true
     validates :about, presence: true
+    validates :phone, presence: true
     before_save :postcode_is_formatted
     # this messes with the seed, leave out for now
     # validates :photo, presence: true

@@ -40,13 +40,16 @@
                             <div class="info-box__section--box info-box__section--multiple">
                                 <div><i class="fas fa-phone-square-alt"></i>
                                 <%=@restaurant.phone%></div>
-                               
+                               <%if @restaurant.website.present?%>
                                 <div><i class="fas fa-laptop"></i><%= link_to "Visit our website", @restaurant.website, target: "_blank" %></div>
+                                <%end%>
                             </div>
+                            <%if @restaurant.email.present?%>
                             <div class="info-box__section--box">
                                 <i class="fas fa-envelope-square"></i>
                                 <%=@restaurant.email%>
                             </div>
+                            <%end%>
                         </div>
                     </div>
                 </div>

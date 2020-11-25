@@ -26,6 +26,10 @@
     border-radius: .25rem;
     padding: 3rem;
     position: relative;
+
+    @include respond(phone) {
+        width: 90%;
+    }
 }
 
 .modal__cart {
@@ -131,7 +135,7 @@
     }
 
     textarea {
-        width: 43.5rem;
+        width: 100%;
         border: 1px solid $color-primary-dark;
         border-radius: .25rem;
         background-color: $color-light-grey;

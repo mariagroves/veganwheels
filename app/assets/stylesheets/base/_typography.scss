@@ -44,7 +44,10 @@ h3 {
 p {
    font-size: 1.6rem;
    margin-bottom: 0;
-   // text-align: justify;
+
+   @include respond(phone) {
+      text-align: justify;
+   }
 }
 
  .paragraph {

@@ -98,6 +98,10 @@
     text-transform: uppercase;
     position: absolute;
     z-index: 5;
+
+    @include respond(tab-port) {
+        bottom: 2rem;
+    }
 }
 
 .warning {
