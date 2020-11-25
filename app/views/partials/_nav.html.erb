@@ -6,6 +6,12 @@
         <div class="navigation__logo">
             <%= link_to "Vegan Wheels", root_path %>
         </div>
+        <%if user_signed_in?%>           
+            <div id="user_icon_1" class="user_icon user_icon--mobile">
+                <i class="fas fa-user"></i>
+                <%= render 'partials/user_menu'%>
+            </div> 
+        <%end%>
         <div class="navigation__links">
             <div class="navigation__links--1 padding-small">
                 <div class="link-blob"></div>
@@ -48,7 +54,7 @@
             </div>
         
             <%if user_signed_in?%>           
-                <div id="user_icon">
+                <div id="user_icon_2" class="user_icon user_icon--normal">
                     <i class="fas fa-user"></i>
                     <%= render 'partials/user_menu'%>
                 </div>  
