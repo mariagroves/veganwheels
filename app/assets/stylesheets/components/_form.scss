@@ -2,8 +2,16 @@
     width: 30rem;
     margin-top: 10vh;
     margin-bottom: 10vh;
+
+    @include respond(phone) {
+        margin-top: 3vh;
+        margin-bottom: 3vh;
+        width: 100%;
+    }
     &__heading {
         font-size: 3.5rem !important;
+        display: flex;
+        justify-content: center;
     }
 
     &__field {
@@ -13,6 +21,10 @@
         &--check {
             padding-left: .3rem;
             position: absolute;
+
+            @include respond(phone) {
+                padding-left: 1rem;
+            }
         }
 
         &--link {

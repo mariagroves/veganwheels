@@ -68,7 +68,9 @@
                     <%end%>
                     
                     <%if @past_orders.count > 2%>
-                        <%= link_to "See all past orders", orders_path, class: "uppercase dashboard__box--link"%>
+                        <div class="bottom-margin">
+                            <%= link_to "See all past orders", orders_path, class: "uppercase dashboard__box--link"%>
+                        </div>
                     <%end%>
                 <%else%>
                     <p class="dashboard__box--message">You have no past orders!</p>

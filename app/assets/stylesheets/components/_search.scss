@@ -22,12 +22,6 @@
         &:hover,
         &:active {
             color: $color-primary-dark;
-        }
-        // @include respond(large-phone){
-        //     left: 30rem;
-        // }
-        // @include respond(phone){
-        //     left: 26rem;
-        // }    
+        } 
     }
 }

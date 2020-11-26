@@ -28,6 +28,10 @@
                 border-right: none;
                 padding: 2rem 2rem 0 2rem;
             }
+
+            &:first-child {
+                border-top: 2px solid $color-red-dark;
+            }
         }
 
         &--title {
@@ -106,4 +110,10 @@
     cursor: pointer;
     padding-bottom: 1rem;
     border-bottom: 1px solid $color-red-light;
+}
+
+.bottom-margin {
+    @include respond(tab-land) {
+        margin-bottom: 2rem;
+    }
 }
