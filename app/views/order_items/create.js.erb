@@ -1,6 +1,18 @@
 function createCart(innerHTML) {
-    const navSection = document.getElementById('nav_section');
-    navSection.innerHTML = innerHTML;
+    if (window.innerWidth > 575 && window.innerWidth <= 1199) {
+        const navSection = document.getElementById('nav_section_1'); 
+        navSection.innerHTML = innerHTML;
+        document.querySelectorAll('#nav_section_1 .nav_cart')[0].classList.add('nav_cart--tablet')
+
+    } else if (window.innerWidth <= 575) {
+        const navSection = document.getElementById('nav_section_3');
+        navSection.innerHTML = innerHTML;
+        document.querySelectorAll('#nav_section_3 .nav_cart')[0].classList.add('nav_cart--mobile')
+    } else {
+        const navSection = document.getElementById('nav_section_2');
+        navSection.innerHTML = innerHTML;
+        document.querySelectorAll('#nav_section_2 .nav_cart')[0].classList.add('nav_cart--normal')
+    }
 }
     
 function createCartModal(innerHTML) {

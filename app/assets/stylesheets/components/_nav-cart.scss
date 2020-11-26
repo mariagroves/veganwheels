@@ -1,11 +1,49 @@
 .nav_cart {
-    display: flex;
     background-color: $color-white;
     border-radius: 3px;
     border: 3px solid $color-primary-dark;
     cursor: pointer;
     padding: .6rem;
     margin-top: .7rem;
+
+    &--normal {
+        display: flex;
+        @include respond(tab-land) {
+            display: none;
+        }
+    }
+
+    &--tablet {
+        display: none;
+        @include respond(tab-land) {
+            display: flex;
+            position: absolute;
+            top: 2rem;
+            right: 30%;
+        }
+
+        @include respond(phone) {
+            display: none;
+        }
+    }
+
+    &--mobile {
+        display: none;
+        @include respond(phone) {
+            display: flex;
+            margin-top: 0;
+            border-radius: unset;
+            height: 7rem;
+            align-items: center;
+            justify-content: center;
+            background-color: #F7FBF9;
+            border-top: 2px solid $color-black;
+            border-bottom: 2px solid $color-black;
+            border-left: unset;
+            border-right: unset;
+        }
+
+    }
 
     &--price {
         font-weight: bold;

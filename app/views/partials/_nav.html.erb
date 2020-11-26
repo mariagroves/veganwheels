@@ -12,6 +12,32 @@
                 <%= render 'partials/user_menu'%>
             </div> 
         <%end%>
+        <div id="nav_section_1">
+            <%if !session[:cart_id].nil? && Cart.find(session[:cart_id]).order_items.present?%>
+                <%@cart = Cart.find(session[:cart_id])%>
+                <div class="nav_cart nav_cart--tablet">
+                    <div class="nav_cart--price">
+                        <i class="fas fa-shopping-basket"></i>
+                        <p>£<%=to_pounds(@cart.get_total)%></p>
+                    </div>
+                    <div>|</div>
+                    <p class="uppercase"><%=pluralize(@cart.get_quantity, 'item')%></p>
+                </div>
+            <%elsif user_signed_in? && current_user.orders.where(state: "pending").present?%>
+                <%@cart = current_user.orders.where(state: "pending").first.cart%>
+
+                <%=link_to new_order_payment_path(current_user.orders.where(state: 'pending').first) do%>
+                    <div class="nav_cart nav_cart--tablet">
+                        <div class="nav_cart--price">
+                            <i class="fas fa-shopping-basket"></i>
+                            <p>£<%=to_pounds(@cart.get_total)%></p>
+                        </div>
+                        <div>|</div>
+                        <p class="uppercase"><%=pluralize(@cart.get_quantity, 'item')%></p>
+                    </div>
+                <%end%>
+            <%end%>      
+        </div>
         <div class="navigation__links">
             <div class="navigation__links--1 padding-small">
                 <div class="link-blob"></div>
@@ -26,10 +52,10 @@
                 <%= link_to "Join us", new_contact_path %>
             </div>
        
-            <div id="nav_section">
+            <div id="nav_section_2">
                 <%if !session[:cart_id].nil? && Cart.find(session[:cart_id]).order_items.present?%>
                 <%@cart = Cart.find(session[:cart_id])%>
-                    <div class="nav_cart">
+                    <div class="nav_cart nav_cart--normal">
                         <div class="nav_cart--price">
                             <i class="fas fa-shopping-basket"></i>
                             <p>£<%=to_pounds(@cart.get_total)%></p>
@@ -41,7 +67,7 @@
                     <%@cart = current_user.orders.where(state: "pending").first.cart%>
 
                     <%=link_to new_order_payment_path(current_user.orders.where(state: 'pending').first) do%>
-                        <div class="nav_cart">
+                        <div class="nav_cart nav_cart--normal">
                             <div class="nav_cart--price">
                                 <i class="fas fa-shopping-basket"></i>
                                 <p>£<%=to_pounds(@cart.get_total)%></p>
@@ -65,4 +91,30 @@
             <%end%>
         </div>
     </div>
+</div>
+<div id="nav_section_3">
+    <%if !session[:cart_id].nil? && Cart.find(session[:cart_id]).order_items.present?%>
+    <%@cart = Cart.find(session[:cart_id])%>
+        <div class="nav_cart nav_cart--mobile">
+            <div class="nav_cart--price">
+                <i class="fas fa-shopping-basket"></i>
+                <p>£<%=to_pounds(@cart.get_total)%></p>
+            </div>
+            <div>|</div>
+            <p class="uppercase"><%=pluralize(@cart.get_quantity, 'item')%></p>
+        </div>
+    <%elsif user_signed_in? && current_user.orders.where(state: "pending").present?%>
+        <%@cart = current_user.orders.where(state: "pending").first.cart%>
+
+        <%=link_to new_order_payment_path(current_user.orders.where(state: 'pending').first) do%>
+            <div class="nav_cart nav_cart--mobile">
+                <div class="nav_cart--price">
+                    <i class="fas fa-shopping-basket"></i>
+                    <p>£<%=to_pounds(@cart.get_total)%></p>
+                </div>
+                <div>|</div>
+                <p class="uppercase"><%=pluralize(@cart.get_quantity, 'item')%></p>
+            </div>
+        <%end%>
+    <%end%>      
 </div>
