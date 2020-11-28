@@ -4,12 +4,11 @@ class Restaurant < ApplicationRecord
     has_many :sections, dependent: :restrict_with_error
     has_many :orders, dependent: :restrict_with_error
     belongs_to :admin_user
+    validates :phone, telephone_number: {country: :GB, types: [:mobile, :fixed_line]}
     validates :name, presence: true
     validates :street_address, presence: true
     validates :city, presence: true
     validates :postcode, presence: true
-    validates :about, presence: true
-    validates :phone, presence: true
     validate :can_be_published
     before_save :postcode_is_formatted
     geocoded_by :address
@@ -78,6 +77,10 @@ class Restaurant < ApplicationRecord
     def can_be_published
         if !self.is_onboarded && self.is_published
             errors.add(:name, "The restaurant cannot be published on Vegan Wheels before it is fully onboarded with Stripe.")
+        elsif !self.phone.present? && self.is_published
+            errors.add(:phone, "Please add a phone number.")
+        elsif !self.about.present? && self.is_published
+            errors.add(:about, "Please add a description of the restaurant.")
         end
     end
 end

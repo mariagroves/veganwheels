@@ -119,7 +119,15 @@ ActiveAdmin.register Restaurant do
       row "Minimum Spend", :min_spend do |item|
         number_to_currency(to_pounds(item.min_spend), unit: "£")
       end
-      row :is_open
+      row "Stripe Account", :is_onboarded do |restaurant|
+        restaurant.is_onboarded
+      end
+      row "Open", :is_open do |restaurant|
+        restaurant.is_open
+      end
+      row "Published", :is_published do |restaurant|
+        restaurant.is_published
+      end
       if resource.photo.attached?
         row :photo do |restaurant|
           image_tag url_for(restaurant.photo), style: 'height:50%;width:auto;'
