@@ -120,8 +120,10 @@ ActiveAdmin.register Restaurant do
         number_to_currency(to_pounds(item.min_spend), unit: "£")
       end
       row :is_open
-      row :photo do |restaurant|
-        image_tag url_for(restaurant.photo), style: 'height:50%;width:auto;'
+      if resource.photo.attached?
+        row :photo do |restaurant|
+          image_tag url_for(restaurant.photo), style: 'height:50%;width:auto;'
+        end 
       end
     end
 

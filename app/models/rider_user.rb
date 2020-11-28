@@ -6,6 +6,7 @@ class RiderUser < ApplicationRecord
   has_many :deliveries, dependent: :restrict_with_error
   has_many :rider_work_areas, dependent: :destroy
   has_many :work_areas, through: :rider_work_areas
+  validates :phone, telephone_number: {country: :GB, types: [:mobile]}
   validate :rider_is_active
   validate :rider_has_work_area
 

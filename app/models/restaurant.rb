@@ -10,9 +10,8 @@ class Restaurant < ApplicationRecord
     validates :postcode, presence: true
     validates :about, presence: true
     validates :phone, presence: true
+    validate :can_be_published
     before_save :postcode_is_formatted
-    # this messes with the seed, leave out for now
-    # validates :photo, presence: true
     geocoded_by :address
     after_validation :geocode
 
@@ -73,6 +72,12 @@ class Restaurant < ApplicationRecord
     def postcode_is_formatted
         unless self.latitude.present? && self.longitude.present?
             errors.add(:postcode, "Invalid postcode. Please make sure that the postcode includes a space, eg. 'G2 3AU'.")
+        end
+    end
+
+    def can_be_published
+        if !self.is_onboarded && self.is_published
+            errors.add(:name, "The restaurant cannot be published on Vegan Wheels before it is fully onboarded with Stripe.")
         end
     end
 end

@@ -4,7 +4,7 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :phone, presence: true
-  # validates :phone, telephone_number: {country: :GB, types: [:mobile]}
+  validates :phone, telephone_number: {country: :GB, types: [:mobile]}
   # validates :password, password_strength: {min_entropy: 10}
   validates :street_address, presence: true 
   validates :city, presence: true 

@@ -5,7 +5,7 @@ class AdminUser < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_one :restaurant, dependent: :restrict_with_error
   validates :phone, presence: true
-  # validates :phone, telephone_number: {country: :GB, types: [:mobile]}
+  validates :phone, telephone_number: {country: :GB, types: [:mobile]}
 
   def name
     "#{email}"
