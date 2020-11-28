@@ -14,7 +14,7 @@
                 </div>
                 <div class="show-card__image">
                     <%if @restaurant.photo.attached?%>
-                        <%= cl_image_tag restaurant.photo.key, crop: :fill %>
+                        <%= cl_image_tag @restaurant.photo.key, crop: :fill %>
                     <%else%>
                         <%= image_tag "restaurant.jpg"%>
                     <%end%>
