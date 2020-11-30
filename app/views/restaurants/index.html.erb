@@ -1,7 +1,9 @@
 <div class="container white-content-box">
   <%if user_signed_in?%>
-    <div class="row" id="filter">
-      <%= render 'partials/restaurants_index_filter' %>
+    <div class="row">
+      <div id="filter" class="filter__field">
+        <%= render 'partials/restaurants_index_filter' %>
+      </div>
     </div>
   <%end%>
   <% if @search.present? %>
