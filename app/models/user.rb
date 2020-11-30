@@ -10,6 +10,7 @@ class User < ApplicationRecord
   validates :city, presence: true 
   validate :location_is_glasgow
   validates :postcode, presence: true 
+  validate :address_is_correct
   has_many :orders, dependent: :destroy
   after_create :send_welcome_email
   devise :database_authenticatable, :registerable,
@@ -38,5 +39,11 @@ class User < ApplicationRecord
 
   def send_welcome_email
     WelcomeEmailWorker.perform_async(self.id)
+  end
+
+  def address_is_correct
+    if Geocoder.search(self.address).empty?
+        errors.add(:postcode, "Invalid address. Please make sure there are no errors and that the postcode includes a space, eg. 'G2 3AU'.")
+    end
   end
 end
