@@ -2,19 +2,18 @@
 
 one:
   menu_item: one
-  quantity: 1
+  quantity: 2
   unit_price: 1000
-  total_price: 1000
+  total_price: 2000
   cart: one
-  has_side: false
   created_at: <%= Time.now%>
   updated_at: <%= Time.now%>
 
 two:
   menu_item: two
   quantity: 1
-  unit_price: 800
-  total_price: 800
+  unit_price: 500
+  total_price: 500
   cart: one
   created_at: <%= Time.now%>
   updated_at: <%= Time.now%>
@@ -22,8 +21,8 @@ two:
 three:
   menu_item: two
   quantity: 1
-  unit_price: 800
-  total_price: 800
+  unit_price: 500
+  total_price: 500
   cart: one
   created_at: <%= Time.now%>
   updated_at: <%= Time.now%>
@@ -31,8 +30,8 @@ three:
 four:
   menu_item: two
   quantity: 1
-  unit_price: 800
-  total_price: 800
+  unit_price: 500
+  total_price: 500
   cart: one
   created_at: <%= Time.now%>
   updated_at: <%= Time.now%>

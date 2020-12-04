@@ -12,7 +12,7 @@ one:
 
 two:
   name: "Burger"
-  price: 800
+  price: 500
   description: "Delicious burger"
   is_active: true
   restaurant: one
