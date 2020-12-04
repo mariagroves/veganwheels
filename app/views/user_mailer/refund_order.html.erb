@@ -25,7 +25,7 @@ body {
 </style>
 
 <div class="email_text">
-  <p style="font-weight:bold">Hello <%=@user.first_name%></p>
+  <p style="font-weight:bold">Hello <%=@user.first_name.capitalize%></p>
 
   <p>Your order <span class="order_number"><%=@order.id%></span> from <%=@order.restaurant.name%> has been refunded.</p>
 

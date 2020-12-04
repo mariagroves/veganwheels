@@ -17,7 +17,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   def name
-    "#{first_name}" + " #{last_name}"
+    "#{first_name.capitalize}" + " #{last_name.capitalize}"
   end
 
   def address

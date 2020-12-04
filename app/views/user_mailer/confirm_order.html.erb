@@ -24,7 +24,7 @@ body {
 </style>
 
 <div class="email_text">
-  <p style="font-weight:bold">Hello <%=@user.first_name%></p>
+  <p style="font-weight:bold">Hello <%=@user.first_name.capitalize%></p>
 
   <p>Thank you for ordering from <%=@order.restaurant.name%> with Vegan Wheels.</p>
 

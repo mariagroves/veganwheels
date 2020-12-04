@@ -11,7 +11,7 @@ class RiderUser < ApplicationRecord
   validate :rider_has_work_area
 
   def name
-    "#{first_name}" + " #{last_name}"
+    "#{first_name.capitalize}" + " #{last_name.capitalize}"
   end
 
   def rider_is_active

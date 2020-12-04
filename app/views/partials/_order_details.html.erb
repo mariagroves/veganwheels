@@ -54,7 +54,7 @@
 
     <%if order.is_assigned && !order.delivery.is_delivered%>
         <div>
-            <p>Your rider is <%=order.delivery.rider_user.first_name%>.</p>
+            <p>Your rider is <%=order.delivery.rider_user.first_name.capitalize%>.</p>
             <p>You can contact them on <%=order.delivery.rider_user.phone%></p>
         </div>
     <%end%>
