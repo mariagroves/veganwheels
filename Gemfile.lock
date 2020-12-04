@@ -387,6 +387,7 @@ DEPENDENCIES
   faker
   geocoder
   jbuilder (~> 2.7)
+  launchy
   letter_opener
   listen (>= 3.0.5, < 3.2)
   mail_form
@@ -409,7 +410,7 @@ DEPENDENCIES
   twilio-ruby
   tzinfo-data
   web-console (>= 3.3.0)
-  webdrivers
+  webdrivers (~> 4.0)
   webpacker (~> 4.0)
   whenever
 

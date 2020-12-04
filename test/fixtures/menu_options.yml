@@ -1,13 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  description: MyText
-  price: 1
+  name: "Fries"
+  price: 100
   menu_item: one
+  created_at: <%= Time.now%>
+  updated_at: <%= Time.now%>
 
 two:
-  name: MyString
-  description: MyText
-  price: 1
+  name: "Salad"
+  price: 200
   menu_item: two
+  created_at: <%= Time.now%>
+  updated_at: <%= Time.now%>

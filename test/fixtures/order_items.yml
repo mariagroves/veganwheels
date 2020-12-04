@@ -3,13 +3,37 @@
 one:
   menu_item: one
   quantity: 1
-  note: MyText
-  unit_price_cents: 1
-  total_price_cents: 1
+  unit_price: 1000
+  total_price: 1000
+  cart: one
+  has_side: false
+  created_at: <%= Time.now%>
+  updated_at: <%= Time.now%>
 
 two:
   menu_item: two
   quantity: 1
-  note: MyText
-  unit_price_cents: 1
-  total_price_cents: 1
+  unit_price: 800
+  total_price: 800
+  cart: one
+  created_at: <%= Time.now%>
+  updated_at: <%= Time.now%>
+
+three:
+  menu_item: two
+  quantity: 1
+  unit_price: 800
+  total_price: 800
+  cart: one
+  created_at: <%= Time.now%>
+  updated_at: <%= Time.now%>
+
+four:
+  menu_item: two
+  quantity: 1
+  unit_price: 800
+  total_price: 800
+  cart: one
+  created_at: <%= Time.now%>
+  updated_at: <%= Time.now%>
+  has_side: true

@@ -1,15 +1,10 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  menu_option: one
-  order_item: one
-  quantity: 1
-  unit_price_cents: 1
-  total_price_cents: 1
-
-two:
   menu_option: two
-  order_item: two
+  order_item: four
   quantity: 1
-  unit_price_cents: 1
-  total_price_cents: 1
+  unit_price: 200
+  total_price: 200
+  created_at: <%= Time.now%>
+  updated_at: <%= Time.now%>

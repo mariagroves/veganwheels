@@ -1,19 +1,34 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  address: MyText
-  open_time: 1
-  close_time: 1
-  about: MyText
-  phone: 1
-  email: MyString
+  name: "Glasvegan"
+  street_address: "50 St Enoch Square"
+  city: "Glasgow"
+  postcode: "G1 4DH"
+  phone: "+447595910074"
+  email: "glasvegan@email.com"
+  imagekey: 1
+  website: "https://www.facebook.com/theglasvegan/"
+  is_published: true
+  min_spend: 700
+  about: "100% plant based fast food in the heart of Glasgow. Sustainable and vegan, so you know you can treat yourself guilt-free!"
+  admin_user: two
+  created_at: <%= Time.now%>
+  updated_at: <%= Time.now%>
 
 two:
-  name: MyString
-  address: MyText
-  open_time: 1
-  close_time: 1
-  about: MyText
-  phone: 1
-  email: MyString
+  name: "Mono"
+  street_address: "12 Kings Court"
+  city: "Glasgow"
+  postcode: "G1 5RB"
+  about: "Mono opened in 2002, furnishing Glasgow with a unique and versatile space in which to eat, drink and discover utc music. Over our first decade, we developed a reputation for good beer, good vegan food, good gigs and good times. We are proud of our achievements but we aim to make our second decade even better."
+  phone: '01415532400'
+  email: "mono@email.com"
+  imagekey: 1
+  website: "http://www.monocafebar.com/"
+  admin_user: admin1
+  is_published: true 
+  min_spend: 700
+  admin_user: three
+  created_at: <%= Time.now%>
+  updated_at: <%= Time.now%>

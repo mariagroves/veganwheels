@@ -4,8 +4,22 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+one:
+  email: "admin@email.com"
+  role: "admin"
+  created_at: <%= Time.now%>
+  updated_at: <%= Time.now%>
+
+two:
+  email: "glasvegan@email.com"
+  role: "restaurant"
+  phone: "+44595910074"
+  created_at: <%= Time.now%>
+  updated_at: <%= Time.now%>
+
+three:
+  email: "mono@email.com"
+  role: "restaurant"
+  phone: "+44595910074"
+  created_at: <%= Time.now%>
+  updated_at: <%= Time.now%>

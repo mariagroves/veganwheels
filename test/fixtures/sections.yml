@@ -1,7 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  name: "Main"
+  order: 1
+  restaurant: one
+  created_at: <%= Time.now%>
+  updated_at: <%= Time.now%>
 
 two:
-  name: MyString
+  name: "Main"
+  order: 1
+  restaurant: two
+  created_at: <%= Time.now%>
+  updated_at: <%= Time.now%>
