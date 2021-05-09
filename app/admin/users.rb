@@ -1,5 +1,4 @@
 ActiveAdmin.register User do
-
   permit_params :email, :first_name, :last_name, :phone, :street_address, :city, :county, :postcode
 
   config.clear_action_items!
@@ -8,8 +7,9 @@ ActiveAdmin.register User do
     before_action { @page_title = "Customers" }
   end
 
+  config.batch_actions = false
+
   index do
-    selectable_column
     column :email
     column :first_name
     column :last_name
@@ -76,5 +76,4 @@ ActiveAdmin.register User do
     end
     f.actions
   end
-  
 end

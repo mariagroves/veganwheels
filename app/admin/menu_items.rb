@@ -4,7 +4,20 @@ ActiveAdmin.register MenuItem do
   belongs_to :section, optional: true
 
   config.clear_action_items!
-  
+
+  batch_action :destroy do |selection|
+    MenuItem.find(selection).each do |r|
+      r.destroy
+      if r.errors.any?
+        flash[:error] = "There has been an error."
+      else
+        flash[:notice] = "The items have been deleted"
+      end
+    end
+
+    redirect_to collection_path
+  end
+
   index do
     selectable_column
     column :name
@@ -13,7 +26,7 @@ ActiveAdmin.register MenuItem do
     end
     column :description
     column "Active", :is_active
-    column :restaurant if current_admin_user.role == 'admin'
+    column :restaurant if current_admin_user.role == "admin"
     column "Menu section", :section
     actions
   end
@@ -49,21 +62,20 @@ ActiveAdmin.register MenuItem do
   end
 
   action_item :new, only: :show do
-    link_to 'Create new side', new_admin_menu_item_menu_option_path(resource)
+    link_to "Create new side", new_admin_menu_item_menu_option_path(resource)
   end
 
   menu label: "Menu Items"
-  
+
   controller do
     before_action { @page_title = "Menu Items" }
   end
 
-  form partial: 'form'
+  form partial: "form"
 
   filter :restaurant
   filter :name
   filter :description
   filter :price, label: "Price in pence"
   filter :is_active
-
 end

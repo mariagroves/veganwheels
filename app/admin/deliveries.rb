@@ -1,6 +1,7 @@
 ActiveAdmin.register Delivery do
-
   permit_params :order_id, :rider_user_id, :is_collected, :is_delivered, :time_collected, :time_delivered
+
+  config.batch_actions = false
 
   index do
     column :order
@@ -21,7 +22,7 @@ ActiveAdmin.register Delivery do
       row "Collected From Restaurant" do
         resource.is_collected
       end
-      row "Delivered To Customer" do 
+      row "Delivered To Customer" do
         resource.is_delivered
       end
       row :time_collected
@@ -30,7 +31,7 @@ ActiveAdmin.register Delivery do
   end
 
   form do |f|
-    inputs 'Delivery' do
+    inputs "Delivery" do
       input :rider_user, label: "Rider"
       input :order_id, as: :number
       input :is_collected, label: "Collected From Restaurant"
@@ -43,5 +44,4 @@ ActiveAdmin.register Delivery do
   filter :order_id, as: :number
   filter :is_collected, label: "Collected From Restaurant"
   filter :is_delivered, label: "Delivered To Customer"
-
 end

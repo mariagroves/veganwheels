@@ -1,6 +1,7 @@
 ActiveAdmin.register RiderUser do
-
   permit_params :email, :password, :password_confirmation, :reset_password_token, :reset_password_sent_at, :remember_created_at, :first_name, :last_name, :is_available, :is_active, :phone, :role
+
+  config.batch_actions = false
 
   menu label: "Riders"
   controller do
@@ -11,7 +12,7 @@ ActiveAdmin.register RiderUser do
     column :name
     column :email
     column "Available to work", :is_available
-    column "Active on VeganWheels",  :is_active
+    column "Active on VeganWheels", :is_active
     column :phone
     actions
   end
@@ -49,8 +50,8 @@ ActiveAdmin.register RiderUser do
     end
   end
 
-  form title: 'Edit Rider Details' do |f|
-    inputs 'Details' do
+  form title: "Edit Rider Details" do |f|
+    inputs "Details" do
       input :first_name
       input :last_name
       input :email
@@ -67,5 +68,4 @@ ActiveAdmin.register RiderUser do
   filter :last_name
   filter :is_available, label: "Active on VeganWheels"
   filter :is_active, label: "Available To Work"
-  
 end
