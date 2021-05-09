@@ -1,9 +1,10 @@
 ActiveAdmin.register AdminUser do
   permit_params :email, :phone, :password, :password_confirmation
 
-  menu if: proc{ current_admin_user.role == "admin" }
+  config.batch_actions = false
+
+  menu if: proc { current_admin_user.role == "admin" }
   index do
-    selectable_column
     column :email
     column :phone
     column :created_at
@@ -28,14 +29,12 @@ ActiveAdmin.register AdminUser do
       f.input :email
       f.input :phone
       if f.object.new_record? || current_admin_user.role == "admin" && f.object.role == "admin" || current_admin_user.role == "restaurant" && f.object.role == "restaurant"
-        f.input :password 
+        f.input :password
         f.input :password_confirmation
       end
     end
     f.actions
   end
-
-  
 
   controller do
     def update
@@ -51,7 +50,6 @@ ActiveAdmin.register AdminUser do
       else
         render :action => :edit
       end
-
     end
   end
 end

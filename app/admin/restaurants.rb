@@ -1,23 +1,34 @@
 ActiveAdmin.register Restaurant do
-
-  permit_params :name, :street_address, :city, :county, :postcode, :about, :phone, :email, :latitude, :longitude, :imagekey, :website, :photo, :admin_user_id, :is_open, :is_published, :monday_opens_at, :monday_closes_at, :tuesday_opens_at, :tuesday_closes_at,:wednesday_opens_at, :wednesday_closes_at, :thursday_opens_at, :thursday_closes_at, :friday_opens_at, :friday_closes_at,:saturday_opens_at, :saturday_closes_at, :sunday_opens_at,:sunday_closes_at, :min_spend
+  permit_params :name, :street_address, :city, :county, :postcode, :about, :phone, :email, :latitude, :longitude, :imagekey, :website, :photo, :admin_user_id, :is_open, :is_published, :monday_opens_at, :monday_closes_at, :tuesday_opens_at, :tuesday_closes_at, :wednesday_opens_at, :wednesday_closes_at, :thursday_opens_at, :thursday_closes_at, :friday_opens_at, :friday_closes_at, :saturday_opens_at, :saturday_closes_at, :sunday_opens_at, :sunday_closes_at, :min_spend
 
   config.batch_actions = false
 
   after_create do |restaurant|
     restaurant.update(imagekey: rand(1..4))
   end
- 
+
   filter :name
   filter :email
   filter :is_open
- 
+
+  controller do
+    def destroy
+      resource.destroy
+      if resource.errors.any?
+        flash[:error] = "Delete the menu sections and menu items first."
+      else
+        flash[:notice] = "Success"
+      end
+      redirect_to admin_restaurants_path
+    end
+  end
+
   index do
     column :name
     if current_admin_user.role == "restaurant" && !current_admin_user.restaurant.is_onboarded
       column do |restaurant|
         active_admin_form_for restaurant, url: stripe_connect_admin_restaurant_path(restaurant), method: :post do |f|
-          f.inputs do 
+          f.inputs do
             f.input :restaurant_id, input_html: { :value => restaurant.id }, as: :hidden
           end
           f.action :submit, label: "Connect To Stripe"
@@ -38,10 +49,10 @@ ActiveAdmin.register Restaurant do
     column "Open", :is_open
     column do |restaurant|
       active_admin_form_for restaurant, url: toggle_open_admin_restaurant_path(restaurant), method: :patch do |f|
-        f.inputs do 
-          f.input :is_open, input_html: { :value => restaurant.is_open}, as: :hidden
+        f.inputs do
+          f.input :is_open, input_html: { :value => restaurant.is_open }, as: :hidden
         end
-         f.action :submit, label: restaurant.is_open ?  "Mark Closed" : "Mark Open"
+        f.action :submit, label: restaurant.is_open ? "Mark Closed" : "Mark Open"
       end
     end
     column "Published", :is_published
@@ -63,10 +74,10 @@ ActiveAdmin.register Restaurant do
   member_action :stripe_connect, method: [:post, :patch] do
     begin
       restaurant = Restaurant.find(params[:id])
-    
+
       if restaurant.stripe_account_id.nil? || restaurant.stripe_account_id.empty?
         account = Stripe::Account.create({
-          type: 'standard'
+          type: "standard",
         })
         restaurant.update(stripe_account_id: account.id)
       end
@@ -74,18 +85,16 @@ ActiveAdmin.register Restaurant do
         account: restaurant.stripe_account_id,
         refresh_url: stripe_connect_admin_restaurant_url(restaurant),
         return_url: admin_dashboard_url,
-        type: 'account_onboarding',
+        type: "account_onboarding",
       })
       redirect_to account_links.url
-
-    rescue  ::Stripe::CardError,                   # card declined
-            ::Stripe::RateLimitError,              # too many requests made to the api too quickly
-            ::Stripe::InvalidRequestError,         # invalid parameters were supplied to Stripe's api
-            ::Stripe::AuthenticationError,         # authentication with stripe's api failed
-            ::Stripe::APIConnectionError,          # network communication with stripe failed
-            ::Stripe::StripeError,                 # generic error
-            ::ActiveRecord::ActiveRecordError => e # something broke saving our records
-
+    rescue ::Stripe::CardError,                   # card declined
+           ::Stripe::RateLimitError,              # too many requests made to the api too quickly
+           ::Stripe::InvalidRequestError,         # invalid parameters were supplied to Stripe's api
+           ::Stripe::AuthenticationError,         # authentication with stripe's api failed
+           ::Stripe::APIConnectionError,          # network communication with stripe failed
+           ::Stripe::StripeError,                 # generic error
+           ::ActiveRecord::ActiveRecordError => e # something broke saving our records
       ExceptionNotifier.notify_exception(e, env: request.env)
       flash[:error] = "Unfortunately, something has gone wrong. Our team has been notified. Please try again later and get in touch if the issue persists."
       redirect_to admin_dashboard_path
@@ -100,11 +109,11 @@ ActiveAdmin.register Restaurant do
     private
 
     def set_notice
-      flash.now[:error] = 'Please complete Stripe onboarding.' if current_admin_user.role == "restaurant" && !current_admin_user.restaurant.is_onboarded
+      flash.now[:error] = "Please complete Stripe onboarding." if current_admin_user.role == "restaurant" && !current_admin_user.restaurant.is_onboarded
     end
   end
 
-  form partial: 'form'
+  form partial: "form"
 
   show do
     attributes_table do
@@ -130,8 +139,8 @@ ActiveAdmin.register Restaurant do
       end
       if resource.photo.attached?
         row :photo do |restaurant|
-          image_tag url_for(restaurant.photo), style: 'height:50%;width:auto;'
-        end 
+          image_tag url_for(restaurant.photo), style: "height:50%;width:auto;"
+        end
       end
     end
 
@@ -151,7 +160,6 @@ ActiveAdmin.register Restaurant do
   end
 
   action_item :new, only: :show do
-    link_to 'Create new menu section', new_admin_restaurant_section_path(resource)
+    link_to "Create new menu section", new_admin_restaurant_section_path(resource)
   end
-
 end

@@ -1,6 +1,8 @@
 ActiveAdmin.register WorkArea do
   permit_params :postcode
 
+  config.batch_actions = false
+
   index do
     selectable_column
     column :postcode
@@ -21,5 +23,4 @@ ActiveAdmin.register WorkArea do
     end
     f.actions
   end
-
 end

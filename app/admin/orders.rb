@@ -1,12 +1,11 @@
 ActiveAdmin.register Order do
 
-#  should the admin be able to change stuff?
+  #  should the admin be able to change stuff?
   permit_params :checkout_session_id, :user_id, :cart_id, :order_price, :total_price, :is_assigned, :state, :delivery_price, :open, :order_time
 
   config.clear_action_items!
 
   index do
-    selectable_column
     column "Order no", :id
     column "Customer", :user
     column :restaurant
@@ -91,18 +90,18 @@ ActiveAdmin.register Order do
 
     resource.cart.order_items.each do |order_item|
       if order_item.has_side
-      panel "Sides for #{order_item.name}" do
-        table_for(order_item.order_item_options) do
-          column :name
-          column :quantity
-          column :unit_price do |item|
-            number_to_currency(to_pounds(item.unit_price), unit: "£")
-          end
-          column :total_price do |item|
-            number_to_currency(to_pounds(item.total_price), unit: "£")
+        panel "Sides for #{order_item.name}" do
+          table_for(order_item.order_item_options) do
+            column :name
+            column :quantity
+            column :unit_price do |item|
+              number_to_currency(to_pounds(item.unit_price), unit: "£")
+            end
+            column :total_price do |item|
+              number_to_currency(to_pounds(item.total_price), unit: "£")
+            end
           end
         end
-      end
       end
     end
   end
@@ -117,5 +116,4 @@ ActiveAdmin.register Order do
   filter :state, label: "Payment [pending/paid/refunded]"
   filter :open, label: "Order in progress"
   filter :order_time
-
 end
