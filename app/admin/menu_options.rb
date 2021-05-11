@@ -1,5 +1,5 @@
 ActiveAdmin.register MenuOption do
-  permit_params :name, :description, :price, :menu_item_id
+  permit_params :name, :description, :price, :menu_item_id, :is_single
 
   belongs_to :menu_item, optional: true
 
@@ -14,6 +14,7 @@ ActiveAdmin.register MenuOption do
     end
     column :description
     column "Side for menu item", :menu_item
+    column "Single selection only", :is_single
     actions
   end
 
@@ -25,6 +26,9 @@ ActiveAdmin.register MenuOption do
       end
       row :description
       row :menu_item
+      row "Single selection only", :is_single do |item|
+        item.is_single
+      end
     end
   end
 

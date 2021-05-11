@@ -1,27 +1,44 @@
-<div class="modal__box modal__item <%=item.id%>"> 
+<div class="modal__box modal__item <%= item.id %>"> 
     <div class="modal__item--text">
         <div class="modal__item--top">
-            <h3><%=item.name%></h3>
+            <h3><%= item.name %></h3>
             <h3 class="price">£
-            <%=to_pounds(item.price)%>
+            <%= to_pounds(item.price) %>
             </h3>
         </div>
         <div class="modal__item--description">
-            <p><%=item.description%></p>
+            <p><%= item.description %></p>
         </div>
         <form class="order-form" id="order-form" accept-charset="UTF-8" data-remote="true" method="post">
         
-        <%=hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
             <div>
                 <label class="font-weight-bold" for="order_item_options">Options</label>
-                
-                <% item.menu_options.each_with_index do |option, index| %>
+
+                <% if item.menu_options.single_select.any? %>
                     <div>
-                        <input type="checkbox" name="order_item[order_item_options_attributes][<%=index%>][menu_option_id]" id="order_item_options" value="<%=option.id%>"> <%=option.name%> <%if option.price != nil%> 
-                            £<%=to_pounds(option.price)%>
-                        <%end%>
+                    <select name="order_item[order_item_options_attributes][-1][menu_option_id]" id="order_item_options" form="order-form">
+                        <% item.menu_options.single_select.each_with_index do |option, index| %>
+                            <option value="<%= option.id %>">
+                                <%= option.name %> 
+                                <% if option.price != nil %> 
+                                 £<%= to_pounds(option.price) %>
+                                <% end %>
+                            </option>
+                        <% end %>
+                    </select>
                     </div>
-                <%end%>
+                <% end %>
+                
+                <% if item.menu_options.multiple_select.any? %>
+                    <% item.menu_options.multiple_select.each_with_index do |option, index| %>
+                            <div>
+                                <input type="checkbox" name="order_item[order_item_options_attributes][<%= index %>][menu_option_id]" id="order_item_options" value="<%= option.id %>"> <%= option.name %> <% if option.price != nil %> 
+                                    £<%= to_pounds(option.price) %>
+                                <% end %>
+                            </div>
+                    <% end %>
+                <% end %>
             </div>
 
             <div>
