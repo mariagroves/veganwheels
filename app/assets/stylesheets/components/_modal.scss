@@ -22,7 +22,8 @@
 .modal__box {
     background-color: $color-light-grey;
     width: 50rem;
-    height: auto;
+    height: 50rem;
+    overflow: scroll;
     border-radius: .25rem;
     padding: 3rem;
     position: relative;
