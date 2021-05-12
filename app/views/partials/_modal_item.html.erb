@@ -6,9 +6,11 @@
             <%= to_pounds(item.price) %>
             </h3>
         </div>
-        <div class="modal__item--description">
-            <p><%= item.description %></p>
-        </div>
+        <% if item.description.present? %>
+            <div class="modal__item--description">
+                <p><%= item.description %></p>
+            </div>
+        <% end %>
         <form class="order-form" id="order-form" accept-charset="UTF-8" data-remote="true" method="post">
         
         <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
@@ -33,8 +35,14 @@
                 <% if item.menu_options.multiple_select.any? %>
                     <% item.menu_options.multiple_select.each_with_index do |option, index| %>
                             <div>
-                                <input type="checkbox" name="order_item[order_item_options_attributes][<%= index %>][menu_option_id]" id="order_item_options" value="<%= option.id %>"> <%= option.name %> <% if option.price != nil %> 
-                                    £<%= to_pounds(option.price) %>
+                                <input type="checkbox" name="order_item[order_item_options_attributes][<%= index %>][menu_option_id]" id="order_item_options" value="<%= option.id %>"> 
+                                    <%= option.name %> 
+                                    <% if option.price != nil %> 
+                                        £<%= to_pounds(option.price) %>
+                                    <% end %>
+                                
+                                <% if option.description.present? %>
+                                    <p class="option__box"><%= option.description %></p>
                                 <% end %>
                             </div>
                     <% end %>

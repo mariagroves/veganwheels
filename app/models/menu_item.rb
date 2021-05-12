@@ -4,7 +4,7 @@ class MenuItem < ApplicationRecord
   has_many :menu_options, dependent: :destroy
   has_many :order_items
   has_many :order_item_options, through: :order_items
-  validates :name, :price, :description, presence: true
+  validates :name, :price, presence: true
   validate :section_for_restaurant
 
   def section_for_restaurant

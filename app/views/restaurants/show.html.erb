@@ -1,23 +1,23 @@
 <div class="container white-content-box">
     <div class="row">
         <div class="col-12 col-lg-5">
-            <%if @restaurant.is_currently_closed?%>
+            <% if @restaurant.is_currently_closed? %>
                 <div class="badge">
                     Closed
                 </div>
-            <%end%>
+            <% end %>
             <div class="show-card">
                 <div class="show-card__title">
                     <% @restaurant.name.split.each do |word| %>
-                        <h1><%=word%></h1>
-                    <%end%>
+                        <h1><%= word %></h1>
+                    <% end %>
                 </div>
                 <div class="show-card__image">
-                    <%if @restaurant.photo.attached?%>
+                    <% if @restaurant.photo.attached? %>
                         <%= cl_image_tag @restaurant.photo.key, crop: :fill %>
-                    <%else%>
-                        <%= image_tag "restaurant.jpg"%>
-                    <%end%>
+                    <% else %>
+                        <%= image_tag "restaurant.jpg" %>
+                    <% end %>
                 </div>
             </div>
             <div class="delivery_time">Delivery: 30 minutes</div>
@@ -27,7 +27,7 @@
                 <div class="row">
                     <div class="col-12">
                         <h3 class="subtitle">About us</h3>
-                        <p> <%=@restaurant.about%> </p>
+                        <p> <%= @restaurant.about %> </p>
                     </div>
                 </div>
                 <div class="row">
@@ -35,25 +35,25 @@
                         <h3 class="subtitle">Contact us</h3>
                         <div class="info-box__section">
                             <div class="info-box__section--box">
-                                 <%@restaurant.address.split(',').each do |line|%>
-                                    <p><%=line%></p>
-                                 <%end%>
+                                 <% @restaurant.address.split(",").each do |line| %>
+                                    <p><%= line %></p>
+                                 <% end %>
                                 <%= link_to "See map", "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(@restaurant.address)}", target: "_blank" %>
                                  
                             </div>
                             <div class="info-box__section--box info-box__section--multiple">
                                 <div><i class="fas fa-phone-square-alt"></i>
-                                <%=@restaurant.phone%></div>
-                               <%if @restaurant.website.present?%>
+                                <%= @restaurant.phone %></div>
+                               <% if @restaurant.website.present? %>
                                 <div><i class="fas fa-laptop"></i><%= link_to "Visit our website", @restaurant.website, target: "_blank" %></div>
-                                <%end%>
+                                <% end %>
                             </div>
-                            <%if @restaurant.email.present?%>
+                            <% if @restaurant.email.present? %>
                             <div class="info-box__section--box">
                                 <i class="fas fa-envelope-square"></i>
-                                <%=@restaurant.email%>
+                                <%= @restaurant.email %>
                             </div>
-                            <%end%>
+                            <% end %>
                         </div>
                     </div>
                 </div>
@@ -61,12 +61,12 @@
                     <div class="col-12">
                         <div class="info-box__section">
                             <div class="info-box__section--box">
-                                <%if !@restaurant.is_currently_closed?%>
+                                <% if !@restaurant.is_currently_closed? %>
                                     <h3 class="subtitle">Available</h3>
-                                <%else%>
+                                <% else %>
                                     <h3 class="subtitle warning">Sorry, we're currently closed. Our typical opening hours are:</h3>
-                                <%end%>
-                                <%=@restaurant.opening_hours%>
+                                <% end %>
+                                <%= @restaurant.opening_hours %>
                                 </div>
                             </div>
                         </div>
@@ -74,40 +74,42 @@
                 </div>
             </div>
         </div>
-    <%sections = @restaurant.sections.uniq.sort_by { |section| section.order }%>
-    <%sections.each do |section|%>
+    <% sections = @restaurant.sections.uniq.sort_by { |section| section.order } %>
+    <% sections.each do |section| %>
         <div class="row">
             <div class="col-12">
                 <div class="section">
-                    <h2><%=section.name%></h2>
+                    <h2><%= section.name %></h2>
                 </div>
             </div>
         </div>
         <div class="row menu">
-            <%@menu_items.each do |item|%>
-                <%if item.section == section%>
+            <% @menu_items.each do |item| %>
+                <% if item.section == section %>
                 <div class="col-12 col-lg-6">
-                <%= link_to menu_item_path(item), remote: true do%>
-                    <div class="menu__item menu__item--js <%=item.id%>">
+                <%= link_to menu_item_path(item), remote: true do %>
+                    <div class="menu__item menu__item--js <%= item.id %>">
                         <div class="menu__item--text">
                             <div class="top">
-                                <h3><%=item.name%></h3>
+                                <h3><%= item.name %></h3>
                                 <h3 class="price">£
-                                <%=to_pounds(item.price)%>
+                                <%= to_pounds(item.price) %>
                                 </h3>
                             </div>
-                            <div class="middle">
-                                <p><%=item.description%></p>
-                            </div>
+                            <% if item.description.present? %>
+                                <div class="middle">
+                                    <p><%= item.description %></p>
+                                </div>
+                            <% end %>
                         </div>
                     </div>
-                <%end%>
+                <% end %>
                 </div>
-                <%end%>
+                <% end %>
                 
-            <%end%>
+            <% end %>
         </div>
-    <%end%> 
-    <%= render 'partials/modal_cart_bg'%>
+    <% end %> 
+    <%= render "partials/modal_cart_bg" %>
 </div>
 
