@@ -1,5 +1,5 @@
 ActiveAdmin.register Restaurant do
-  permit_params :name, :street_address, :city, :county, :postcode, :about, :phone, :email, :latitude, :longitude, :imagekey, :website, :photo, :admin_user_id, :is_open, :is_published, :monday_opens_at, :monday_closes_at, :tuesday_opens_at, :tuesday_closes_at, :wednesday_opens_at, :wednesday_closes_at, :thursday_opens_at, :thursday_closes_at, :friday_opens_at, :friday_closes_at, :saturday_opens_at, :saturday_closes_at, :sunday_opens_at, :sunday_closes_at, :min_spend
+  permit_params :name, :street_address, :city, :county, :postcode, :about, :phone, :email, :latitude, :longitude, :imagekey, :website, :photo, :admin_user_id, :is_open, :is_published, :monday_opens_at, :monday_closes_at, :tuesday_opens_at, :tuesday_closes_at, :wednesday_opens_at, :wednesday_closes_at, :thursday_opens_at, :thursday_closes_at, :friday_opens_at, :friday_closes_at, :saturday_opens_at, :saturday_closes_at, :sunday_opens_at, :sunday_closes_at, :min_spend, :stripe_account_id
 
   config.batch_actions = false
 
@@ -82,7 +82,7 @@ ActiveAdmin.register Restaurant do
         restaurant.update(stripe_account_id: account.id)
       end
       puts account
-      puts restaurant
+      puts restaurant.stripe_account_id
       account_links = Stripe::AccountLink.create({
         account: restaurant.stripe_account_id,
         refresh_url: stripe_connect_admin_restaurant_url(restaurant),
