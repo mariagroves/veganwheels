@@ -79,7 +79,7 @@ ActiveAdmin.register Restaurant do
         account = Stripe::Account.create({
           type: "standard",
         })
-        restaurant.update(stripe_account_id: account.id)
+        restaurant.update!(stripe_account_id: account.id)
       end
       puts account
       puts restaurant.stripe_account_id
