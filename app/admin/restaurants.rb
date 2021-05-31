@@ -81,6 +81,8 @@ ActiveAdmin.register Restaurant do
         })
         restaurant.update(stripe_account_id: account.id)
       end
+      puts account
+      puts restaurant
       account_links = Stripe::AccountLink.create({
         account: restaurant.stripe_account_id,
         refresh_url: stripe_connect_admin_restaurant_url(restaurant),
