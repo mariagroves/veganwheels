@@ -4,8 +4,8 @@
             <div class="col-12 col-lg-4 footer__column">
                 <div class="footer__column--box">
                     <div class="footer__column--box">
-                        <%=link_to "Restaurants Admin", new_admin_user_session_path%>
-                        <%=link_to "Rider Portal", new_rider_user_session_path%>
+                        <%= link_to "Restaurants Admin", admin_dashboard_path %>
+                        <%= link_to "Rider Portal", rider_dashboard_path %>
                         <div class="links">
                             <a href="#"><i class="fab fa-instagram"></i></a> 
                             <a href="#"><i class="fab fa-facebook-square"></i></a> 
@@ -16,10 +16,10 @@
             </div>
             <div class="col-12 col-lg-4 footer__column">
                 <div class="footer__column--box">
-                    <%=link_to "FAQs", faqs_path%>
-                    <%=link_to "Terms and Conditions", terms_path%>
-                    <%=link_to "Privacy Policy", privacy_path%>
-                    <%=link_to "Illustrations", "https://absurd.design/", target: "_blank"%>
+                    <%= link_to "FAQs", faqs_path %>
+                    <%= link_to "Terms and Conditions", terms_path %>
+                    <%= link_to "Privacy Policy", privacy_path %>
+                    <%= link_to "Illustrations", "https://absurd.design/", target: "_blank" %>
                 </div>
             </div>
             <div class="col-12 col-lg-4 footer__column">
@@ -27,11 +27,11 @@
                     <p class="title">Contact us</p>
                     <div class="email">
                         <i class="fas fa-envelope"></i>
-                        <p><%=Business.first.email%></p>
+                        <p><%= Business.first.email %></p>
                     </div>
                     <div class="phone">
                         <i class="fas fa-phone-square-alt"></i>
-                        <p><%=Business.first.phone%></p>
+                        <p><%= Business.first.phone %></p>
                     </div>
                 </div>
             </div>
