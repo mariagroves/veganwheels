@@ -1,20 +1,24 @@
 <div class="container white-content-box">
-  <%if user_signed_in?%>
+  <% if user_signed_in? %>
     <div class="row">
       <div id="filter" class="filter__field">
-        <%= render 'partials/restaurants_index_filter' %>
+        <%= render "partials/restaurants_index_filter" %>
       </div>
     </div>
-  <%end%>
+  <% end %>
   <% if @search.present? %>
     <div class="row">
       <div class="results-bar">
-        <h3 class="results-bar__text">Restaurants near <%= @postcode%></h3>
+        <h3 class="results-bar__text">Restaurants near <%= @postcode %></h3>
       </div>
     </div>
-  <%end%>
+  <% end %>
   <div id="user-restaurants">
-    <%= render 'partials/restaurants_index', restaurant: @restaurant%>
+    <% if Restaurant.where(is_published: true).any? %>
+      <%= render "partials/restaurants_index", restaurant: @restaurant %>
+    <% else %>
+      <h3 class="text-center">Coming soon!</h3>
+    <% end %>
   </div>
-  <%= render 'partials/modal_cart_bg'%>
+  <%= render "partials/modal_cart_bg" %>
 </div>
