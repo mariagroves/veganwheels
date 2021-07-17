@@ -1,5 +1,4 @@
 ActiveAdmin.register Order, namespace: :rider do
-
   config.clear_action_items!
   config.filters = false
   config.batch_actions = false
@@ -13,19 +12,19 @@ ActiveAdmin.register Order, namespace: :rider do
     column "Order no", :id
     column :restaurant
     column "Restaurant Address", :id do |order|
-      link_to order.restaurant.address, "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(order.user.address)}", target: "_blank"
+      link_to order.restaurant.address, "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(order.restaurant.address)}", target: "_blank"
     end
     column "Delivery Address", :id do |order|
-      link_to order.user.address, "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(order.user.address)}", target: "_blank"
+      link_to order.user.address, "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(order.user.geocoder_address)}", target: "_blank"
     end
     column "Time order placed", :order_time
     column do |order|
       active_admin_form_for order, url: sign_up_for_job_rider_order_path(order), method: :post do |f|
-        f.inputs do 
+        f.inputs do
           f.input :order_id, input_html: { :value => order.id }, as: :hidden
           f.input :rider_user_id, input_html: { :value => current_rider_user.id }, as: :hidden
         end
-         f.action :submit, label: "Sign up for job"
+        f.action :submit, label: "Sign up for job"
       end
     end
     actions
@@ -51,7 +50,7 @@ ActiveAdmin.register Order, namespace: :rider do
       end
       row :restaurant
       row "Restaurant Address" do
-        link_to resource.restaurant.address, "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(order.user.address)}", target: "_blank"
+        link_to resource.restaurant.address, "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(order.restaurant.address)}", target: "_blank"
       end
       row :order_time
     end
@@ -61,9 +60,9 @@ ActiveAdmin.register Order, namespace: :rider do
         column :name
         column :phone
         column "Delivery Address", :address do |user|
-          link_to user.address, "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(user.address)}", target: "_blank"
+          link_to user.address, "https://www.google.com/maps/search/?api=1&query=#{CGI.escape(user.geocoder_address)}", target: "_blank"
         end
-        column "Delivery Instructions" do 
+        column "Delivery Instructions" do
           resource.delivery_instructions
         end
       end
@@ -79,12 +78,12 @@ ActiveAdmin.register Order, namespace: :rider do
 
     resource.cart.order_items.each do |order_item|
       if order_item.has_side
-      panel "Sides for #{order_item.name}" do
-        table_for(order_item.order_item_options) do
-          column :name
-          column :quantity
+        panel "Sides for #{order_item.name}" do
+          table_for(order_item.order_item_options) do
+            column :name
+            column :quantity
+          end
         end
-      end
       end
     end
   end

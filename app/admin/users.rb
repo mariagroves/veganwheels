@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  permit_params :email, :first_name, :last_name, :phone, :street_address, :city, :county, :postcode
+  permit_params :email, :first_name, :last_name, :phone, :flat, :street_address, :city, :county, :postcode
 
   config.clear_action_items!
   menu label: "Customers"
@@ -14,6 +14,7 @@ ActiveAdmin.register User do
     column :first_name
     column :last_name
     column :phone
+    column :flat
     column :street_address
     column :city
     column :county
@@ -36,6 +37,7 @@ ActiveAdmin.register User do
       row :first_name
       row :last_name
       row :phone
+      row :flat
       row :street_address
       row :city
       row :county
@@ -69,6 +71,7 @@ ActiveAdmin.register User do
       f.input :first_name
       f.input :last_name
       f.input :phone
+      f.input :flat
       f.input :street_address
       f.input :city
       f.input :county

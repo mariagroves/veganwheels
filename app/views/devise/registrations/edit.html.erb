@@ -1,11 +1,11 @@
 <div class="container white-content-box">
   <div class="row">
     <div class="col-12">
-      <%= link_to :back do%>
+      <%= link_to :back do %>
         <p class="uppercase dashboard__box--link">
         <i class="fas fa-chevron-left"></i>
         Back</p>
-      <%end%>
+      <% end %>
 
       <div class="vwform mx-auto">
         <h1 class="vwform__heading">Edit account</h1>
@@ -23,28 +23,31 @@
 
           <%= f.input :first_name,
                       autofocus: true,
-                      label_html: { class: "vwform__field" }%>
+                      label_html: { class: "vwform__field" } %>
           <%= f.input :last_name,
                       autofocus: true,
-                      label_html: { class: "vwform__field" }%>
+                      label_html: { class: "vwform__field" } %>
           <%= f.input :phone,
                       autofocus: true,
-                      label_html: { class: "vwform__field" }%>
+                      label_html: { class: "vwform__field" } %>
           <%= f.input :email,
                       autofocus: true,
-                      label_html: { class: "vwform__field" }%>
+                      label_html: { class: "vwform__field" } %>
+          <%= f.input :flat,
+                      autofocus: true,
+                      label_html: { class: "vwform__field" } %>            
           <%= f.input :street_address,
                       autofocus: true,
-                      label_html: { class: "vwform__field" }%>
+                      label_html: { class: "vwform__field" } %>
           <%= f.input :city,
                       autofocus: true,
-                      label_html: { class: "vwform__field" }%>
+                      label_html: { class: "vwform__field" } %>
           <%= f.input :county,
                       autofocus: true,
-                      label_html: { class: "vwform__field" }%>
+                      label_html: { class: "vwform__field" } %>
           <%= f.input :postcode,
                       autofocus: true,
-                      label_html: { class: "vwform__field" }%>
+                      label_html: { class: "vwform__field" } %>
           <%= f.input :password,
                       hint: "Leave it blank if you don't want to change it.",
                       required: false,
