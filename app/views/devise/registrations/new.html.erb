@@ -11,41 +11,44 @@
             <%= f.input :first_name,
                         required: true,
                         autofocus: true,
-                        label_html: { class: "vwform__field" }%>
+                        label_html: { class: "vwform__field" } %>
             <%= f.input :last_name,
                         required: true,
                         autofocus: true,
-                        label_html: { class: "vwform__field" }%>
+                        label_html: { class: "vwform__field" } %>
+            <%= f.input :flat,
+                        autofocus: true,
+                        label_html: { class: "vwform__field" } %>
             <%= f.input :street_address,
                         autofocus: true,
-                        label_html: { class: "vwform__field" }%>
+                        label_html: { class: "vwform__field" } %>
             <%= f.input :city,
                         autofocus: true,
-                        label_html: { class: "vwform__field" }%>
+                        label_html: { class: "vwform__field" } %>
             <%= f.input :county,
                         autofocus: true,
-                        label_html: { class: "vwform__field" }%>
+                        label_html: { class: "vwform__field" } %>
             <%= f.input :postcode,
                         autofocus: true,
-                        label_html: { class: "vwform__field" }%>
+                        label_html: { class: "vwform__field" } %>
             <%= f.input :phone,
                         required: true,
                         autofocus: true,
                         error: "Please enter a valid UK mobile phone number.",
                         label: "Mobile phone",
-                        label_html: { class: "vwform__field" }%>
+                        label_html: { class: "vwform__field" } %>
             <%= f.input :email,
                         required: true,
                         autofocus: true,
                         input_html: { autocomplete: "email" },
-                        label_html: { class: "vwform__field" }%>
+                        label_html: { class: "vwform__field" } %>
             <%= f.input :password,
                         hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                        input_html: { autocomplete: "new-password"},
-                        label_html: { class: "vwform__field" }%>
+                        input_html: { autocomplete: "new-password" },
+                        label_html: { class: "vwform__field" } %>
             <%= f.input :password_confirmation,
-                        input_html: { autocomplete: "new-password"},
-                        label_html: { class: "vwform__field" }%>
+                        input_html: { autocomplete: "new-password" },
+                        label_html: { class: "vwform__field" } %>
           </div>
 
           <div class="form-actions">

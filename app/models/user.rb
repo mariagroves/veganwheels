@@ -4,15 +4,16 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :phone, presence: true
-  validates :phone, telephone_number: {country: :GB, types: [:mobile]}
+  validates :phone, telephone_number: { country: :GB, types: [:mobile] }
   # validates :password, password_strength: {min_entropy: 10}
-  validates :street_address, presence: true 
-  validates :city, presence: true 
+  validates :street_address, presence: true
+  validates :city, presence: true
   validate :location_is_glasgow
-  validates :postcode, presence: true 
+  validates :postcode, presence: true
   validate :address_is_correct
   has_many :orders, dependent: :destroy
-  after_create :send_welcome_email
+  after_create :send_welcome_email, :format_flat
+  after_update :format_flat
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -21,8 +22,13 @@ class User < ApplicationRecord
   end
 
   def address
+    address = [flat, street_address, city, county, postcode, country].reject { |e| e.to_s.empty? }
+    address.join(", ")
+  end
+
+  def geocoder_address
     address = [street_address, city, county, postcode, country].reject { |e| e.to_s.empty? }
-    address.join(', ')
+    address.join(", ")
   end
 
   def location_is_glasgow
@@ -32,7 +38,7 @@ class User < ApplicationRecord
   end
 
   def is_outside_delivery_area(restaurant)
-    restaurant.distance_from(Geocoder.search(self.address).first.coordinates, :km) > 5
+    restaurant.distance_from(Geocoder.search(self.geocoder_address).first.coordinates, :km) > 5
   end
 
   private
@@ -41,9 +47,16 @@ class User < ApplicationRecord
     WelcomeEmailWorker.perform_async(self.id)
   end
 
+  def format_flat
+    if flat && !flat["Flat"]
+      flat_field = "Flat " + flat
+      self.update_attribute(:flat, flat_field)
+    end
+  end
+
   def address_is_correct
-    if Geocoder.search(self.address).empty?
-        errors.add(:postcode, "Invalid address. Please make sure there are no errors and that the postcode includes a space, eg. 'G2 3AU'.")
+    if Geocoder.search(self.geocoder_address).empty?
+      errors.add(:postcode, "Invalid address. Please make sure there are no errors and that the postcode includes a space, eg. 'G2 3AU'.")
     end
   end
 end

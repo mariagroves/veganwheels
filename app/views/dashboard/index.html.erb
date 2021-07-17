@@ -1,7 +1,7 @@
 <div class="container white-content-box">
     <div class="dashboard__top">
         <%= image_tag "glasses.png" %>
-        <h1>hello <%=current_user.first_name%></h1>
+        <h1>hello <%= current_user.first_name %></h1>
     </div>
     <div class="dashboard__main row">
         <div class="dashboard__box col-12 col-xl-6 order-2">
@@ -17,28 +17,31 @@
                     <div class="dashboard__box--label">
                         <h4 class="uppercase font-weight-bold">Name</h4>
                     </div>
-                    <p class="dashboard__box--margin"><%=current_user.name%></p>
+                    <p class="dashboard__box--margin"><%= current_user.name %></p>
                 </div>
                 <div class="dashboard__box--info">
                     <div class="dashboard__box--label">
                         <h4 class="uppercase font-weight-bold">Phone Number</h4>
                     </div>
-                    <p class="dashboard__box--margin"><%=current_user.phone%></p>
+                    <p class="dashboard__box--margin"><%= current_user.phone %></p>
                 </div>
                 <div class="dashboard__box--info">
                     <div class="dashboard__box--label">
                         <h4 class="uppercase font-weight-bold">Email</h4>
                     </div>
-                    <p class="dashboard__box--margin"><%=current_user.email%></p>
+                    <p class="dashboard__box--margin"><%= current_user.email %></p>
                 </div>
                 <div class="dashboard__box--info">
                     <div class="dashboard__box--label">
                         <h4 class="uppercase font-weight-bold">Address</h4>
                     </div>
-                    <p><%=current_user.street_address%></p>
-                    <p><%=current_user.city%></p>
-                    <p><%=current_user.county%></p>
-                    <p class="dashboard__box--margin"><%=current_user.postcode%></p>
+                    <% if current_user.flat %>
+                      <p><%= current_user.flat %></p>
+                    <% end %>
+                    <p><%= current_user.street_address %></p>
+                    <p><%= current_user.city %></p>
+                    <p><%= current_user.county %></p>
+                    <p class="dashboard__box--margin"><%= current_user.postcode %></p>
                 </div>
             </div>
         </div>
@@ -50,34 +53,34 @@
                 <div class="dashboard__box--top">
                     <h3 class="uppercase font-weight-bold">Current Order</h3>
                 </div>
-                <%if @current_orders.present?%>
-                    <%@current_orders.order('id DESC').each do |order|%>
-                        <%= render 'partials/order', order: order%>
-                    <%end%>
-                <%else%>
+                <% if @current_orders.present? %>
+                    <% @current_orders.order("id DESC").each do |order| %>
+                        <%= render "partials/order", order: order %>
+                    <% end %>
+                <% else %>
                     <p class="dashboard__box--message">You have no current orders!</p>
-                <%end%>
+                <% end %>
             </div>
             <div class="dashboard__box--section">
                 <div class="dashboard__box--top">
                     <h3 class="uppercase font-weight-bold">Past Orders</h3>
                 </div>
-                <%if @past_orders.present?%>
-                    <%@past_orders.limit(2).order('id DESC').each do |order|%>
-                        <%= render 'partials/order', order: order%>
-                    <%end%>
+                <% if @past_orders.present? %>
+                    <% @past_orders.limit(2).order("id DESC").each do |order| %>
+                        <%= render "partials/order", order: order %>
+                    <% end %>
                     
-                    <%if @past_orders.count > 2%>
+                    <% if @past_orders.count > 2 %>
                         <div class="bottom-margin">
-                            <%= link_to "See all past orders", orders_path, class: "uppercase dashboard__box--link"%>
+                            <%= link_to "See all past orders", orders_path, class: "uppercase dashboard__box--link" %>
                         </div>
-                    <%end%>
-                <%else%>
+                    <% end %>
+                <% else %>
                     <p class="dashboard__box--message">You have no past orders!</p>
-                <%end%>    
+                <% end %>    
             </div>
         </div>
     </div>
-    <%= render 'partials/modal_cart_bg'%>
+    <%= render "partials/modal_cart_bg" %>
 </div>
 
