@@ -19,30 +19,30 @@ class Restaurant < ApplicationRecord
   end
 
   def is_closed_today?
-    open_today = Time.now.strftime("%A").downcase + "_opens_at"
-    close_today = Time.now.strftime("%A").downcase + "_closes_at"
+    open_today = Time.current.strftime("%A").downcase + "_opens_at"
+    close_today = Time.current.strftime("%A").downcase + "_closes_at"
     opens_at_time = self.send open_today
     closes_at_time = self.send close_today
     return opens_at_time == closes_at_time || opens_at_time.nil?
   end
 
   def before_opening_time?
-    Time.now < self.opening_time_today
+    Time.current < self.opening_time_today
   end
 
   def after_closing_time?
-    Time.now > self.closing_time_today
+    Time.current > self.closing_time_today
   end
 
   def opening_time_today
-    opening_today = Time.now.strftime("%A").downcase + "_opens_at"
+    opening_today = Time.current.strftime("%A").downcase + "_opens_at"
     opening_time_Y2K = self.send opening_today
     opening_time_hour_min = opening_time_Y2K.strftime("%I:%M %p")
     Time.parse opening_time_hour_min
   end
 
   def closing_time_today
-    closing_today = Time.now.strftime("%A").downcase + "_closes_at"
+    closing_today = Time.current.strftime("%A").downcase + "_closes_at"
     closing_time_Y2K = self.send closing_today
     closing_time_hour_min = closing_time_Y2K.strftime("%I:%M %p")
     Time.parse closing_time_hour_min

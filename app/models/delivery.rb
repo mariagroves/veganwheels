@@ -1,7 +1,7 @@
 class Delivery < ApplicationRecord
   belongs_to :rider_user
   belongs_to :order
-  validates :order_id, uniqueness: {scope: :rider_user}, on: :create
+  validates :order_id, uniqueness: { scope: :rider_user }, on: :create
   validate :rider_is_available
   after_destroy :update_order_unassigned
   after_create :update_order_assigned
@@ -10,7 +10,7 @@ class Delivery < ApplicationRecord
   after_update :update_order_open
 
   def rider_is_available
-    if !rider_user.is_available 
+    if !rider_user.is_available
       errors.add(:rider_user, "is not available to take deliveries.")
     end
   end
@@ -35,7 +35,7 @@ class Delivery < ApplicationRecord
 
   def save_collected_time
     if self.is_collected == true
-      self.update_column(:time_collected, Time.now)
+      self.update_column(:time_collected, Time.current)
     else
       self.update_column(:time_collected, nil)
     end
@@ -43,7 +43,7 @@ class Delivery < ApplicationRecord
 
   def save_delivered_time
     if self.is_delivered == true
-      self.update_column(:time_delivered, Time.now)
+      self.update_column(:time_delivered, Time.current)
     else
       self.update_column(:time_delivered, nil)
     end

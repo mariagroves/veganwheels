@@ -13,10 +13,10 @@ class Order < ApplicationRecord
   after_update :notify_restaurant
   validates :user, :cart, presence: true
   # user can't checkout with the same cart multiple times
-  validates :cart, uniqueness: {scope: :user}, on: :create
+  validates :cart, uniqueness: { scope: :user }, on: :create
 
   def self.delete_expired_orders
-    Order.where('created_at <= ?', Time.now - 10.hours).where(state: 'pending').each do |order|
+    Order.where("created_at <= ?", Time.current - 10.hours).where(state: "pending").each do |order|
       OrderWorker.perform_async(order.id)
     end
   end
@@ -27,15 +27,15 @@ class Order < ApplicationRecord
 
   def status_report
     if !self.delivery.present? && self.state == "paid"
-      {alert: "Your order is being assigned to a rider."}
+      { alert: "Your order is being assigned to a rider." }
     elsif self.state == "refunded"
-      {alert: "Your order has been cancelled and refunded."}
+      { alert: "Your order has been cancelled and refunded." }
     elsif !self.delivery.is_collected
-      {notice: "The rider is on the way to pick up your order."}
+      { notice: "The rider is on the way to pick up your order." }
     elsif self.delivery.is_collected && !self.delivery.is_delivered
-      {notice: "You order has been collected."}
+      { notice: "You order has been collected." }
     elsif self.delivery.is_delivered
-      {success: "Your order has been delivered."}
+      { success: "Your order has been delivered." }
     end
   end
 
@@ -45,11 +45,11 @@ class Order < ApplicationRecord
 
       RiderUser.where(is_active: true, is_available: true).find_each do |rider|
         if rider.work_areas.near([self.restaurant.latitude, self.restaurant.longitude], 5, units: :km).present?
-              client.messages.create(
-                  from: ENV['TWILIO_PHONE_NUMBER'],
-                  to: rider.phone,
-                  body: 'A new delivery job is available on VeganWheels!'
-              )
+          client.messages.create(
+            from: ENV["TWILIO_PHONE_NUMBER"],
+            to: rider.phone,
+            body: "A new delivery job is available on VeganWheels!",
+          )
         end
       end
     end
@@ -58,11 +58,11 @@ class Order < ApplicationRecord
   def notify_restaurant
     if !self.is_assigned && self.open && state == "paid"
       client = Twilio::REST::Client.new
-      
+
       client.messages.create(
-          from: ENV['TWILIO_PHONE_NUMBER'],
-          to: self.restaurant.admin_user.phone,
-          body: 'You have a new order on VeganWheels!'
+        from: ENV["TWILIO_PHONE_NUMBER"],
+        to: self.restaurant.admin_user.phone,
+        body: "You have a new order on VeganWheels!",
       )
     end
   end
@@ -74,7 +74,7 @@ class Order < ApplicationRecord
   end
 
   def set_delivery_price
-    self.delivery_price = Business.first.delivery_price 
+    self.delivery_price = Business.first.delivery_price
   end
 
   def set_total_price

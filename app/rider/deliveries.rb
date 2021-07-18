@@ -12,7 +12,7 @@ ActiveAdmin.register Delivery, namespace: :rider do
   controller do
     def destroy
       @delivery = Delivery.find(params[:id])
-      if Time.now - @delivery.created_at > 5.minutes
+      if Time.current - @delivery.created_at > 5.minutes
         flash[:error] = "You cannot cancel this delivery as more than 5 minutes has passed since you signed up."
         redirect_to rider_deliveries_path
         return
@@ -74,7 +74,7 @@ ActiveAdmin.register Delivery, namespace: :rider do
   member_action :toggle_delivered, method: [:post, :patch] do
     delivery = Delivery.find(params[:id])
     flash[:error] = "Please mark the order as collected first." if !delivery.is_collected
-    if delivery.is_delivered && Time.now - delivery.updated_at > 5.minutes
+    if delivery.is_delivered && Time.current - delivery.updated_at > 5.minutes
       flash[:error] = "You cannot mark this order as not delivered as more than 5 minutes have passed since you marked it as delivered."
     elsif delivery.is_delivered
       delivery.update(is_delivered: false)
