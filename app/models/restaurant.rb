@@ -27,11 +27,19 @@ class Restaurant < ApplicationRecord
   end
 
   def before_opening_time?
-    Time.current < self.opening_time_today
+    if Time.current.dst?
+      Time.current < self.opening_time_today + 1.hour
+    else
+      Time.current < self.opening_time_today
+    end
   end
 
   def after_closing_time?
-    Time.current > self.closing_time_today
+    if Time.current.dst?
+      Time.current > self.closing_time_today + 1.hour
+    else
+      Time.current < self.opening_time_today
+    end
   end
 
   def opening_time_today
