@@ -18,34 +18,34 @@ class Delivery < ApplicationRecord
   private
 
   def update_order_assigned
-    self.order.update(is_assigned: true)
+    order.update(is_assigned: true)
   end
 
   def update_order_unassigned
-    self.order.update(is_assigned: false)
+    order.update(is_assigned: false)
   end
 
   def update_order_open
-    if self.is_collected && self.is_delivered
-      self.order.update(open: false)
+    if is_collected && is_delivered
+      order.update(open: false)
     else
-      self.order.update(open: true)
+      order.update(open: true)
     end
   end
 
   def save_collected_time
-    if self.is_collected == true
-      self.update_column(:time_collected, Time.current)
-    else
-      self.update_column(:time_collected, nil)
+    if is_collected && !is_delivered && time_collected == nil
+      update_column(:time_collected, Time.current)
+    elsif !is_collected
+      update_column(:time_collected, nil)
     end
   end
 
   def save_delivered_time
-    if self.is_delivered == true
-      self.update_column(:time_delivered, Time.current)
+    if is_delivered
+      update_column(:time_delivered, Time.current)
     else
-      self.update_column(:time_delivered, nil)
+      update_column(:time_delivered, nil)
     end
   end
 end
