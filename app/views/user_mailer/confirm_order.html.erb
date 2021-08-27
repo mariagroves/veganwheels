@@ -24,16 +24,18 @@ body {
 </style>
 
 <div class="email_text">
-  <p style="font-weight:bold">Hello <%=@user.first_name.capitalize%></p>
+  <p style="font-weight:bold">Hello <%= @user.first_name.capitalize %></p>
 
-  <p>Thank you for ordering from <%=@order.restaurant.name%> with Vegan Wheels.</p>
+  <p>Thank you for ordering from <%= @order.restaurant.name %> with Vegan Wheels.</p>
 
-  <p style="font-weight:bold">Your order number is: <span class="order_number"><%=@order.id%></span></p>
+  <p style="font-weight:bold">Your order number is: <span class="order_number"><%= @order.id %></span></p>
 
-  <p>Your expected delivery time is <span style="font-weight:bold"><%=(@order.order_time + 30.minutes).strftime("%l:%M %p")%></span></p>
+  <p>Your expected delivery time is <span style="font-weight:bold"><%= (@order.order_time + 30.minutes).strftime("%l:%M %p") %></span></p>
 
-  <p>Please note that restaurants sometimes receive more orders than usual. This means that your delivery may arrive later than specified. You can see the status of your order on your <%= link_to 'dashboard', dashboard_index_url%>.</p>
+  <p>Please note that restaurants sometimes receive more orders than usual. This means that your delivery may arrive later than specified. You can see the status of your order on your <%= link_to "dashboard", dashboard_index_url %>.</p>
 
-  <p>Best wishes,</p>
-  <p>Vegan Wheels 🌱</p>
+  <p>When you see your order has been collected by a rider, your meal should be with you in no longer than 20 mins. We’ll do our best to keep you updated either by phone or text if either we or the restaurant you ordered from are expecting delays with your meal.</p>
+
+  <p>See you soon,</p>
+  <p>Veganwheels x</p>
 </div>

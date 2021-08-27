@@ -9,20 +9,20 @@
         <div class="row hero__content">
             <div class="col-12 order-2 col-xl-7 order-xl-1">
                 <div class="hero__text-box">
-                    <h1>Welcome to Vegan Wheels, a Glasgow-based food delivery service</h1> 
+                    <h1>Welcome to Veganwheels, a Glasgow-based food delivery service</h1> 
 
                     <h2 class="margin-medium text-justify"> We are a cooperative with a passion for protecting animals. We connect some of Glasgow’s best vegan restaurants and cafes with a quick and efficient delivery service. All our profits are donated to an animal charity chosen by our members.</h2>  
                 
-                    <h2 class="margin-medium text-justify">With Vegan Wheels you can order from the best local restaurants and be confident that none of your money goes to businesses that use animal products.</h2>
+                    <h2 class="margin-medium text-justify">With Veganwheels you can order from the best local restaurants and be confident that none of your money goes to businesses that use animal products.</h2>
                 </div>
                 <div class="search-form">
                     <p class="label-yellow uppercase">Enter your postcode to begin</p>
-                    <%= simple_form_for :search, 
-                        url: restaurants_path, 
-                        method: "GET" do |f| %>
-                    <%= f.input :postcode, 
-                        input_html: {value: "", class: "search-form-big"},
-                        label: false%>  
+                    <%= simple_form_for :search,
+                                        url: restaurants_path,
+                                        method: "GET" do |f| %>
+                    <%= f.input :postcode,
+                                input_html: { value: "", class: "search-form-big" },
+                                label: false %>  
                     <%= f.button :button do %>
                         <i class="fas fa-search"></i>
                         <% end %>    
@@ -72,7 +72,7 @@
                 </div>
                 <div class="features__text">
                     <h2 class="text-center font-weight-bold features__margin">Easy to join and use</h2>
-                    <p class="text-justify">When you sign up we ask for some key information, such as your email, mobile number and address. None of your information will be shared with anyone outside of Vegan Wheels. We strongly believe in data privacy.</p>
+                    <p class="text-justify">When you sign up we ask for some key information, such as your email, mobile number and address. None of your information will be shared with anyone outside of Veganwheels. We strongly believe in data privacy.</p>
                 </div>
             </div>
             <div class="col-12 col-xl-4 features__images">
@@ -108,9 +108,9 @@
                         <h1 class="text-justify text-center">About us</h1>
 
                         <div class="about__text">
-                            <%=raw(Business.first.about)%>
+                            <%= raw(Business.first.about) %>
 
-                            <%= link_to "Join Us", new_user_registration_path, class: "button__fill button__fill--greenl button__about mx-auto"%>
+                            <%= link_to "Join Us", new_user_registration_path, class: "button__fill button__fill--greenl button__about mx-auto" %>
                         </div>
                 
                     </div> 
@@ -118,5 +118,5 @@
             </div>        
         </div>
     </div>
-    <%= render 'partials/modal_cart_bg'%>
+    <%= render "partials/modal_cart_bg" %>
 </div>

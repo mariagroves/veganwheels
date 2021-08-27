@@ -1,5 +1,4 @@
 class UserMailer < ApplicationMailer
-
   def welcome(user)
     @user = user
 
@@ -14,7 +13,6 @@ class UserMailer < ApplicationMailer
   end
 
   def refund_order(user, order)
-    puts "in the refund method"
     @user = user
     @order = order
 

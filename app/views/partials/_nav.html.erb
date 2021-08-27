@@ -4,39 +4,39 @@
             <i class="fas fa-bars"></i>
         </div>
         <div class="navigation__logo">
-            <%= link_to "Vegan Wheels", root_path %>
+            <%= link_to "Veganwheels", root_path %>
         </div>
-        <%if user_signed_in?%>           
+        <% if user_signed_in? %>           
             <div id="user_icon_1" class="user_icon user_icon--mobile">
                 <i class="fas fa-user"></i>
-                <%= render 'partials/user_menu'%>
+                <%= render "partials/user_menu" %>
             </div> 
-        <%end%>
+        <% end %>
         <div id="nav_section_1">
-            <%if !session[:cart_id].nil? && Cart.find(session[:cart_id]).order_items.present?%>
-                <%@cart = Cart.find(session[:cart_id])%>
+            <% if !session[:cart_id].nil? && Cart.find(session[:cart_id]).order_items.present? %>
+                <% @cart = Cart.find(session[:cart_id]) %>
                 <div class="nav_cart nav_cart--tablet">
                     <div class="nav_cart--price">
                         <i class="fas fa-shopping-basket"></i>
-                        <p>£<%=to_pounds(@cart.get_total)%></p>
+                        <p>£<%= to_pounds(@cart.get_total) %></p>
                     </div>
                     <div>|</div>
-                    <p class="uppercase"><%=pluralize(@cart.get_quantity, 'item')%></p>
+                    <p class="uppercase"><%= pluralize(@cart.get_quantity, "item") %></p>
                 </div>
-            <%elsif user_signed_in? && current_user.orders.where(state: "pending").present?%>
-                <%@cart = current_user.orders.where(state: "pending").first.cart%>
+            <% elsif user_signed_in? && current_user.orders.where(state: "pending").present? %>
+                <% @cart = current_user.orders.where(state: "pending").first.cart %>
 
-                <%=link_to new_order_payment_path(current_user.orders.where(state: 'pending').first) do%>
+                <%= link_to new_order_payment_path(current_user.orders.where(state: "pending").first) do %>
                     <div class="nav_cart nav_cart--tablet">
                         <div class="nav_cart--price">
                             <i class="fas fa-shopping-basket"></i>
-                            <p>£<%=to_pounds(@cart.get_total)%></p>
+                            <p>£<%= to_pounds(@cart.get_total) %></p>
                         </div>
                         <div>|</div>
-                        <p class="uppercase"><%=pluralize(@cart.get_quantity, 'item')%></p>
+                        <p class="uppercase"><%= pluralize(@cart.get_quantity, "item") %></p>
                     </div>
-                <%end%>
-            <%end%>      
+                <% end %>
+            <% end %>      
         </div>
         <div class="navigation__links">
             <div class="navigation__links--1 padding-small">
@@ -45,7 +45,7 @@
             </div>
             <div class="navigation__links--2 padding-small">
                 <div class="link-blob"></div>
-                <%= link_to "About us", root_path(anchor: 'about-section') %>
+                <%= link_to "About us", root_path(anchor: "about-section") %>
             </div>
             <div class="navigation__links--3 padding-small">
                 <div class="link-blob"></div>
@@ -53,68 +53,68 @@
             </div>
        
             <div id="nav_section_2">
-                <%if !session[:cart_id].nil? && Cart.find(session[:cart_id]).order_items.present?%>
-                <%@cart = Cart.find(session[:cart_id])%>
+                <% if !session[:cart_id].nil? && Cart.find(session[:cart_id]).order_items.present? %>
+                <% @cart = Cart.find(session[:cart_id]) %>
                     <div class="nav_cart nav_cart--normal">
                         <div class="nav_cart--price">
                             <i class="fas fa-shopping-basket"></i>
-                            <p>£<%=to_pounds(@cart.get_total)%></p>
+                            <p>£<%= to_pounds(@cart.get_total) %></p>
                         </div>
                         <div>|</div>
-                        <p class="uppercase"><%=pluralize(@cart.get_quantity, 'item')%></p>
+                        <p class="uppercase"><%= pluralize(@cart.get_quantity, "item") %></p>
                     </div>
-                <%elsif user_signed_in? && current_user.orders.where(state: "pending").present?%>
-                    <%@cart = current_user.orders.where(state: "pending").first.cart%>
+                <% elsif user_signed_in? && current_user.orders.where(state: "pending").present? %>
+                    <% @cart = current_user.orders.where(state: "pending").first.cart %>
 
-                    <%=link_to new_order_payment_path(current_user.orders.where(state: 'pending').first) do%>
+                    <%= link_to new_order_payment_path(current_user.orders.where(state: "pending").first) do %>
                         <div class="nav_cart nav_cart--normal">
                             <div class="nav_cart--price">
                                 <i class="fas fa-shopping-basket"></i>
-                                <p>£<%=to_pounds(@cart.get_total)%></p>
+                                <p>£<%= to_pounds(@cart.get_total) %></p>
                             </div>
                             <div>|</div>
-                            <p class="uppercase"><%=pluralize(@cart.get_quantity, 'item')%></p>
+                            <p class="uppercase"><%= pluralize(@cart.get_quantity, "item") %></p>
                         </div>
-                    <%end%>
-                <%end%>      
+                    <% end %>
+                <% end %>      
             </div>
         
-            <%if user_signed_in?%>           
+            <% if user_signed_in? %>           
                 <div id="user_icon_2" class="user_icon user_icon--normal">
                     <i class="fas fa-user"></i>
-                    <%= render 'partials/user_menu'%>
+                    <%= render "partials/user_menu" %>
                 </div>  
-            <%else %>
+            <% else %>
                 <div class="navigation__links--4 padding-small" id="">
-                    <%= link_to "Log in", new_user_session_path, id: "sign_up"%>
+                    <%= link_to "Log in", new_user_session_path, id: "sign_up" %>
                 </div>
-            <%end%>
+            <% end %>
         </div>
     </div>
 </div>
 <div id="nav_section_3">
-    <%if !session[:cart_id].nil? && Cart.find(session[:cart_id]).order_items.present?%>
-    <%@cart = Cart.find(session[:cart_id])%>
+    <% if !session[:cart_id].nil? && Cart.find(session[:cart_id]).order_items.present? %>
+    <% @cart = Cart.find(session[:cart_id]) %>
         <div class="nav_cart nav_cart--mobile">
             <div class="nav_cart--price">
                 <i class="fas fa-shopping-basket"></i>
-                <p>£<%=to_pounds(@cart.get_total)%></p>
+                <p>£<%= to_pounds(@cart.get_total) %></p>
             </div>
             <div>|</div>
-            <p class="uppercase"><%=pluralize(@cart.get_quantity, 'item')%></p>
+            <p class="uppercase"><%= pluralize(@cart.get_quantity, "item") %></p>
         </div>
-    <%elsif user_signed_in? && current_user.orders.where(state: "pending").present?%>
-        <%@cart = current_user.orders.where(state: "pending").first.cart%>
+    <% elsif user_signed_in? && current_user.orders.where(state: "pending").present? %>
+        <% @cart = current_user.orders.where(state: "pending").first.cart %>
 
-        <%=link_to new_order_payment_path(current_user.orders.where(state: 'pending').first) do%>
+        <%= link_to new_order_payment_path(current_user.orders.where(state: "pending").first) do %>
             <div class="nav_cart nav_cart--mobile">
                 <div class="nav_cart--price">
                     <i class="fas fa-shopping-basket"></i>
-                    <p>£<%=to_pounds(@cart.get_total)%></p>
+                    <p>£<%= to_pounds(@cart.get_total) %></p>
                 </div>
                 <div>|</div>
-                <p class="uppercase"><%=pluralize(@cart.get_quantity, 'item')%></p>
+                <p class="uppercase"><%= pluralize(@cart.get_quantity, "item") %></p>
             </div>
-        <%end%>
-    <%end%>      
+        <% end %>
+    <% end %>      
 </div>
