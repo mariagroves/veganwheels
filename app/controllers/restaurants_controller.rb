@@ -18,7 +18,7 @@ class RestaurantsController < ApplicationController
         end
       end
 
-      @restaurants = Restaurant.near(@coordinates, 3.6, units: :km).sort_by(&:id)
+      @restaurants = Restaurant.near(@coordinates, 3.9, units: :km).sort_by(&:id)
     end
     respond_to do |format|
       format.html
