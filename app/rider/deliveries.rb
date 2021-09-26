@@ -3,7 +3,7 @@ ActiveAdmin.register Delivery, namespace: :rider do
   config.clear_action_items!
   config.filters = false
   config.batch_actions = false
-  config.sort_order = "is_delivered_asc"
+  config.sort_order = "order_id_desc"
   menu label: "My Deliveries"
   controller do
     before_action { @page_title = "My Deliveries" }

@@ -431,20 +431,28 @@ cart1 = Cart.create
 
 cart2 = Cart.create
 
+cart3 = Cart.create
+
 puts "creating order item"
 
 OrderItem.create(menu_item: Restaurant.first.menu_items.first, quantity: 1, unit_price: 1000, total_price: 1000, cart: cart1, has_side: false)
 
 OrderItem.create(menu_item: Restaurant.first.menu_items.first, quantity: 1, unit_price: 1000, total_price: 1000, cart: cart2, has_side: false)
 
+OrderItem.create(menu_item: Restaurant.first.menu_items.first, quantity: 1, unit_price: 1000, total_price: 1000, cart: cart3, has_side: false)
+
 puts "creating order"
 
 order = Order.create(checkout_session_id: "123", user: User.first, cart: cart1, order_price: 1000, total_price: 1000, is_assigned: true, state: "paid", delivery_price: Business.first.delivery_price, order_time: Time.current, restaurant: Restaurant.first)
 
-Order.create(checkout_session_id: "123", user: User.first, cart: cart2, order_price: 1000, total_price: 1000, is_assigned: false, state: "paid", delivery_price: Business.first.delivery_price, order_time: Time.current, restaurant: Restaurant.first)
+order2 = Order.create(checkout_session_id: "123", user: User.first, cart: cart2, order_price: 1000, total_price: 1000, is_assigned: false, state: "paid", delivery_price: Business.first.delivery_price, order_time: Time.current, restaurant: Restaurant.first)
+
+order3 = Order.create(checkout_session_id: "123", user: User.first, cart: cart3, order_price: 1000, total_price: 1000, is_assigned: false, state: "pending", delivery_price: Business.first.delivery_price, order_time: Time.current, restaurant: Restaurant.first)
 
 puts "creating delivery"
 
-Delivery.create(rider_user: rider2, order: order)
+Delivery.create(rider_user: rider2, order: order, is_collected: true, is_delivered: true, time_collected: Time.current - 1.hour, time_delivered: Time.current - 1.hour)
+Delivery.create(rider_user: rider2, order: order2, is_collected: true, is_delivered: true, time_collected: Time.current - 2.hours, time_delivered: Time.current - 2.hours)
+Delivery.create(rider_user: rider2, order: order3, is_collected: true, is_delivered: true, time_collected: Time.current - 3.hours, time_delivered: Time.current - 3.hours)
 
 puts "finished seeding"
