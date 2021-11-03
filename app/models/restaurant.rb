@@ -38,7 +38,7 @@ class Restaurant < ApplicationRecord
     if Time.current.dst?
       Time.current > self.closing_time_today - 1.hour
     else
-      Time.current < self.opening_time_today
+      Time.current > self.closing_time_today
     end
   end
 
