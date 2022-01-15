@@ -38,7 +38,7 @@ class User < ApplicationRecord
   end
 
   def is_outside_delivery_area(restaurant)
-    restaurant.distance_from(Geocoder.search(self.geocoder_address).first.coordinates, :km) > 3.9
+    restaurant.distance_from(Geocoder.search(self.postcode).first.coordinates, :km) > 3.9
   end
 
   private
