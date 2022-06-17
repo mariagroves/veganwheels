@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2021_07_17_083946) do
     t.string "phone"
     t.string "email"
     t.text "about"
+    t.text "hero"
     t.text "faqs"
     t.text "privacy"
     t.text "terms"

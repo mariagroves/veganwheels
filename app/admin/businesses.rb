@@ -1,5 +1,5 @@
 ActiveAdmin.register Business do
-  permit_params :delivery_price, :phone, :email, :about, :faqs, :privacy, :terms
+  permit_params :delivery_price, :phone, :email, :hero, :about, :faqs, :privacy, :terms
   config.filters = false
   config.clear_action_items!
   menu label: "Business Information"
@@ -10,6 +10,9 @@ ActiveAdmin.register Business do
     end
     column :phone
     column :email
+    column :hero do |my_resource|
+      truncate(my_resource.hero, length: 50)
+    end
     column :about do |my_resource|
       truncate(my_resource.about, length: 50)
     end
@@ -36,6 +39,10 @@ ActiveAdmin.register Business do
       row :delivery_price do |my_resource|
         number_to_currency(to_pounds(my_resource.delivery_price), unit: "£")
       end
+      row :hero do |my_resource|
+        
+        my_resource.hero
+      end
       row :about do |my_resource|
         
         my_resource.about
@@ -57,6 +64,9 @@ ActiveAdmin.register Business do
       f.input :phone
       f.input :email
       f.input :delivery_price
+    end
+    f.inputs 'Hero' do
+      f.input :hero, label: false, as: :quill_editor
     end
     f.inputs 'About' do
       f.input :about, label: false, as: :quill_editor
