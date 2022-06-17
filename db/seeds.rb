@@ -64,7 +64,7 @@ puts "finished creating rider work areas"
 
 puts "creating user"
 
-User.create(first_name: "Maria", last_name: "Groves", email: "mariagrovesh@gmail.com", password: 12345678, phone: "07595910074", street_address: "1191 Royston Road", city: "Glasgow", postcode: "G33 1EY")
+#User.create(first_name: "Maria", last_name: "Groves", email: "mariagrovesh@gmail.com", password: 12345678, phone: "07595910074", street_address: "1191 Royston Road", city: "Glasgow", postcode: "G33 1EY")
 
 puts "finished creating user"
 

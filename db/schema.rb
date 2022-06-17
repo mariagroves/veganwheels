@@ -127,11 +127,11 @@ ActiveRecord::Schema.define(version: 2021_07_17_083946) do
   create_table "order_item_options", force: :cascade do |t|
     t.bigint "menu_option_id", null: false
     t.bigint "order_item_id", null: false
+    t.integer "quantity"
     t.integer "unit_price"
+    t.integer "total_price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "quantity"
-    t.integer "total_price"
     t.index ["menu_option_id"], name: "index_order_item_options_on_menu_option_id"
     t.index ["order_item_id"], name: "index_order_item_options_on_order_item_id"
   end
