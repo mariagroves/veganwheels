@@ -70,7 +70,7 @@ puts "finished creating user"
 
 puts "creating business information"
 
-hero = "This is a test"
+hero = "<h1>Welcome to Veganwheels, a Glasgow-based food delivery service</h1><h2 class="margin-medium text-justify"> We are a cooperative with a passion for protecting animals. We connect some of Glasgow’s best vegan restaurants and cafes with a quick and efficient delivery service. All our profits are donated to an animal charity chosen by our members.</h2> <h2 class="margin-medium text-justify">With Veganwheels you can order from the best local restaurants and be confident that none of your money goes to businesses that use animal products.</h2>"
 
 about = "<p><strong>Sollicitudin augue lobortis sem volutpat diam amet sit malesuada. </strong>Habitasse volutpat feugiat lobortis rhoncus elit ac aliquam. Vulputate tincidunt lacus tempus tempor nibh sit. Ut pellentesque mattis senectus non. Sapien in gravida tincidunt nisi, ullamcorper.</p><p><br></p><p><strong>Amet tellus a orci, cras orci. </strong>Hac pellentesque lacus senectus sed ut. Ullamcorper iaculis nullam quis enim cursus urna ultrices adipiscing. Nam non integer nunc, eget laoreet diam condimentum. Dictum elementum ut faucibus odio eget. Eget sed imperdiet mauris, habitant.</p><p><br></p><p><strong>Turpis sit lorem cras enim et netus etiam. </strong>Nullam scelerisque congue sed adipiscing id arcu nibh adipiscing. Nam non integer nunc, eget laoreet diam condimentum. Dictum elementum ut faucibus odio eget. Eget sed imperdiet mauris, habitant. Consectetur tristique sed in tortor mauris morbi ante sed.</p>"
 
